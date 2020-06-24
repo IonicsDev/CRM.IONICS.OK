@@ -1,0 +1,163 @@
+﻿@model Tuple<CRM.Business.Views.vStockValorizadoSinTratar, CRM.Business.Views.vStockValorizadoTratados, CRM.Business.Views.vHorasEnCartera>
+
+@using (Html.BeginForm("Index", "PanelDeControl", FormMethod.Post))
+{
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="icon"><i class="icon20 i-table"></i></div>
+                    <h4>Stock Valorizado Sin Tratar</h4>
+                    <a href="#" class="minimize"></a>
+
+                </div>
+                <!-- End .panel-heading -->
+
+                <div class="panel-body">
+
+                    <link href="~/Css/custom.css" rel="stylesheet" />
+                    <table style="width: 100%">
+                        <tr>
+                            <td style="width: 50%;">
+                                <table style="text-align: center;">
+                                    <tr>
+                                        <td>Productos sin tratar al día: 
+                                        </td>
+                                        <td>
+                                            <div class="input-group">
+                                                <input type="datetime" name="dateStockSinTratar" autocomplete="off" class="form-control datepicker" value="@Session["DateStockSinTratar"]" />
+                                                <span class="input-group-btn">
+                                                    <button id="filtrarStockSinTratar" name="filtrarStockSinTratar" class="btn" type="submit">Filtrar</button>
+                                                </span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                            <td style="width: 50%;">
+                                <button id="exportarStockSinTratar" name="exportarStockSinTratar" class="btn btn-primary pull-right" type="submit">Exportar a Excel</button>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <br />
+
+                    @Html.Partial("_GridViewStockSinTratar", Model.Item1)
+
+                    <br>
+                </div>
+            </div>
+        </div>
+    </div>
+            
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="icon"><i class="icon20 i-table"></i></div>
+                    <h4>Stock Valorizado Tratados</h4>
+                    <a href="#" class="minimize"></a>
+
+                </div>
+                <!-- End .panel-heading -->
+
+                <div class="panel-body">
+
+                    <link href="~/Css/custom.css" rel="stylesheet" />
+                    <table style="width: 100%;">
+                        <tr>
+                            <td style="width: 50%;">
+                                <table style="text-align: center;">
+                                    <tr>
+                                        <td>Productos tratados al día: 
+                                        </td>
+                                        <td>
+                                            <div class="input-group">
+                                                <input type="datetime" name="dateStockTratados" autocomplete="off" class="form-control datepicker" value="@Session["DateStockTratados"]" />
+                                                <span class="input-group-btn">
+                                                    <button id="filtrarStockTratados" name="filtrarStockTratados" class="btn" type="submit">Filtrar</button>
+                                                </span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                            <td style="width: 50%;">
+                                <button id="exportarStockTratados" name="exportarStockTratados" class="btn btn-primary pull-right" type="submit">Exportar a Excel</button>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <br />
+
+                    @Html.Partial("_GridViewStockTratados", Model.Item2)
+
+                </div>
+            </div>
+        </div>
+    </div>
+        
+    <div class="row col-lg-12">
+        <table>
+            <tr>
+                <td>Segundos por paso 25kGy: 
+                </td>
+                <td>
+                    <div class="input-group">
+                        <input type="text" class="form-control numericOnly" maxlength="15" name="segundosPorPaso" value="@ViewBag.SegundosPorPaso" />
+                        <span class="input-group-btn">
+                            <button id="btnActualizarValor" type="submit" class="btn btn-primary">Actualizar Valor</button>
+                        </span>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="icon"><i class="icon20 i-table"></i></div>
+                    <h4>Horas en Cartera</h4>
+                    <a href="#" class="minimize"></a>
+
+                </div>
+                <!-- End .panel-heading -->
+
+                <div class="panel-body">
+
+                    <link href="~/Css/custom.css" rel="stylesheet" />
+                    <table style="width: 100%;">
+                        <tr>
+                            <td style="width: 50%;">
+                                <table style="text-align: center;">
+                                    <tr>
+                                        <td>Horas en Cartera al día: 
+                                        </td>
+                                        <td>
+                                            <div class="input-group">
+                                                <input type="datetime" name="dateHorasCartera" autocomplete="off" class="form-control datepicker" value="@Session["DateHorasCartera"]" />
+                                                <span class="input-group-btn">
+                                                    <button id="filtrarHorasCartera" name="filtrarHorasCartera" class="btn" type="submit">Filtrar</button>
+                                                </span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                            <td style="width: 50%;">
+                                <button id="exportarHorasCartera" name="exportarHorasCartera" style="display: block;" class="btn btn-primary pull-right" type="submit">Exportar a Excel</button>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <br />
+
+                    @Html.Partial("_GridViewHorasEnCartera", Model.Item3)
+
+                </div>
+            </div>
+        </div>
+    </div>
+}

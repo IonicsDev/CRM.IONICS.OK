@@ -1,0 +1,14 @@
+@using CRM.Website.Controllers;
+
+@Html.DevExpress().HtmlEditor(settings => {
+    settings.Name = "HtmlEditor";
+    settings.CallbackRouteValues = new { Controller = "ComunicacionInterna", Action = "HtmlEditorPartial" };
+    settings.Width = 1000;
+    settings.Height = 650;
+	settings.ToolbarMode = HtmlEditorToolbarMode.Menu;
+    
+    settings.SettingsDialogs.InsertImageDialog.SettingsImageUpload.UploadCallbackRouteValues = new { Controller = "ComunicacionInterna", Action = "HtmlEditorPartialImageUpload" };
+    settings.SettingsDialogs.InsertImageDialog.SettingsImageUpload.UploadFolder = ComunicacionInternaControllerHtmlEditorSettings.ImageUploadDirectory;
+	settings.SettingsDialogs.InsertImageDialog.SettingsImageUpload.ValidationSettings.Assign(ComunicacionInternaControllerHtmlEditorSettings.ImageUploadValidationSettings);
+    settings.SettingsDialogs.InsertImageDialog.SettingsImageSelector.Assign(ComunicacionInternaControllerHtmlEditorSettings.ImageSelectorSettings);
+	}).GetHtml()

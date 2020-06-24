@@ -1,0 +1,81 @@
+﻿@model IEnumerable<CRM.Business.Entities.Eventualidad>
+@using GridMvc.Html;
+@{
+  
+    Layout = "~/Views/Shared/_Generic.cshtml";
+}
+<div class="wrapper">
+    <div class="container-fluid">
+        <div id="heading" class="page-header">
+            <h1><i class="icon20 i-cogs"></i>Configuración</h1>
+        </div>
+
+        <div class="row">
+
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <div class="icon"><i class="icon20 i-table"></i></div>
+                        <h4>Administración de Eventualidades</h4>
+                        <a href="#" class="minimize"></a>
+
+
+                    </div>
+                    <!-- End .panel-heading -->
+
+                    <div class="panel-body">
+                        @if (((CRM.Website.Models.CustomPrincipal)User).IsInRole("EDIT", ViewBag.NameController))
+                        {
+                            <p>@Html.ActionLink("Crear +", "Create", null, new { @class = "btn btn-info" })</p>
+                        }
+
+                        @using (Html.BeginForm("ExportXLS", "Eventualidad", FormMethod.Post))
+                        {
+                            <link href="~/Css/custom.css" rel="stylesheet" />
+                            <script src="~/Scripts/clientGridFunctions.js"></script>
+                            
+                            @Html.Partial("_GridExportOptionsPartial", Model)
+                            @Html.Partial("_GridViewAllPartial", Model)
+
+                            
+                        }
+                        <script type="text/javascript">
+                            var grid = eval("grid_" + "@ViewBag.NameController");
+                            $(document).ready(function () {
+                                $("#btShowCustomizationWindow").click(
+                                    function () {
+                                        UpdateCustomizationWindowVisibility();
+                                    }
+                                );
+                            });
+                            function grid_CustomizationWindowCloseUp(s, e) {
+                                UpdateButtonText();
+                            }
+                            function UpdateCustomizationWindowVisibility() {
+                                eval("grid_" + "@ViewBag.NameController").HideCustomizationWindow();
+                              if (grid.IsCustomizationWindowVisible())
+                                  grid.HideCustomizationWindow();
+                              else
+                                  grid.ShowCustomizationWindow();
+                              UpdateButtonText();
+                          }
+                          function UpdateButtonText() {
+                              var text = grid.IsCustomizationWindowVisible() ? "Ocultar" : "Mostrar";
+                              text += " Configuración de columnas";
+                              $("#btShowCustomizationWindow").val(text);
+                          }
+                        </script>
+
+                        <div style="float: right">
+                            <p>@Html.ActionLink("Configuración de Columnas", null, null, new { @id = "btShowCustomizationWindow", @class = "btn btn-info", @href = "#" })</p>
+                            @*    <input type="button" id="btShowCustomizationWindow" value="Configuración de Columnas" style="width: 200px;"/*@
+                        </div>
+                        <br />
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

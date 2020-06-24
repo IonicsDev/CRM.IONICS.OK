@@ -1,0 +1,132 @@
+﻿@model  CRM.Business.Views.vProductos
+<script type="text/javascript">
+    function OnInit(s, e) {
+        AdjustSize();
+        ASPxClientUtils.AttachEventToElement(window, "resize", function (evt) {
+            AdjustSize();
+        });
+    }
+
+    function OnEndCallback(s, e) {
+        AdjustSize();
+    }
+    function AdjustSize() {
+        var height = document.documentElement.clientHeight;
+        grid.SetHeight(height - 250);
+    }
+    var selectedIDs;
+    //Este evento esta seteado en _GridViewModalProductos
+    function OnBeginCallback(s, e) {
+        e.customArgs["selectedIDs"] = selectedIDs;
+    }
+
+    function grid_ModalProductosProceso_SelectionChanged(s, e) {
+        debugger
+        $("input#First").val(0);
+        s.GetSelectedFieldValues("Descripcion;DosisMinima;UNID;EstadoCot", GetDescripcion);
+        $("input#Item2_Cg_Prod").val(s.GetSelectedKeysOnPage());
+    }
+
+    function GetDescripcion(values) {
+        $("input#Item2_NombreProducto").val(values[0][0]);
+        $("input#Item2_Dosis").val(values[0][1]);
+        $("input#Item2_Unid_Fac").val(values[0][2]);
+        $("input#EstadoProducto").val(values[0][3]).trigger("changedEstado");
+    }
+
+
+    $(function () {
+        $(document).on('changedEstado', 'input#EstadoProducto', function () {
+            debugger;
+            var estado = $("input#EstadoProducto").val();
+            $("input#First").val($("input#First").val() + 1);
+            var first = $("input#First").val();
+            var nombre = $("input#Item2_NombreProducto").val();
+            if (estado == 0 && first == 1) {
+                alert("El producto " + "seleccionado" + " tiene su cotización vencida. " +
+                    "Solicite cotización actualizada enviando un email a comercial@ionics.com.ar");
+
+                @*if (confirm("El producto seleccionado tiene su cotización vencida." 
+                    +" ¿Desea enviar un aviso al área comercial por este producto ? "))
+                  $.ajax({
+                            url: "@Url.Action("EnviarEmailCotizacionVencida", "PedidoProceso")",
+                            type: "POST",
+                      data: { name: $("input#Item2_Cg_Prod").val() },
+                            success: function (json) {
+                                alert("pepe");
+                            }
+                    });*@
+
+                $("input#Item2_NombreProducto").val("");
+                $("input#Item2_Cantidad").val("1");
+                $("input#Item2_Unid_Fac").val("");
+                $("input#Item2_Lotes").val("");
+                $("input#Item2_Orco").val("");
+                $("input#Item2_Dosis").val("");
+                $("input#EstadoProducto").val("");
+
+            }
+
+            if (estado == 0) {
+                $("input#Item2_NombreProducto").val("");
+                $("input#Item2_Cantidad").val("1");
+                $("input#Item2_Unid_Fac").val("");
+                $("input#Item2_Lotes").val("");
+                $("input#Item2_Orco").val("");
+                $("input#Item2_Dosis").val("");
+                $("input#EstadoProducto").val("");
+            }
+
+        });
+
+    });
+
+
+    $("button#btnProdAceptar").on("click", function () {
+        $("#productoModal-container").html("<div class='modal-content'></div>");
+        $("#productoModal-container").modal('hide');
+        $("a#GetClientes").prop('disabled', true);
+    });
+
+    $("button#btnProdClose").on("click", function () {
+        $("#productoModal-container").html("<div class='modal-content'></div>");
+        $("#productoModal-container").modal('hide');
+    });
+
+    $("button#btnProdCerrar").on("click", function () {
+        $("#productoModal-container").html("<div class='modal-content'></div>");
+        $("#productoModal-container").modal('hide');
+    });
+
+</script>
+<link href="~/Css/custom.css" rel="stylesheet" />
+
+
+<div class="modal-dialog" role="document" style="display: inline">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" id="btnProdClose" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Productos</h4>
+        </div>
+        <div class="modal-body">
+
+            @Html.Partial("_GridViewModalProductos", Model)
+
+            @if (Model == null || !(Model.GetViewModel().Rows.Count > 0))
+            {
+                <p style="text-align: center; font-weight: bold; margin: 0;">No hay Productos disponibles</p>
+            }
+        </div>
+        <div class="modal-footer">
+            @if (Model == null || !(Model.GetViewModel().Rows.Count > 0))
+            {
+                <button class="btn btn-primary pull-right col-lg-5" id="btnProdCerrar" data-dismiss="modal" aria-hidden="true">Cerrar</button>
+            }
+            else
+            {
+                @*<button class="btn btn-primary pull-right col-lg-5" style="float:right;" id="btnProdAceptar" name="btnProdAceptar" data-dismiss="modal" aria-hidden="true" onclick="$('#productoModal-container').modal('hide');">Aceptar</button>*@
+                <button class="btn btn-primary pull-right col-lg-5" id="btnProdAceptar" data-dismiss="modal" aria-hidden="true">Aceptar</button>
+            }
+        </div>
+    </div>
+</div>

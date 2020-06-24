@@ -1,0 +1,18 @@
+﻿@helper SyllabusTableRow(string iconKey, string title, string description, string launchMode, string launchString)
+{
+    
+    <tr>
+        <td class="centered" style="width: 40px">
+            <img src="http://static.cloudpier.net/icons/mono/@(iconKey).png" />
+        </td>
+        <td>
+            <h3>@title</h3>
+            <p>@description</p>
+        </td>
+        <td class="centered" style="width: 100px; padding: 10px">
+            <a href="@launchString"
+                class="btn @launchMode">ejecutar</a>
+        </td>
+    </tr>
+    
+}

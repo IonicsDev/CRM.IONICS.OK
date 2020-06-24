@@ -1,0 +1,22 @@
+﻿@Html.DevExpress().DocumentViewer(settings =>
+{
+    settings.Name = "DocumentViewer";
+    //settings.SettingsReportViewer.EnableRequestParameters = false;
+    //settings.SettingsSplitter.SidePaneVisible = true;
+    //settings.SettingsDocumentMap.ShowTreeLines = true;
+    //settings.SettingsSplitter.DocumentMapCollapsed = false;
+    //settings.SettingsSplitter.SidePanePosition =
+    //DevExpress.XtraReports.Web.DocumentViewer.DocumentViewerSidePanePosition.Left;
+    //settings.SettingsSplitter.ParametersPanelCollapsed = true;
+
+    //settings.StylesSplitter.SidePaneWidth = new System.Web.UI.WebControls.Unit(150, System.Web.UI.WebControls.UnitType.Pixel);
+    settings.CallbackRouteValues = new { Controller = "Eventualidad", Action = "DocumentViewerPartial" };
+    settings.ExportRouteValues = new { Controller = "Eventualidad", Action = "ExportDocumentViewer" };
+
+    settings.SetRemoteSourceSettings(s =>
+    {
+        s.ServerUri = @"http://localhost:9521//ReportService.svc";
+    //    s.ReportTypeName = "CRM.Website.XtraReportEventualidad, CRM.Website";
+    });
+    settings.Report = (XtraReportEventualidad)Model;
+}).GetHtml()

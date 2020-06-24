@@ -1,0 +1,4 @@
+@Html.DevExpress().WebDocumentViewer(settings => {
+    settings.Name = "webDocumentViewer";
+    settings.SettingsMobile.AnimationEnabled = true;
+}).Bind(Model).GetHtml()

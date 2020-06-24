@@ -1,0 +1,65 @@
+﻿@model  CRM.Business.Views.vClientes
+
+<link href="~/Css/custom.css" rel="stylesheet" />
+
+<script type="text/javascript">
+    var selectedIDs;
+    function OnBeginCallback(s, e) {
+        e.customArgs["selectedIDs"] = selectedIDs;
+    }
+    function OnSelectionChanged(s, e) {
+        $("input#Id").val("0");
+        $("input#Cg_Cli").val(s.GetSelectedKeysOnPage());
+        s.GetSelectedFieldValues("Descripcion", GetSelectedFieldValuesCallback);
+        s.GetSelectedFieldValues("Cuit", GetSelectedFieldValuesCuit);
+    }
+    function GetSelectedFieldValuesCallback(values) {
+        $("input#Nombre_Cliente").val(values).trigger("change");
+    }
+    function GetSelectedFieldValuesCuit(values) {
+        $("input#Cuit").val(values);
+    }
+
+    $("button#btnCliAceptar").on("click", function () {
+        $("#clienteModal-container").html("<div class='modal-content'></div>");
+        $("#clienteModal-container").modal('hide');
+    });
+
+    $("button#btnCliCerrar").on("click", function () {
+        $("#clienteModal-container").html("<div class='modal-content'></div>");
+        $("#clienteModal-container").modal('hide');
+    });
+
+    $("button#btnCliClose").on("click", function () {
+        $("#clienteModal-container").html("<div class='modal-content'></div>");
+        $("#clienteModal-container").modal('hide');
+    });
+</script>
+
+<div class="modal-dialog" role="document" style="display:inline">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" id="btnCliClose" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Clientes</h4>
+        </div>
+        <div class="modal-body">
+
+            @Html.Partial("_GridViewModalClientes", Model)
+
+            @if (Model == null || !(Model.GetViewModel().Rows.Count > 0))
+            {
+                <p style="text-align: center; font-weight: bold; margin: 0;">No hay Clientes disponibles</p>
+                }
+        </div>
+        <div class="modal-footer">
+            @if (Model == null || !(Model.GetViewModel().Rows.Count > 0))
+            { 
+                <button class="btn btn-primary pull-right col-lg-5" id="btnCliCerrar" data-dismiss="modal" aria-hidden="true">Cerrar</button>
+                }
+            else
+            {
+                <button class="btn btn-primary pull-right col-lg-5" id="btnCliAceptar" data-dismiss="modal" aria-hidden="true">Aceptar</button>
+                }
+        </div>
+    </div>
+</div>

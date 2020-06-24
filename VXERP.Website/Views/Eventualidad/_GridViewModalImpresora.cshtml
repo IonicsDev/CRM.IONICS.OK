@@ -1,0 +1,29 @@
+﻿
+<link href="~/Css/custom.css" rel="stylesheet" />
+
+<div class="modal-dialog" role="document" style="display: inline">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" id="btnPedClose" class="close" >&times;</button>
+            <h4 class="modal-title">Pedidos</h4>
+        </div>
+        <div class="modal-body">
+
+
+            @if (Model == null || !(Model.Datos.Rows.Count > 0))
+            {
+                <p style="text-align: center; font-weight: bold; margin: 0;">No hay Pedidos disponibles</p>
+            }
+        </div>
+        <div class="modal-footer">
+            @if (Model == null || !(Model.Datos.Rows.Count > 0))
+            {
+                <button class="btn btn-primary pull-right col-lg-5" id="btnPedCerrar" aria-hidden="true">Cerrar</button>
+            }
+            else
+            {
+                <button class="btn btn-primary pull-right col-lg-5" id="btnPedAceptar"  aria-hidden="true">Aceptar</button>
+            }
+        </div>
+    </div>
+</div>

@@ -1,0 +1,71 @@
+﻿<!DOCTYPE html>
+<html lang="es">  
+  <head>
+    <title> IONICS - CRM</title>
+     @Html.Partial("Header")
+      
+  </head>
+
+  <body>
+
+      <div id="header">
+          @if (Request.IsAuthenticated)
+          {
+              @Html.Partial("_HeaderNav");
+          }
+      </div>
+      <div class="main">
+          @if (Request.IsAuthenticated)
+          {
+              @Html.Partial("_Sidebar");
+          }
+          @if (ViewData["_Message"] != null)
+          {
+              if (@ViewData["_TypeMessage"].ToString() == "1")
+              {
+                  <div class="alert alert-error" style="margin-bottom: 0px;">
+                      <button type="button" class="close" data-dismiss="alert">×</button>
+                      <strong><i class="icon24 i-close-4"></i>ERROR!</strong> @ViewData["_Message"]
+                  </div>
+              }
+
+              if (@ViewData["_TypeMessage"].ToString() == "2")
+              {
+                  <div class="alert alert-success" style="margin-bottom: 0px;">
+                      <button type="button" class="close" data-dismiss="alert">×</button>
+                      <strong><i class="icon24 i-checkmark-circle"></i>CORRECTO!</strong> @ViewData["_Message"]
+                  </div>
+              }
+
+              if (@ViewData["_TypeMessage"].ToString() == "3")
+              {
+                  <div class="alert alert-info" style="margin-bottom: 0px;">
+                      <button type="button" class="close" data-dismiss="alert">×</button>
+                      <strong><i class="icon24 i-info"></i>INFO!</strong>  @ViewData["_Message"]
+                  </div>
+              }
+          }
+          <div id="content">
+              @RenderBody()
+          </div>
+
+          <div id="loadingModal" class="modal" role="dialog" data-keyboard="false" data-backdrop="static">
+              <div class="modal-dialog" style="padding: 0; width: 162px; height: 162px; top:0; bottom: 0; left: 0; right: 0; margin: auto; position: absolute">
+
+                  <!-- Modal content-->
+                  <div class="modal-content">
+                      <div class="modal-body">
+                          <img id="image" src="~/Images/gears.gif" alt="Cargando" />
+                      </div>
+                  </div>
+
+              </div>
+          </div>
+
+      </div>
+      <footer></footer>
+      @RenderSection("scripts", required: false)
+      @Html.Partial("HeaderJS")
+      <script src="~/Scripts/plugins/basicFunctions.js"></script>
+  </body>
+</html>

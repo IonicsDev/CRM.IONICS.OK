@@ -1,0 +1,83 @@
+﻿@model  CRM.Business.Views.vClientes
+
+<link href="~/Css/custom.css" rel="stylesheet" />
+
+<script type="text/javascript">
+    function OnInit(s, e) {
+        AdjustSize();
+        ASPxClientUtils.AttachEventToElement(window, "resize", function (evt) {
+            AdjustSize();
+        });
+    }
+
+    function OnEndCallback(s, e) {
+        AdjustSize();
+    }
+    function AdjustSize() {
+        var height = document.documentElement.clientHeight;
+        grid.SetHeight(height - 250);
+    }
+
+    var selectedIDs;
+    function OnBeginCallback(s, e) {
+        e.customArgs["selectedIDs"] = selectedIDs;
+    }
+    function OnSelectionChanged(s, e) {
+                debugger;
+        $("input#Item1_Cg_Cli").val(s.GetSelectedKeysOnPage());
+        s.GetSelectedFieldValues("CUIT", GetSelectedFieldValuesCuit);
+        s.GetSelectedFieldValues("Descripcion", GetSelectedFieldValuesCallback);
+    }
+    function GetSelectedFieldValuesCallback(values) {
+        $("input#Item1_Nombre_Cliente").val(values).trigger("change");
+    }
+    function GetSelectedFieldValuesCuit(values) {
+        $("input#Item1_Cuit").val(values).trigger("change");
+    }
+
+    $("button#btnCliAceptar").on("click", function () {
+        $("#clienteModal-container").html("<div class='modal-content'></div>");
+        $("#clienteModal-container").modal('hide');
+    });
+
+    $("button#btnCliCerrar").on("click", function () {
+        $("#clienteModal-container").html("<div class='modal-content'></div>");
+        $("#clienteModal-container").modal('hide');
+    });
+
+    $("button#btnCliClose").on("click", function () {
+        $("#clienteModal-container").html("<div class='modal-content'></div>");
+        $("#clienteModal-container").modal('hide');
+    });
+
+
+</script>
+
+<div class="modal-dialog" role="document" style="display:inline">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" id="btnCliClose" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Clientes</h4>
+        </div>
+        <div class="modal-body">
+
+            @Html.Partial("_GridViewModalClientes", Model)
+
+            @if (Model == null || !(Model.GetViewModel().Rows.Count > 0))
+            {
+                <p style="text-align: center; font-weight: bold; margin: 0;">No hay Clientes disponibles</p>
+                }
+        </div>
+        <div class="modal-footer">
+            @if (Model == null || !(Model.GetViewModel().Rows.Count > 0))
+            { 
+                <button class="btn btn-primary pull-right col-lg-5" id="btnCliCerrar" data-dismiss="modal" aria-hidden="true">Cerrar</button>
+            }
+            else
+            {
+                @*<button data-dismiss="modal" class="btn btn-primary col-lg-5" style="float:right;" id="btnCliAceptar" name="btnCliAceptar" onclick="$('#clienteModal-container').modal('hide');">Aceptar</button>*@
+                <button class="btn btn-primary pull-right col-lg-5" id="btnCliAceptar" data-dismiss="modal" aria-hidden="true">Aceptar</button>
+            }
+        </div>
+    </div>
+</div>

@@ -1,0 +1,217 @@
+﻿@model CRM.Business.Entities.RolEmpresa
+
+@{
+    Layout = "~/Views/Shared/_Generic.cshtml";
+}
+
+@using (Html.BeginForm("Index", "RolEmpresa", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.Hidden("selectedClientes", "")
+    @Html.Hidden("selectedRol", "")
+    @Html.Hidden("selectedModalRoles", "")
+    <div class="wrapper">
+
+        <div class="container-fluid">
+
+            <div id="heading" class="page-header">
+                <h1><i class="icon20 i-cogs"></i>Seguridad - Asignación de Perfil</h1>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-6">
+                    @if (ViewBag.IdUsuario != null) {
+                        @Html.DropDownList("UsuarioId", new SelectList(ViewBag.Usuarios, "Id", "UserName", ViewBag.IdUsuario), "Seleccione", new { @class="select2 UsuarioId" })
+                    }
+                    else{
+                        @Html.DropDownList("UsuarioId", new SelectList(ViewBag.Usuarios, "Id", "UserName"), "Seleccione", new { @class="select2 UsuarioId" })
+                    }
+                </div>
+            </div>
+
+            @*ROLES*@
+            <div class="row" id="Roles">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <div class="icon"><i class="icon20 i-table"></i></div>
+                            <h4>Roles</h4>
+                            <a href="#" class="minimize"></a>
+                        </div>
+                        <!-- End .panel-heading -->
+
+                        <div class="panel-body">
+                            <script type="text/javascript">
+                                var selectedIDs;
+
+                                function GetSelectedRows(s, e) {
+                                    
+                                    var keys = s.GetSelectedKeysOnPage();
+                                    $("#selectedRol").val(keys.toString());
+                                    if (keys.length > 0) {
+                                        keys = keys.toString();
+                                        var idUsuario = $("select#UsuarioId").val();
+                                        $.ajax({
+                                            url: "@Url.Action("GetClientesRolUsuario")",
+                                            type: "POST",
+                                            data: { idRol: keys, idUsuario: idUsuario },
+                                            beforeSend: function () {
+                                                $('#loadingModal').modal('show');
+                                            },
+                                            complete: function () {
+                                                $('#loadingModal').modal('hide');
+                                            },
+                                            success: function (result) {
+                                                // refreshes partial view
+                                                $('#listClientes').html(result);
+                                                $("div#Clientes a#AddCliente").removeAttr('disabled');
+                                            }
+                                        });
+                                    }
+                                }
+                               
+                            </script>
+                            <div id="listRoles">@Html.Partial("_GridViewRoles", Model.Roles)</div>
+                            
+                            <a href="#" 
+                            @Html.ActionLink("Agregar", "", "", new { @id = "AddRol", @disabled = "disabled", @class = "modal-link btn btn-info pull-right col-lg-3", @Href="javascript:void(0)" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            @*CLIENTES*@
+            <div class="row" id="Clientes">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <div class="icon"><i class="icon20 i-table"></i></div>
+                            <h4>Clientes</h4>
+                            <a href="#" class="minimize"></a>
+                        </div>
+                        <!-- End .panel-heading -->
+
+                        <div class="panel-body">
+                            
+
+                            <div id="listClientes">
+                                @*Tabla comun*@
+                                @Html.Partial("_ListClientes", Model.Clientes)
+                            </div>
+                            <div>
+                                @Html.ActionLink("Agregar", "AddCliente", "RolEmpresa",  new { @id = "AddCliente", @disabled = "disabled", @class = "modal-link btn btn-info pull-right col-lg-3" })
+                                @*<p>@Html.ActionLink("Configuración de Columnas", null, null, new { @id = "btShowCustomizationWindow", @class = "btn btn-info", @href = "#" })</p>*@
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="rolModal-container" class="modal fade" tabindex="-1" role="dialog">
+                <div class="modal-content"></div>
+            </div>
+
+            <div id="clienteModal-container" class="modal fade" tabindex="-1" role="dialog">
+                <div class="modal-content"></div>
+            </div>
+            
+        </div>
+
+    </div>
+}
+<script src="~/Scripts/clientGridFunctions.js"></script>
+<script type="text/javascript">
+
+    $("select#UsuarioId").on("change", function () {
+        var idUsuario = $(this).val();
+
+        $.ajax({
+            url: "@Url.Action("GetRolesUsuario")",
+            type: "POST",
+            data: { idUsuario: idUsuario },
+            success: function (result) {
+                // refreshes partial view
+                $('#listRoles').html(result);
+
+                $.ajax({
+                    url: "@Url.Action("LimpiarTablaClientes")",
+                        type: "POST",
+                        success: function (result) {
+                            // refreshes partial view
+                            $('#listClientes').html(result);
+
+                            $("div#Clientes a#AddCliente").attr('disabled', true);
+                        }
+                    });
+                }
+        });
+
+        if (idUsuario != "") {
+            $("div#Roles a#AddRol").removeAttr("disabled");
+        }
+        else {
+            $("div#Roles a#AddRol").attr('disabled', true);
+        }
+    });
+
+        var idUsuario = $("select#UsuarioId").val();
+
+        if (idUsuario != "" && idUsuario != null) {
+            $("div#Roles a#AddRol").removeAttr('disabled');
+        }
+
+        $("a#AddRol").on("click", function () {
+            var idUsuario = $("select#UsuarioId").val();
+
+            $(this).attr("href", "/RolEmpresa/AddRol?UsuarioId=" + idUsuario + "");
+        });
+
+        $("a#AddCliente").on("click", function () {
+            var idUsuario = $("select#UsuarioId").val();
+            var clientesActual = [];
+            var deletedClientes = [];
+            var $clientes = $("div#listClientes").children().children("tbody");
+
+            var rolVal = $('#selectedRol').val();
+
+            $clientes.find("tr").each(function (column, tr) {
+                var chkIdRol = $(tr).children("td").find("[name=CheckClientes]").val();
+                var clienteDeleted = $(tr).children("td").find("input.Deleted").val();
+                deletedClientes.push(clienteDeleted);
+                clientesActual.push(chkIdRol);
+            });
+
+            $(this).attr("href", "/RolEmpresa/AddCliente?selectedRol=" + rolVal + "&IdUsuario=" + idUsuario + "");
+        });
+
+        $(function () {
+            $('body').on('click', '#AddRol.modal-link', function (e) {
+                e.preventDefault();
+                //Optional: turn the chache off
+                $.ajaxSetup({ cache: false });
+                $(this).attr('data-target', '#rolModal-container');
+                $(this).attr('data-toggle', 'modal');
+            });
+
+            $('body').on('click', '#AddCliente.modal-link', function (e) {
+                e.preventDefault();
+                //Optional: turn the chache off
+                $.ajaxSetup({ cache: false });
+                $(this).attr('data-target', '#clienteModal-container');
+                $(this).attr('data-toggle', 'modal');
+            });
+
+            $('#rolModal-container').on('hidden.CRM.modal', function () {
+                $(this).removeData('CRM.modal');
+            });
+
+            $('#clienteModal-container').on('hidden.CRM.modal', function () {
+                $(this).removeData('CRM.modal');
+            });
+
+            $('#CancelModal').on('click', function () {
+                return false;
+            });
+        });
+
+</script>

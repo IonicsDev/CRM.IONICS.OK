@@ -1,0 +1,10 @@
+﻿@Html.DevExpress().WebDocumentViewer(settings =>
+{
+    settings.Name = "webDocumentViewerNC";
+    settings.SettingsMobile.AnimationEnabled = true;
+    //   settings.CallbackRouteValues = new { Controller = "Eventualidad", Action = "DocumentViewerPartial" };
+    //   settings.ExportRouteValues = new { Controller = "Eventualidad", Action = "DocumentViewerPartialExport" };
+    //settings.Report = (XtraReportEventualidad)Model;
+    //settings.ToolbarMode = DocumentViewerToolbarMode.StandardToolbar;
+}).Bind(Model).GetHtml()
+

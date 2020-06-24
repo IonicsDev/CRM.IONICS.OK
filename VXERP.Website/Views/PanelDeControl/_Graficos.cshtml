@@ -1,0 +1,719 @@
+﻿
+@using (Html.BeginForm("Reportes", "PanelDeControl", FormMethod.Post))
+{
+    <div class="row">
+
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="icon"><i class="icon20 i-chart"></i></div>
+                    <h4>Gráfico Equivalente</h4>
+                    <a href="#" class="minimize"></a>
+
+                    <div class="w-right" style="padding-top: 0px;">
+                        <button class="btn btn-primary btn-sm" name="btnGraficar_Equivalente" id="btnGraficar_Equivalente">Graficar</button>
+                    </div>
+                    <div class="w-right">
+                        Hasta <input type="text" class="search-query datepicker" id="dpHasta_Equivalente"
+                            name="dpHasta_Equivalente" value="@Session["FechaHasta_Equivalente"]">
+                    </div>
+                    <div class="w-right">
+                        Desde <input type="text" class="search-query datepicker" id="dpDesde_Equivalente"
+                            name="dpDesde_Equivalente" value="@Session["FechaDesde_Equivalente"]">
+                    </div>
+                    
+                </div>
+                <!-- End .panel-heading -->
+                <div class="panel-body">
+
+                    <div class="chart-equivalente" style="width: 100%; height: 300px; margin-top: 10px; padding: 0px; position: relative;">
+                    </div>
+
+                    <br />
+                    <button class="btn btn-info pull-right" id="btnImpEquivalente">Imprimir</button>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+            
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="icon"><i class="icon20 i-chart"></i></div>
+                    <h4>Gráfico Físico</h4>
+                    <a href="#" class="minimize"></a>
+
+                    <div class="w-right" style="padding-top: 0px;">
+                        <button class="btn btn-primary btn-sm" id="btnGraficar_Fisico" name="btnGraficar_Fisico">Graficar</button>
+                    </div>
+                    <div class="w-right">
+                        Hasta <input type="text" class="search-query datepicker" id="dpHasta_Fisico" 
+                            name="dpHasta_Fisico" value="@Session["FechaHasta_Fisico"]">
+                    </div>
+                    <div class="w-right">
+                        Desde <input type="text" class="search-query datepicker" id="dpDesde_Fisico" 
+                            name="dpDesde_Fisico" value="@Session["FechaDesde_Fisico"]">
+                    </div>
+
+                </div>
+                <!-- End .panel-heading -->
+                <div class="panel-body">
+
+                    <div class="chart-fisico" style="width: 100%; height: 300px; margin-top: 10px; padding: 0px; position: relative;">
+                    </div>
+
+                    <br />
+                    <button class="btn btn-info pull-right" id="btnImpFisico">Imprimir</button>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="icon"><i class="icon20 i-chart"></i></div>
+                    <h4>Gráfico Stock Val</h4>
+                    <a href="#" class="minimize"></a>
+
+                    <div class="w-right" style="padding-top: 0px;">
+                        <button class="btn btn-primary btn-sm" id="btnGraficar_StockVal" name="btnGraficar_StockVal">Graficar</button>
+                    </div>
+                    <div class="w-right">
+                        Hasta <input type="text" class="search-query datepicker" id="dpHasta_StockVal" 
+                            name="dpHasta_StockVal" value="@Session["FechaHasta_StockVal"]">
+                    </div>
+                    <div class="w-right">
+                        Desde <input type="text" class="search-query datepicker" id="dpDesde_StockVal" 
+                            name="dpDesde_StockVal" value="@Session["FechaDesde_StockVal"]">
+                    </div>
+
+                </div>
+                <!-- End .panel-heading -->
+                <div class="panel-body">
+
+                    <div class="chart-stockVal" style="width: 100%; height: 300px; margin-top: 10px; padding: 0px; position: relative;">
+                    </div>
+
+                    <br />
+                    <button class="btn btn-info pull-right" id="btnImpStockVal">Imprimir</button>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="icon"><i class="icon20 i-chart"></i></div>
+                    <h4>Gráfico de Horas</h4>
+                    <a href="#" class="minimize"></a>
+
+                    <div class="w-right" style="padding-top: 0px;">
+                        <button class="btn btn-primary btn-sm" id="btnGraficar_Horas" name="btnGraficar_StockVal">Graficar</button>
+                    </div>
+                    <div class="w-right">
+                        Hasta <input type="text" class="search-query datepicker" id="dpHasta_Horas" 
+                            name="dpHasta_Horas" value="@Session["FechaHasta_Horas"]">
+                    </div>
+                    <div class="w-right">
+                        Desde <input type="text" class="search-query datepicker" id="dpDesde_Horas" 
+                            name="dpDesde_Horas" value="@Session["FechaDesde_Horas"]">
+                    </div>
+
+                </div>
+                <!-- End .panel-heading -->
+                <div class="panel-body">
+
+                    <div class="chart-horas" style="width: 100%; height: 300px; margin-top: 10px; padding: 0px; position: relative;">
+                    </div>
+
+                    <br />
+                    <button class="btn btn-info pull-right" id="btnImpHoras">Imprimir</button>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+    
+    
+    <img id="imageHoras"/>
+}
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+         
+        $("#btnImpHoras").click(function (e) {
+            e.preventDefault();
+            var fDesde = $("input#dpDesde_Horas").val();
+            var fHasta = $("input#dpHasta_Horas").val();
+
+            html2canvas($(".chart-horas").get(0), {
+                onrendered: function (canvas) {
+                    //$("#btnImagen").after(canvas);
+                    
+                    var imgData = canvas.toDataURL('image/png');
+                    //$("img#imageHoras").attr("src", imgData);
+
+                    $.ajax({
+                        type: 'POST',
+                        url: '@Url.Action("Export", "PanelDeControl")',
+                        async: false,
+                        data: {
+                            dataUri: imgData, Title: "Gráfico de Horas", RedReference: "En la Web", BlueReference: "En IONICS",
+                            FechaDesde: fDesde, FechaHasta: fHasta
+                        },
+                        success: function (data) {
+                            window.location = '/PanelDeControl/Download?fileGuid=' + data.FileGuid
+                                              + '&fileName=' + data.FileName;
+                        }
+                    });
+
+                }
+            });
+
+        });
+
+        $("#btnImpEquivalente").click(function (e) {
+            e.preventDefault();
+            var fDesde = $("input#dpDesde_Equivalente").val();
+            var fHasta = $("input#dpHasta_Equivalente").val();
+
+            html2canvas($(".chart-equivalente").get(0), {
+                onrendered: function (canvas) {
+                    //$("#btnImagen").after(canvas);
+
+                    var imgData = canvas.toDataURL('image/png');
+                    //$("img#imageHoras").attr("src", imgData);
+
+                    $.ajax({
+                        type: 'POST',
+                        url: '@Url.Action("Export", "PanelDeControl")',
+                        async: false,
+                        data: {
+                            dataUri: imgData, Title: "Gráfico Equivalente", RedReference: "Valorizado Tratados", BlueReference: "Valorizado Sin Tratar",
+                            FechaDesde: fDesde, FechaHasta: fHasta
+                        },
+                        success: function (data) {
+                            window.location = '/PanelDeControl/Download?fileGuid=' + data.FileGuid
+                                              + '&fileName=' + data.FileName;
+                        }
+                    });
+
+                }
+            });
+
+        });
+
+        $("#btnImpFisico").click(function (e) {
+            e.preventDefault();
+            var fDesde = $("input#dpDesde_Fisico").val();
+            var fHasta = $("input#dpHasta_Fisico").val();
+
+            html2canvas($(".chart-fisico").get(0), {
+                onrendered: function (canvas) {
+                    //$("#btnImagen").after(canvas);
+
+                    var imgData = canvas.toDataURL('image/png');
+                    //$("img#imageHoras").attr("src", imgData);
+
+                    $.ajax({
+                        type: 'POST',
+                        url: '@Url.Action("Export", "PanelDeControl")',
+                        async: false,
+                        data: {
+                            dataUri: imgData, Title: "Gráfico Físico", RedReference: "Valorizado Tratados", BlueReference: "Valorizado Sin Tratar",
+                            FechaDesde: fDesde, FechaHasta: fHasta
+                        },
+                        success: function (data) {
+                            window.location = '/PanelDeControl/Download?fileGuid=' + data.FileGuid
+                                              + '&fileName=' + data.FileName;
+                        }
+                    });
+
+                }
+            });
+
+        });
+
+        $("#btnImpStockVal").click(function (e) {
+            e.preventDefault();
+            var fDesde = $("input#dpDesde_StockVal").val();
+            var fHasta = $("input#dpHasta_StockVal").val();
+
+            html2canvas($(".chart-stockVal").get(0), {
+                onrendered: function (canvas) {
+                    //$("#btnImagen").after(canvas);
+
+                    var imgData = canvas.toDataURL('image/png');
+                    //$("img#imageHoras").attr("src", imgData);
+
+                    $.ajax({
+                        type: 'POST',
+                        url: '@Url.Action("Export", "PanelDeControl")',
+                        async: false,
+                        data: {
+                            dataUri: imgData, Title: "Gráfico Stock Val", RedReference: "Valorizado Tratados", BlueReference: "Valorizado Sin Tratar",
+                            FechaDesde: fDesde, FechaHasta: fHasta
+                        },
+                        success: function (data) {
+                            window.location = '/PanelDeControl/Download?fileGuid=' + data.FileGuid
+                                              + '&fileName=' + data.FileName;
+                        }
+                    });
+
+                }
+            });
+
+        });
+
+        //define chart clolors ( you maybe add more colors if you want or flot will add it automatic )
+        var chartColours = ['#62aeef', '#d8605f', '#72c380', '#6f7a8a', '#f7cb38', '#5a8022', '#2c7282'];
+
+        //generate random number for charts
+        randNum = function () {
+            return (Math.floor(Math.random() * (1 + 40 - 20))) + 20;
+        }
+
+        //GRAFICOS DEL PANEL DE CONTROL
+        //GRAFICO EQUIVALENTE
+        if ($(".chart-equivalente").length) {
+            var d1 = [];
+            var d2 = [];
+
+            //here we generate data for chart
+            @foreach (var data in ViewBag.ValuesChartEquivalente_SinTratar)
+            {
+                @Html.Raw("d1.push([new Date(" + data.Key.Date.Year + ", " + (data.Key.Date.Month - 1) + ", " + (data.Key.Date.Day) + "), " + data.Value.ToString().Replace(',', '.') + "]);");
+            }
+
+            @foreach (var data in ViewBag.ValuesChartEquivalente_Tratados)
+            {
+                @Html.Raw("d2.push([new Date(" + data.Key.Date.Year + ", " + (data.Key.Date.Month - 1) + ", " + (data.Key.Date.Day) + "), " + data.Value.ToString().Replace(',', '.') + "]);");
+            }
+
+            @Html.Raw("var chartMinDate = new Date(" + Convert.ToDateTime(Session["FechaDesde_Equivalente"]).Year + ","
+                + (Convert.ToDateTime(Session["FechaDesde_Equivalente"]).Month - 1) + "," + Convert.ToDateTime(Session["FechaDesde_Equivalente"]).Day + ")");
+            @Html.Raw("var chartMaxDate = new Date(" + Convert.ToDateTime(Session["FechaHasta_Equivalente"]).Year + ","
+                + (Convert.ToDateTime(Session["FechaHasta_Equivalente"]).Month - 1) + "," + Convert.ToDateTime(Session["FechaHasta_Equivalente"]).Day + ")");
+            
+            var tickSize = [1, "day"];
+            var tformat = "%d/%m/%y";
+
+            //graph options
+            var options = {
+                grid: {
+                    show: true,
+                    aboveData: true,
+                    color: "#3f3f3f",
+                    labelMargin: 5,
+                    axisMargin: 0,
+                    borderWidth: 0,
+                    borderColor: null,
+                    minBorderMargin: 5,
+                    clickable: true,
+                    hoverable: true,
+                    autoHighlight: true,
+                    mouseActiveRadius: 20
+                },
+                series: {
+                    lines: {
+                        show: true,
+                        fill: false,
+                        lineWidth: 2,
+                        steps: false
+                    },
+                    points: {
+                        show: true,
+                        radius: 2.8,
+                        symbol: "circle",
+                        lineWidth: 2.5
+                    }
+                },
+                legend: {
+                    position: "ne",
+                    margin: [0, -25],
+                    noColumns: 0,
+                    labelBoxBorderColor: null,
+                    labelFormatter: function (label, series) {
+                        // just add some space to labes
+                        return label + '&nbsp;&nbsp;';
+                    },
+                    width: 40,
+                    height: 1
+                },
+                yaxis: {
+                    tickFormatter: function (v) {
+                        return v + " m<sup>3</sup>";
+                    }
+                },
+                xaxis: {
+                    mode: "time",
+                    minTickSize: tickSize,
+                    timeformat: tformat,
+                    min: chartMinDate,
+                    max: chartMaxDate
+                },
+                colors: chartColours,
+                shadowSize: 1,
+                tooltip: true, //activate tooltip
+                tooltipOpts: {
+                    content: "%s : %y.0",
+                    shifts: {
+                        x: -30,
+                        y: -50
+                    },
+                    defaultTheme: false
+                }
+            };
+
+            $.plot($(".chart-equivalente"), [
+
+                {
+                    label: "Valorizado Sin Tratar",
+                    data: d1,
+                    lines: { fillColor: "#f3faff" }
+                },
+                {
+                    label: "Valorizado Tratados",
+                    data: d2,
+                    lines: { fillColor: "#fff8f7" }
+                }
+
+            ], options);
+        }//End of .cart-equivalente
+
+        //GRAFICO FISICO
+        if ($(".chart-fisico").length) {
+            var d1 = [];
+            var d2 = [];
+
+            @foreach (var data in ViewBag.ValuesChartFisico_SinTratar)
+            {
+                @Html.Raw("d1.push([new Date(" + data.Key.Date.Year + ", " + (data.Key.Date.Month - 1) + ", " + (data.Key.Date.Day) + "), " + data.Value.ToString().Replace(',', '.') + "]);");
+            }
+
+            @foreach (var data in ViewBag.ValuesChartFisico_Tratados)
+            {
+                @Html.Raw("d2.push([new Date(" + data.Key.Date.Year + ", " + (data.Key.Date.Month - 1) + ", " + (data.Key.Date.Day) + "), " + data.Value.ToString().Replace(',', '.') + "]);");
+            }
+            
+            @Html.Raw("var chartMinDate = new Date(" + Convert.ToDateTime(Session["FechaDesde_Fisico"]).Year + ","
+                + (Convert.ToDateTime(Session["FechaDesde_Fisico"]).Month - 1) + "," + Convert.ToDateTime(Session["FechaDesde_Fisico"]).Day + ")");
+            @Html.Raw("var chartMaxDate = new Date(" + Convert.ToDateTime(Session["FechaHasta_Fisico"]).Year + ","
+                + (Convert.ToDateTime(Session["FechaHasta_Fisico"]).Month - 1) + "," + Convert.ToDateTime(Session["FechaHasta_Fisico"]).Day + ")");
+
+            var tickSize = [1, "day"];
+            var tformat = "%d/%m/%y";
+
+            //graph options
+            var options = {
+                grid: {
+                    show: true,
+                    aboveData: true,
+                    color: "#3f3f3f",
+                    labelMargin: 5,
+                    axisMargin: 0,
+                    borderWidth: 0,
+                    borderColor: null,
+                    minBorderMargin: 5,
+                    clickable: true,
+                    hoverable: true,
+                    autoHighlight: true,
+                    mouseActiveRadius: 20
+                },
+                series: {
+                    lines: {
+                        show: true,
+                        fill: false,
+                        lineWidth: 2,
+                        steps: false
+                    },
+                    points: {
+                        show: true,
+                        radius: 2.8,
+                        symbol: "circle",
+                        lineWidth: 2.5
+                    }
+                },
+                legend: {
+                    position: "ne",
+                    margin: [0, -25],
+                    noColumns: 0,
+                    labelBoxBorderColor: null,
+                    labelFormatter: function (label, series) {
+                        // just add some space to labes
+                        return label + '&nbsp;&nbsp;';
+                    },
+                    width: 40,
+                    height: 1
+                },
+                yaxis: {
+                    tickFormatter: function (v) {
+                        return v + " m<sup>3</sup>";
+                    }
+                },
+                xaxis: {
+                    mode: "time",
+                    minTickSize: tickSize,
+                    timeformat: tformat,
+                    min: chartMinDate,
+                    max: chartMaxDate
+                },
+                colors: chartColours,
+                shadowSize: 1,
+                tooltip: true, //activate tooltip
+                tooltipOpts: {
+                    content: "%s : %y.0",
+                    shifts: {
+                        x: -30,
+                        y: -50
+                    },
+                    defaultTheme: false
+                }
+            };
+
+            $.plot($(".chart-fisico"), [
+
+                {
+                    label: "Valorizado Sin Tratar",
+                    data: d1,
+                    lines: { fillColor: "#f3faff" }
+                },
+                {
+                    label: "Valorizado Tratados",
+                    data: d2,
+                    lines: { fillColor: "#fff8f7" }
+                }
+
+            ], options);
+        }//End of .cart-fisico
+
+        //GRAFICO STOCK VAL
+        if ($(".chart-stockVal").length) {
+
+            var d1 = [];
+            var d2 = [];
+
+            @foreach (var data in ViewBag.ValuesChartStockVal_SinTratar)
+            {
+                @Html.Raw("d1.push([new Date(" + data.Key.Date.Year + ", " + (data.Key.Date.Month - 1) + ", " + (data.Key.Date.Day) + "), " + data.Value.ToString().Replace(',', '.') + "]);");
+            }
+
+            @foreach (var data in ViewBag.ValuesChartStockVal_Tratados)
+            {
+                @Html.Raw("d2.push([new Date(" + data.Key.Date.Year + ", " + (data.Key.Date.Month - 1) + ", " + (data.Key.Date.Day) + "), " + data.Value.ToString().Replace(',', '.') + "]);");
+            }
+
+            @Html.Raw("var chartMinDate = new Date(" + Convert.ToDateTime(Session["FechaDesde_StockVal"]).Year + ","
+                + (Convert.ToDateTime(Session["FechaDesde_StockVal"]).Month - 1) + "," + Convert.ToDateTime(Session["FechaDesde_StockVal"]).Day + ")");
+            @Html.Raw("var chartMaxDate = new Date(" + Convert.ToDateTime(Session["FechaHasta_StockVal"]).Year + ","
+                + (Convert.ToDateTime(Session["FechaHasta_StockVal"]).Month - 1) + "," + Convert.ToDateTime(Session["FechaHasta_StockVal"]).Day + ")");
+
+            var tickSize = [1, "day"];
+            var tformat = "%d/%m/%y";
+
+            //graph options
+            var options = {
+                grid: {
+                    show: true,
+                    aboveData: true,
+                    color: "#3f3f3f",
+                    labelMargin: 5,
+                    axisMargin: 0,
+                    borderWidth: 0,
+                    borderColor: null,
+                    minBorderMargin: 5,
+                    clickable: true,
+                    hoverable: true,
+                    autoHighlight: true,
+                    mouseActiveRadius: 20
+                },
+                series: {
+                    lines: {
+                        show: true,
+                        fill: false,
+                        lineWidth: 2,
+                        steps: false
+                    },
+                    points: {
+                        show: true,
+                        radius: 2.8,
+                        symbol: "circle",
+                        lineWidth: 2.5
+                    }
+                },
+                legend: {
+                    position: "ne",
+                    margin: [0, -25],
+                    noColumns: 0,
+                    labelBoxBorderColor: null,
+                    labelFormatter: function (label, series) {
+                        // just add some space to labes
+                        return label + '&nbsp;&nbsp;';
+                    },
+                    width: 40,
+                    height: 1
+                },
+                yaxis: {
+                    tickFormatter: function (v) {
+                        return "$ " + v;
+                    }
+                },
+                xaxis: {
+                    mode: "time",
+                    minTickSize: tickSize,
+                    timeformat: tformat,
+                    min: chartMinDate,
+                    max: chartMaxDate
+                },
+                colors: chartColours,
+                shadowSize: 1,
+                tooltip: true, //activate tooltip
+                tooltipOpts: {
+                    content: "%s : %y.0",
+                    shifts: {
+                        x: -30,
+                        y: -50
+                    },
+                    defaultTheme: false
+                }
+            };
+
+            $.plot($(".chart-stockVal"), [
+
+                {
+                    label: "Valorizado Sin Tratar",
+                    data: d1,
+                    lines: { fillColor: "#f3faff" }
+                },
+                {
+                    label: "Valorizado Tratados",
+                    data: d2,
+                    lines: { fillColor: "#fff8f7" }
+                }
+
+            ], options);
+        }//End of .cart-stockVal
+
+        //GRAFICO STOCK VAL
+        if ($(".chart-horas").length) {
+
+            var d1 = [];
+            var d2 = [];
+
+            @foreach (var data in ViewBag.ValuesChartHoras_SinTratar)
+            {
+                @Html.Raw("d1.push([new Date(" + data.Key.Date.Year + ", " + (data.Key.Date.Month - 1) + ", " + (data.Key.Date.Day) + "), " + data.Value.ToString().Replace(',', '.') + "]);");
+            }
+
+            @foreach (var data in ViewBag.ValuesChartHoras_Cartera)
+            {
+                @Html.Raw("d2.push([new Date(" + data.Key.Date.Year + ", " + (data.Key.Date.Month - 1) + ", " + (data.Key.Date.Day) + "), " + data.Value.ToString().Replace(',', '.') + "]);");
+            }
+
+            @Html.Raw("var chartMinDate = new Date(" + Convert.ToDateTime(Session["FechaDesde_Horas"]).Year + ","
+                + (Convert.ToDateTime(Session["FechaDesde_Horas"]).Month - 1) + "," + Convert.ToDateTime(Session["FechaDesde_Horas"]).Day + ")");
+            @Html.Raw("var chartMaxDate = new Date(" + Convert.ToDateTime(Session["FechaHasta_Horas"]).Year + ","
+                + (Convert.ToDateTime(Session["FechaHasta_Horas"]).Month - 1)  + "," + Convert.ToDateTime(Session["FechaHasta_Horas"]).Day + ")");
+
+            var tickSize = [1, "day"];
+            var tformat = "%d/%m/%y";
+
+            //graph options
+            var options = {
+                grid: {
+                    show: true,
+                    aboveData: true,
+                    color: "#3f3f3f",
+                    labelMargin: 5,
+                    axisMargin: 0,
+                    borderWidth: 0,
+                    borderColor: null,
+                    minBorderMargin: 5,
+                    clickable: true,
+                    hoverable: true,
+                    autoHighlight: true,
+                    mouseActiveRadius: 20
+                },
+                series: {
+                    lines: {
+                        show: true,
+                        fill: false,
+                        lineWidth: 2,
+                        steps: false
+                    },
+                    points: {
+                        show: true,
+                        radius: 2.8,
+                        symbol: "circle",
+                        lineWidth: 2.5
+                    }
+                },
+                legend: {
+                    position: "ne",
+                    margin: [0, -25],
+                    noColumns: 0,
+                    labelBoxBorderColor: null,
+                    labelFormatter: function (label, series) {
+                        // just add some space to labes
+                        return label + '&nbsp;&nbsp;';
+                    },
+                    width: 40,
+                    height: 1
+                },
+                yaxis: {
+                    tickFormatter: function (v) {
+                        return v;
+                    }
+                },
+                xaxis: {
+                    mode: "time",
+                    minTickSize: tickSize,
+                    timeformat: tformat,
+                    min: chartMinDate,
+                    max: chartMaxDate
+                },
+                colors: chartColours,
+                shadowSize: 1,
+                tooltip: true, //activate tooltip
+                tooltipOpts: {
+                    content: "%s : %y.0",
+                    shifts: {
+                        x: -30,
+                        y: -50
+                    },
+                    defaultTheme: false
+                }
+            };
+
+            $.plot($(".chart-horas"), [
+
+                {
+                    label: "En IONICS",
+                    data: d1,
+                    lines: { fillColor: "#f3faff" }
+                },
+                {
+                    label: "En la Web",
+                    data: d2,
+                    lines: { fillColor: "#fff8f7" }
+                }
+
+            ], options);
+        }//End of .cart-horas
+
+    });
+
+</script>

@@ -1,0 +1,84 @@
+﻿@Html.DevExpress().GridView(settings => {
+    settings.Name = "grid";
+    //settings.CallbackRouteValues = new { Controller = "Home", Action = "FixedGroupsPartial" };
+    settings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
+    settings.SettingsSearchPanel.Visible = true;
+    settings.SettingsBehavior.AllowFixedGroups = true;
+    settings.SettingsBehavior.AllowDragDrop = true;
+    settings.SettingsBehavior.AllowFocusedRow = true;
+    settings.SettingsBehavior.AllowSort = true;
+
+    settings.SettingsCookies.StoreFiltering = true;
+    settings.SettingsCookies.StoreGroupingAndSorting = true;
+    settings.SettingsCookies.StorePaging = true;
+    settings.SettingsCookies.Enabled = true;
+    settings.CustomJSProperties = (s, e) =>
+    {
+        MVCxGridView gridView = (MVCxGridView)s;
+        e.Properties["cpClientLayout"] = gridView.SaveClientLayout();
+    };
+
+    //settings.ClientLayout = (s, e) =>
+    //{
+    //    switch (e.LayoutMode)
+    //    {
+    //        case ClientLayoutMode.Loading:
+    //            //Load Last ClientLayout Via First Load
+    //            if (Session["Layout"] != null)
+    //            {
+    //                e.LayoutData = Session["Layout"].ToString();
+    //            }
+    //            break;
+    //        case ClientLayoutMode.Saving:
+    //            //Save Last ClientLayout Automatically
+    //            Session["Layout"] = e.LayoutData;
+    //            break;
+    //    }
+    //};
+
+    //settings.ClientSideEvents.Init = "OnInit";
+    //settings.ClientSideEvents.EndCallback = "OnEndCallback";
+    
+    
+    settings.SettingsBehavior.ColumnResizeMode = ColumnResizeMode.Control;
+   
+    settings.Settings.ShowGroupPanel = true;
+    settings.Settings.VerticalScrollBarMode = ScrollBarMode.Visible;
+    settings.Settings.VerticalScrollableHeight = 300;
+    settings.SettingsPager.Mode = GridViewPagerMode.ShowAllRecords;
+    
+    
+
+    settings.KeyFieldName = "Id";
+    settings.Columns.Add("Descripcion");
+    settings.Columns.Add("DescripcionCorta");
+    settings.Columns.Add("TipoArchivoModulo.Tipo");
+    settings.Columns.Add("DescripcionEstado");
+    settings.Columns.Add(column =>
+    {
+        column.Caption = "Acciones";
+        column.SetDataItemTemplateContent(c =>
+        {
+            ViewContext.Writer.Write(
+                Html.ActionLink("Edit", "Edit", new { id = DataBinder.Eval(c.DataItem, "Id") }) + " | " +
+                Html.ActionLink("Delete", "Delete", new { id = DataBinder.Eval(c.DataItem, "Id") },
+                    new { onclick = "return confirm('Do you really want to delete this record?')" }) + " | " +
+                Html.ActionLink("Download", "Download", new { id = DataBinder.Eval(c.DataItem, "Id") })
+            );
+        });
+        
+        column.Settings.AllowDragDrop = DefaultBoolean.False;
+        column.Settings.AllowSort = DefaultBoolean.False;
+        column.Width = 250;
+    });
+    
+    settings.Settings.ShowFilterRow = true;
+    settings.Settings.ShowFilterRowMenu = true;
+    settings.CommandColumn.Visible = true;
+    settings.CommandColumn.ShowClearFilterButton = true;
+    settings.PreRender = (s, e) => {
+        MVCxGridView grid = s as MVCxGridView;
+        if(grid != null)
+            grid.ExpandAll();
+    };
+}).Bind(Model).GetHtml()

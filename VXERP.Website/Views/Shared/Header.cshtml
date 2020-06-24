@@ -1,0 +1,179 @@
+﻿
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="utf-8">
+<link rel="apple-touch-icon-precomposed" href="@Url.Content("~/Images/ico/apple-touch-icon-57-precomposed.png")">
+<link rel="shortcut icon" href="@Url.Content("~/Images/Logo.gif")">
+<!-- Headings -->
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,800,700' rel='stylesheet' type='text/css'>
+<!-- Text -->
+<link href='http://fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet' type='text/css' />
+
+<!-- Core stylesheets do not remove -->
+@*<link href="@Url.Content("~/Css/bootstrap/bootstrap.css")" rel="stylesheet" />*@
+@*@Styles.Render("~/Css/bootstrap/css");*@
+<link href="@Url.Content("~/Css/bootstrap/bootstrap.min.css")" rel="stylesheet" />
+<link href="@Url.Content("~/Css/bootstrap/bootstrap-theme.css")" rel="stylesheet" />
+<link href="@Url.Content("~/Css/icons.min.css")" rel="stylesheet" />
+
+<!-- Plugins stylesheets -->
+@*<link href="@Url.Content("~/Scripts/plugins/forms/uniform/uniform.default.css")" rel="stylesheet" />*@
+<link href="@Url.Content("~/Scripts/plugins/forms/uniform/uniform.default.min.css")" rel="stylesheet" />
+
+
+
+<!-- Plugins stylesheets -->
+@*<link href="@Url.Content("~/Scripts/plugins/misc/fullcalendar/fullcalendar.min.css")" rel="stylesheet" />*@
+@*<link href="@Url.Content("~/Scripts/plugins/forms/select2/select2.min.css")" rel="stylesheet" />*@
+
+@*<link href="@Url.Content("~/Scripts/plugins/forms/bootstrap-wysihtml5/bootstrap-wysihtml5.css")" rel="stylesheet" />*@
+
+<!-- app stylesheets -->
+@*<link href="@Url.Content("~/Css/app.css")" rel="stylesheet" />*@
+<link href="~/Css/app.min.css" rel="stylesheet" />
+
+
+<!-- Custom stylesheets ( Put your own changes here ) -->
+<link href="@Url.Content("~/Css/custom.css")" rel="stylesheet" />
+
+
+<!--[if IE 8]><link href="css/ie8.css" rel="stylesheet" type="text/css" /><![endif]-->
+<!-- Force IE9 to render in normal mode -->
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+<!--[if lt IE 9]>
+  <script src="js/html5shiv.js"></script>
+  <script src="js/respond.min.js"></script>
+<![endif]-->
+<!-- Fav and touch icons -->
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="@Url.Content("~/Images/ico/apple-touch-icon-144-precomposed.png")">
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="@Url.Content("~/Images/ico/apple-touch-icon-114-precomposed.png")">
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="@Url.Content("~/Images/ico/apple-touch-icon-72-precomposed.png")">
+<link rel="apple-touch-icon-precomposed" href="@Url.Content("~/Images/ico/apple-touch-icon-57-precomposed.png")">
+
+
+<link href="@Url.Content("~/Css/wysiwyg-color.css")" rel="stylesheet" />
+
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" rel="stylesheet" type="text/css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+
+
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+@*<script src="~/Scripts/moment.min.js"></script>*@
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
+
+<script src="~/Scripts/cldr.min.js"></script>
+<script src="~/Scripts/cldr/event.min.js"></script>
+<script src="~/Scripts/cldr/supplemental.min.js"></script>
+<script src="~/Scripts/cldr/unresolved.min.js"></script>
+
+<script src="~/Scripts/globalize.min.js"></script>
+<script src="~/Scripts/globalize/message.min.js"></script>
+<script src="~/Scripts/globalize/number.min.js"></script>
+<script src="~/Scripts/globalize/currency.min.js"></script>
+<script src="~/Scripts/globalize/date.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.0/knockout-min.js"></script>
+
+@*<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.3.3/ace.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.3.3/ext-language_tools.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.3.3/theme-ambiance.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.3.3/theme-dreamweaver.js"></script>*@
+
+@*<script src="~/Scripts/dx.all.js"></script>
+    <script src="~/Scripts/aspnet/dx.aspnet.data.js"></script>
+    <script src="~/Scripts/aspnet/dx.aspnet.mvc.js"></script>
+    <link href="~/Content/dx.common.css" rel="stylesheet" />
+    <link href="~/Content/dx.light.css" rel="stylesheet" />*@
+
+@Html.DevExpress().GetStyleSheets(
+    new StyleSheet { ExtensionSuite = ExtensionSuite.NavigationAndLayout },
+    new StyleSheet { ExtensionSuite = ExtensionSuite.Editors },
+    new StyleSheet { ExtensionSuite = ExtensionSuite.HtmlEditor },
+    new StyleSheet { ExtensionSuite = ExtensionSuite.GridView },
+    new StyleSheet { ExtensionSuite = ExtensionSuite.PivotGrid },
+    new StyleSheet { ExtensionSuite = ExtensionSuite.Chart },
+    new StyleSheet { ExtensionSuite = ExtensionSuite.Report },
+    //new StyleSheet { ExtensionSuite = ExtensionSuite.Scheduler },
+    //new StyleSheet { ExtensionSuite = ExtensionSuite.TreeList },
+    //new StyleSheet { ExtensionSuite = ExtensionSuite.RichEdit },
+    //new StyleSheet { ExtensionSuite = ExtensionSuite.Spreadsheet },
+    new StyleSheet { ExtensionSuite = ExtensionSuite.SpellChecker }
+)
+@Html.DevExpress().GetScripts(
+    new Script { ExtensionSuite = ExtensionSuite.NavigationAndLayout },
+    new Script { ExtensionSuite = ExtensionSuite.HtmlEditor },
+    new Script { ExtensionSuite = ExtensionSuite.GridView },
+    new Script { ExtensionSuite = ExtensionSuite.PivotGrid },
+    new Script { ExtensionSuite = ExtensionSuite.Editors },
+    new Script { ExtensionSuite = ExtensionSuite.Chart },
+    new Script { ExtensionSuite = ExtensionSuite.Report },
+    //new Script { ExtensionSuite = ExtensionSuite.Scheduler },
+    //new Script { ExtensionSuite = ExtensionSuite.TreeList },
+    //new Script { ExtensionSuite = ExtensionSuite.RichEdit },
+    //new Script { ExtensionSuite = ExtensionSuite.Spreadsheet },
+    new Script { ExtensionSuite = ExtensionSuite.SpellChecker }
+)
+
+
+@*<script src="@Url.Content("~/Scripts/plugins/forms/tinymce/tinymce.min.js")"></script>*@
+
+
+
+<script type="text/javascript">
+
+    $(function () {
+        $(".datepickerTop").datepicker({ format: 'dd/mm/yyyy', autoclose: true, orientation: "top auto" });
+        $(".datepicker").datepicker({ format: 'dd/mm/yyyy', autoclose: true });
+
+        //$(".multiselect").multiselect();
+
+        $('.datepicker').on('keypress', function (e) {
+            var thisVal = $(this).val();
+            var leng = thisVal.length;
+
+            if (window.event) {
+                code = e.keyCode;
+            } else {
+                code = e.which;
+            };
+
+            var allowedCharacters = [49, 50, 51, 52, 53, 54, 55, 56, 57, 48, 47];
+            var isValidInput = false;
+
+            for (var i = allowedCharacters.length - 1; i >= 0; i--) {
+                if (allowedCharacters[i] == code) {
+                    isValidInput = true;
+                }
+            };
+
+            if (isValidInput === false ||/* Can only input 1,2,3,4,5,6,7,8,9 or - */
+                (code == 45 && (leng < 2 || leng > 5 || leng == 3 || leng == 4)) ||
+                ((leng == 2 || leng == 5) && code !== 47) || /* only can hit a - for 3rd pos. */
+                leng == 10) /* only want 10 characters "12-45-7890" */ {
+
+                event.preventDefault();
+                return;
+            }
+
+        });
+
+        function h(e) {
+            $(e).css({ 'height': 'auto', 'overflow-y': 'hidden' }).height(e.scrollHeight);
+        }
+        $('textarea').each(function () {
+            h(this);
+        }).on('input', function () {
+            h(this);
+        });
+
+        $(function () {
+            $.validator.methods.date = function (value, element) {
+                return this.optional(element) || moment(value, "dd/mm/yyyy", true).isValid();
+            }
+        });
+    });
+</script>

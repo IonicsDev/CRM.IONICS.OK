@@ -1,0 +1,70 @@
+﻿@model List<CRM.Business.Entities.Rol>
+
+<table class="table table-striped table-bordered">
+    @if (Model != null && Model.Count > 0)
+    { 
+        <thead>
+            <tr>
+                <th colspan="3">Rol
+                </th>
+            </tr>
+        </thead>
+    }
+    
+    @for (int i=0; i < Model.Count; i++)
+    {
+        <tr>
+            <td style="text-align: center; width: 5%;">
+                <input type="checkbox" name="CheckRoles" value="@Model[i].Id" />
+                <input type="hidden" name="Roles[@i].Id" value="@Model[i].Id" />
+            </td>
+            <td class="tdDeleted">
+                @Html.DisplayFor(modelItem => Model[i].RoleName)
+                <input type="hidden" name="Roles[@i].RoleName" value="@Model[i].RoleName" />
+                <input class="Deleted" type="hidden" name="Roles[@i].Deleted" value="false">
+            </td>
+            <td style="text-align: center; width: 5%;">
+                <a href="#m" class="DeleteRol"><i class="i-remove-7"></i></a>
+            </td>
+        </tr>
+    }
+    
+</table>
+
+<script type="text/javascript">
+    $(document).ready(function () { $("div").removeClass("checker"); });
+
+    $(function () {
+        //Funcion que carga los clientes del rol en la grilla (con Radiobutton)
+        $('input[type=radio][name=CheckRoles]').change(function () {
+            var idRolSeleccionado = $(this).val();
+            var idUsuario = $("select#UsuarioId").val();
+            $.ajax({
+                url: "@Url.Action("GetClientesRolUsuario")",
+                type: "POST",
+                data: { idRol: idRolSeleccionado, idUsuario: idUsuario },
+                success: function (result) {
+                    // refreshes partial view
+                    $('#listClientes').html(result);
+                    
+                    $("div#Clientes a#AddCliente").removeAttr("disabled");
+                }
+            });
+        });
+    });
+
+    $("body").on('click', '#Roles a.DeleteRol', function () {
+
+        var parent = $(this).parent().parent().css("display", "none");
+
+        //Cambiar el atributo deleted a true
+        var row = $(this).parent().parent();
+        row.find("td").each(function (column, td) {
+            $(td).find('input[type=checkbox][name=CheckRoles]').prop("checked", false).change();
+        });
+            
+        row.children(".tdDeleted").children(".Deleted").val(true);
+
+        return false;
+    });
+</script>

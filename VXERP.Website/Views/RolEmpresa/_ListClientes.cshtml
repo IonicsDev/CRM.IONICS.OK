@@ -1,0 +1,127 @@
+﻿
+@Html.DevExpress().GridView(settings => {
+    settings.Name = "grid_Clientes";
+    settings.CallbackRouteValues = new { Controller = (string)ViewBag.NameController, Action = "GridViewClientes" };
+
+    settings.SettingsSearchPanel.Visible = true;
+    settings.SettingsBehavior.AllowFixedGroups = true;
+    settings.SettingsBehavior.AllowDragDrop = true;
+    settings.SettingsBehavior.AllowSort = true;
+
+    settings.SettingsCookies.StoreFiltering = true;
+    settings.SettingsCookies.StoreGroupingAndSorting = true;
+    settings.SettingsCookies.StorePaging = true;
+    settings.SettingsCookies.Enabled = true;
+    settings.SettingsBehavior.EnableCustomizationWindow = true;
+
+    settings.CustomJSProperties = (s, e) =>
+    {
+        MVCxGridView gridView = (MVCxGridView)s;
+        e.Properties["cpClientLayout" + (string)ViewBag.NameController] = gridView.SaveClientLayout();
+
+        ASPxGridView gridJS = (ASPxGridView)s;
+        e.Properties["cpGridSettings"] = gridJS.Settings;
+        //e.Properties["cpGridColumns"] = gridJS.Columns;
+        List<string> columnsNames = new List<string>();
+        foreach (GridViewDataColumn item in gridJS.DataColumns)
+        {
+            columnsNames.Add(item.FieldName);
+        }
+        e.Properties["cpGridColumns"] = columnsNames;
+    };
+
+    settings.CommandColumn.Visible = false;
+    settings.Settings.UseFixedTableLayout = true;
+
+
+    settings.CommandColumn.ShowClearFilterButton = true;
+    //CheckBox en cada fila y checkbox general
+    //settings.CommandColumn.SelectAllCheckboxMode = GridViewSelectAllCheckBoxMode.Page;
+
+
+    settings.SettingsBehavior.ColumnResizeMode = ColumnResizeMode.Control;
+
+    settings.Settings.ShowGroupPanel = true;
+
+    settings.SettingsPager.Position = System.Web.UI.WebControls.PagerPosition.TopAndBottom;
+    settings.SettingsPager.FirstPageButton.Visible = true;
+    settings.SettingsPager.LastPageButton.Visible = true;
+    settings.SettingsPager.PageSizeItemSettings.Visible = true;
+    settings.SettingsPager.PageSizeItemSettings.Items = new string[] { "10", "20", "50" };
+    settings.KeyFieldName = "ID";
+
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "ID";
+
+        column.Caption = "#Id";
+        column.HeaderStyle.BackColor = System.Drawing.Color.LightGray;
+        column.HeaderStyle.Font.Bold = true;
+    });
+
+    CRM.Website.DevExpressHelpers.GridHelper.AddColumnsSettingViewData(settings.Columns, Model.GetDynamicCollectionList(Model.GetViewModel()));
+
+    settings.Columns.Add(column =>
+    {
+        column.Caption = "Acciones";
+        column.HeaderStyle.BackColor = System.Drawing.Color.Orange;
+        column.HeaderStyle.Font.Bold = true;
+
+        column.SetDataItemTemplateContent(c =>
+        {
+            ViewContext.Writer.Write(Html.ActionLink(" ", "DeleteCliente", (string)ViewBag.NameController, new { Id = DataBinder.Eval(c.DataItem, "ID") },
+                    new { Class = "confirm i-close-4 DeletedCliente", title = "Baja" })
+                );
+        });
+
+        column.Settings.AllowDragDrop = DefaultBoolean.False;
+        column.Settings.AllowSort = DefaultBoolean.False;
+
+    });
+
+    //Fila de filtros
+    settings.Settings.ShowFilterRow = true;
+    //Icono del menu del filtrado
+    settings.Settings.ShowFilterRowMenu = false;
+
+    //Setear por defecto la condicion de filtrado
+    //de todas las columnas a Contains
+    settings.DataBound = (sender, e) =>
+    {
+        MVCxGridView gv = sender as MVCxGridView;
+        gv.Visible = (gv.VisibleRowCount > 0);
+
+        foreach (GridViewColumn column in gv.Columns)
+        {
+            var dataColumn = column as GridViewDataColumn;
+            if (dataColumn != null)
+                dataColumn.Settings.AutoFilterCondition = AutoFilterCondition.Contains;
+        }
+    };
+
+
+    settings.PreRender = (s, e) => {
+        MVCxGridView grid = s as MVCxGridView;
+
+        if(grid != null)
+            grid.ExpandAll();
+    };
+
+    settings.SettingsDetail.ExportMode = GridViewDetailExportMode.Expanded;
+
+}).Bind(Model.Datos).GetHtml()
+
+<script type="text/javascript">
+
+    $(".DeletedCliente").on("click", function () {
+        var href = $(this).attr("href");
+        
+        var idUsuario = $("select#UsuarioId").val();
+        var idRol = $("#selectedRol").val();
+        
+        href = href + "?UsuarioId=" + idUsuario + "&RolId=" + idRol;
+
+        $(this).attr("href", href);
+    });
+
+</script>

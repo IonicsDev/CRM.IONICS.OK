@@ -1,0 +1,22 @@
+/* Errores de validacion */
+.validation-summary-errors {color: #f00;}
+
+
+select, textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"],
+input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"],
+input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input {
+    min-height: 23px !important;
+}
+
+.custom-bootstrap-dialog .bootstrap-dialog-title {
+    font-weight: bold;
+}
+
+.custom-bootstrap-dialog .modal-header {
+    margin-bottom: 15px;
+}
+
+.custom-bootstrap-dialog .bootstrap-dialog-message {
+    text-align: center;
+    font-weight: bold;
+}

@@ -1,0 +1,3 @@
+@using CRM.Website.DevExpressHelpers
+
+@Html.DevExpress().PivotGrid(PivotGridHelper.PivotGridSettings).BindToOLAP(PivotGridHelper.OlapConexionString).GetHtml()

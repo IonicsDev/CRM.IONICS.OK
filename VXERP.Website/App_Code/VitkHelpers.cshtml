@@ -1,0 +1,22 @@
+﻿
+
+
+
+@helper StatusLabel(string status)
+{
+    switch (status)
+    {
+        case "pending":
+            <span class="medium label label-important">pendiente</span>
+            break;
+        case "completed":
+            <span class="medium label label-success">realizado</span>
+            break;
+        case "failed":
+            <span class="medium label label-warning">NO realizado</span>
+            break;
+        default:
+            <span class="medium label">@status</span>
+            break;
+    }
+}

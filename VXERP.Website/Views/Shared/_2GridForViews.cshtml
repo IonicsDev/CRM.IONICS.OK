@@ -1,0 +1,264 @@
+﻿@Html.DevExpress().GridView(settings => {
+    settings.Name = "grid_" + ViewBag.NameController;
+    settings.CallbackRouteValues = new { Controller = (string)ViewBag.NameController, Action = "GridViewAllPartial"};
+
+    settings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
+    settings.Settings.ShowFilterBar = GridViewStatusBarMode.Visible;
+    settings.SettingsSearchPanel.Visible = true;
+    settings.SettingsBehavior.AllowFixedGroups = true;
+    settings.SettingsBehavior.AllowDragDrop = true;
+    settings.SettingsBehavior.AllowSort = true;
+    settings.Height = System.Web.UI.WebControls.Unit.Percentage(100);
+    settings.ClientSideEvents.Init = "OnInit";
+    settings.ClientSideEvents.EndCallback = "OnEndCallback";
+
+    settings.SettingsCookies.StoreFiltering = true;
+    settings.SettingsCookies.StoreGroupingAndSorting = true;
+    settings.SettingsCookies.StorePaging = true;
+    settings.SettingsCookies.Enabled = true;
+    settings.SettingsBehavior.EnableCustomizationWindow = true;
+
+    settings.CustomJSProperties = (s, e) =>
+    {
+        MVCxGridView gridView = (MVCxGridView)s;
+        e.Properties["cpClientLayout" + (string)ViewBag.NameController] = gridView.SaveClientLayout();
+
+        ASPxGridView gridJS = (ASPxGridView)s;
+        e.Properties["cpGridSettings"] = gridJS.Settings;
+        //e.Properties["cpGridColumns"] = gridJS.Columns;
+        List<string> columnsNames = new List<string>();
+        foreach (GridViewDataColumn item in gridJS.DataColumns)
+        {
+            columnsNames.Add(item.FieldName);
+        }
+        e.Properties["cpGridColumns"] = columnsNames;
+    };
+
+
+    //barras
+    settings.Settings.HorizontalScrollBarMode = ScrollBarMode.Auto;
+    settings.Settings.VerticalScrollBarMode = ScrollBarMode.Auto;
+    settings.Settings.VerticalScrollableHeight = 500;
+
+    settings.CommandColumn.Visible = true;
+    settings.Settings.UseFixedTableLayout = true;
+
+    settings.CommandColumn.ShowClearFilterButton = true;
+    //CheckBox en cada fila y checkbox general
+    settings.CommandColumn.ShowSelectCheckbox = true;
+
+    settings.CommandColumn.SelectAllCheckboxMode = GridViewSelectAllCheckBoxMode.Page;
+    settings.CommandColumn.HeaderStyle.BackColor = System.Drawing.Color.Orange;
+
+    settings.SettingsResizing.ColumnResizeMode = ColumnResizeMode.Control;
+
+    settings.Settings.ShowGroupPanel = true;
+    //settings.SettingsBehavior.AllowSelectByRowClick = true;
+    settings.ClientSideEvents.RowClick = "OnRowClick";
+    settings.SettingsPager.Position = System.Web.UI.WebControls.PagerPosition.TopAndBottom;
+    settings.SettingsPager.FirstPageButton.Visible = true;
+    settings.SettingsPager.LastPageButton.Visible = true;
+    settings.SettingsPager.PageSizeItemSettings.Visible = true;
+    settings.SettingsPager.PageSizeItemSettings.Items = new string[] { "10", "20", "50" };
+    settings.KeyFieldName = "ID";
+
+
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "ID";
+
+        column.Caption = "#Id";
+        column.HeaderStyle.BackColor = System.Drawing.Color.LightGray;
+        column.HeaderStyle.Font.Bold = true;
+
+    });
+
+    CRM.Website.DevExpressHelpers.GridHelper.AddColumnsSettingViewData(settings.Columns, Model.GetDynamicCollectionList(Model.GetViewModel()));
+
+    settings.Columns.Add(column =>
+    {
+        column.Caption = "Acciones";
+        column.HeaderStyle.BackColor = System.Drawing.Color.Orange;
+        column.HeaderStyle.Font.Bold = true;
+
+        column.SetDataItemTemplateContent(c =>
+        {
+            ViewContext.Writer.Write(Html.ActionLink(" ", "View", (string)ViewBag.NameController, new { Id = DataBinder.Eval(c.DataItem, "ID") }, new { @class = " i-eye ", title = "Ver" }));
+        });
+
+        column.Settings.AllowDragDrop = DefaultBoolean.True;
+        column.Settings.AllowSort = DefaultBoolean.True;
+    });
+
+    //Fila de filtros
+    settings.Settings.ShowFilterRow = true;
+    //Icono del menu del filtrado
+    settings.Settings.ShowFilterRowMenu = false;
+
+    settings.HtmlDataCellPrepared = (sender, e) =>
+    {
+        string controller = ViewBag.NameController;
+        CRM.Website.DevExpressHelpers.GridHelper.SetCellData(sender, e, controller);
+    };
+
+    //Setear por defecto la condicion de filtrado
+    //de todas las columnas a Contains
+    settings.DataBound = (sender, e) =>
+    {
+        MVCxGridView gv = sender as MVCxGridView;
+        gv.Visible = (gv.VisibleRowCount > 0);
+
+        //foreach (GridViewColumn column in gv.Columns)
+        //{
+        //    var dataColumn = column as GridViewDataColumn;
+        //    if (dataColumn != null)
+        //        dataColumn.Settings.AutoFilterCondition = AutoFilterCondition.Contains;
+        //}
+        string controller = ViewBag.NameController;
+        CRM.Website.DevExpressHelpers.GridHelper.SetHeaderColumnData(sender, e, controller);
+    };
+
+
+    settings.PreRender = (s, e) => {
+        MVCxGridView grid = s as MVCxGridView;
+
+        if(grid != null)
+            grid.ExpandAll();
+    };
+
+    settings.SettingsDetail.ExportMode = GridViewDetailExportMode.Expanded;
+
+}).Bind(Model.GetViewModel()).GetHtml()
+
+
+@Html.DevExpress().GridView(settings => {
+    settings.Name = "grid_" + ViewBag.NameController + "2";
+    settings.CallbackRouteValues = new { Controller = (string)ViewBag.NameController, Action = "GridViewAllPartial1" };
+
+    settings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
+    settings.Settings.ShowFilterBar = GridViewStatusBarMode.Visible;
+    settings.SettingsSearchPanel.Visible = true;
+    settings.SettingsBehavior.AllowFixedGroups = true;
+    settings.SettingsBehavior.AllowDragDrop = true;
+    settings.SettingsBehavior.AllowSort = true;
+    settings.Height = System.Web.UI.WebControls.Unit.Percentage(100);
+    settings.ClientSideEvents.Init = "OnInit";
+    settings.ClientSideEvents.EndCallback = "OnEndCallback";
+
+    settings.SettingsCookies.StoreFiltering = true;
+    settings.SettingsCookies.StoreGroupingAndSorting = true;
+    settings.SettingsCookies.StorePaging = true;
+    settings.SettingsCookies.Enabled = true;
+    settings.SettingsBehavior.EnableCustomizationWindow = true;
+
+    settings.CustomJSProperties = (s, e) =>
+    {
+        MVCxGridView gridView1 = (MVCxGridView)s;
+        e.Properties["cpClientLayout" + (string)ViewBag.NameController] = gridView1.SaveClientLayout();
+
+        ASPxGridView gridJS1 = (ASPxGridView)s;
+        e.Properties["cpGridSettings"] = gridJS1.Settings;
+        //e.Properties["cpGridColumns"] = gridJS.Columns;
+        List<string> columnsNames1 = new List<string>();
+        foreach (GridViewDataColumn item1 in gridJS1.DataColumns)
+        {
+            columnsNames1.Add(item1.FieldName);
+        }
+        e.Properties["cpGridColumns"] = columnsNames1;
+    };
+
+
+    //barras
+    settings.Settings.HorizontalScrollBarMode = ScrollBarMode.Auto;
+    settings.Settings.VerticalScrollBarMode = ScrollBarMode.Auto;
+    settings.Settings.VerticalScrollableHeight = 500;
+
+    settings.CommandColumn.Visible = true;
+    settings.Settings.UseFixedTableLayout = true;
+
+    settings.CommandColumn.ShowClearFilterButton = true;
+    //CheckBox en cada fila y checkbox general
+    settings.CommandColumn.ShowSelectCheckbox = true;
+
+    settings.CommandColumn.SelectAllCheckboxMode = GridViewSelectAllCheckBoxMode.Page;
+    settings.CommandColumn.HeaderStyle.BackColor = System.Drawing.Color.Orange;
+
+    settings.SettingsResizing.ColumnResizeMode = ColumnResizeMode.Control;
+
+    settings.Settings.ShowGroupPanel = true;
+    //settings.SettingsBehavior.AllowSelectByRowClick = true;
+    settings.ClientSideEvents.RowClick = "OnRowClick";
+    settings.SettingsPager.Position = System.Web.UI.WebControls.PagerPosition.TopAndBottom;
+    settings.SettingsPager.FirstPageButton.Visible = true;
+    settings.SettingsPager.LastPageButton.Visible = true;
+    settings.SettingsPager.PageSizeItemSettings.Visible = true;
+    settings.SettingsPager.PageSizeItemSettings.Items = new string[] { "10", "20", "50" };
+    settings.KeyFieldName = "ID";
+
+
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "ID";
+
+        column.Caption = "#Id";
+        column.HeaderStyle.BackColor = System.Drawing.Color.LightGray;
+        column.HeaderStyle.Font.Bold = true;
+
+    });
+
+    CRM.Website.DevExpressHelpers.GridHelper.AddColumnsSettingViewData(settings.Columns, Model.GetDynamicCollectionList(Model.GetViewModel()));
+
+    settings.Columns.Add(column =>
+    {
+        column.Caption = "Acciones";
+        column.HeaderStyle.BackColor = System.Drawing.Color.Orange;
+        column.HeaderStyle.Font.Bold = true;
+
+        column.SetDataItemTemplateContent(c =>
+        {
+            ViewContext.Writer.Write(Html.ActionLink(" ", "View", (string)ViewBag.NameController, new { Id = DataBinder.Eval(c.DataItem, "ID") }, new { @class = " i-eye ", title = "Ver" }));
+        });
+
+        column.Settings.AllowDragDrop = DefaultBoolean.True;
+        column.Settings.AllowSort = DefaultBoolean.True;
+    });
+
+    //Fila de filtros
+    settings.Settings.ShowFilterRow = true;
+    //Icono del menu del filtrado
+    settings.Settings.ShowFilterRowMenu = false;
+
+    settings.HtmlDataCellPrepared = (sender, e) =>
+    {
+        string controller1 = ViewBag.NameController;
+        CRM.Website.DevExpressHelpers.GridHelper.SetCellData(sender, e, controller1);
+    };
+
+    //Setear por defecto la condicion de filtrado
+    //de todas las columnas a Contains
+    settings.DataBound = (sender, e) =>
+    {
+        MVCxGridView gv = sender as MVCxGridView;
+        gv.Visible = (gv.VisibleRowCount > 0);
+
+        //foreach (GridViewColumn column in gv.Columns)
+        //{
+        //    var dataColumn = column as GridViewDataColumn;
+        //    if (dataColumn != null)
+        //        dataColumn.Settings.AutoFilterCondition = AutoFilterCondition.Contains;
+        //}
+        string controller1 = ViewBag.NameController;
+        CRM.Website.DevExpressHelpers.GridHelper.SetHeaderColumnData(sender, e, controller1);
+    };
+
+
+    settings.PreRender = (s, e) => {
+        MVCxGridView grid1 = s as MVCxGridView;
+
+        if(grid1 != null)
+            grid1.ExpandAll();
+    };
+
+    settings.SettingsDetail.ExportMode = GridViewDetailExportMode.Expanded;
+
+}).Bind(Model.GetViewModel()).GetHtml()

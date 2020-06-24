@@ -1,0 +1,610 @@
+﻿@model CRM.Business.Entities.Acontecimiento
+@using GridMvc.Html;
+@{
+    Layout = "~/Views/Shared/_Generic.cshtml";
+}
+
+@using (Html.BeginForm("Create", "Acontecimientos", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.Hidden("First")
+    @Html.HiddenFor(model => model.Id)
+    @Html.HiddenFor(model => model.FechaCreacion)
+    @Html.HiddenFor(model => model.FechaActualizacion)
+    @Html.HiddenFor(model => model.Estado)
+    <div class="wrapper">
+
+        <div class="container-fluid">
+            <div id="heading" class="page-header">
+                <h1><i class="icon20 i-cogs"></i>Eventos y Acciones</h1>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <div class="icon"><i class="icon20 i-table"></i></div>
+                            <h4>Edicion Eventos y Acciones</h4>
+                            <a href="#" class="minimize"></a>
+
+                        </div>
+                        <!-- End .panel-heading -->
+                        <div class="panel-body">
+                            <ul class="pager">
+                                <li class="previous">
+                                    <a href="@Url.Action("Index", "Acontecimientos")">← Volver</a>
+                                </li>
+                                <li>
+                                    <button id="btnGuardar" type="submit" class="btn btn-primary col-lg-4" style="float:right;">Guardar</button>
+                                </li>
+                            </ul>
+                            @Html.ValidationSummary(true)
+                            <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered table-hover">
+                                <tr style="width: 100%;">
+                                    <td style="width: 5%;">@Html.Label("Fecha", new { @class = "control-label" })</td>
+                                    <td style="width: 5%;">
+                                        @Html.TextBoxFor(model => model.Fecha, new { @class = "form-control datepicker", @style = "width: 200px;" })
+                                        @Html.ValidationMessageFor(model => model.Fecha)
+                                    </td>
+                                    <td style="width: 5%;">@Html.LabelFor(model => model.TipoAcontecimiento_Id, new { @class = "control-label" })</td>
+                                    <td style="width: 30%;">
+
+                                        @Html.DropDownListFor(model => model.TipoAcontecimiento_Id, new SelectList(ViewBag.TiposAcontecimiento, "Id", "Descripcion"), "Seleccione")
+                                        @Html.ValidationMessageFor(model => model.TipoAcontecimiento_Id)
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="5">
+                                        @Html.Label("", new { @class = "control-label" })
+                                    </td>
+                                </tr>
+                                <tr style="width: 100%;">
+                                    <td style="width: 10%;">@Html.LabelFor(model => model.FechaApertura, new { @class = "control-label" })</td>
+                                    <td style="width: 10%;">
+                                        @Html.TextBoxFor(model => model.FechaApertura, new { @class = "form-control datepicker", @style = "width: 200px;" })
+                                        @Html.ValidationMessageFor(model => model.FechaApertura)
+                                    </td>
+                                    <td style="width: 10%;">@Html.LabelFor(model => model.FechaOcurrencia, new { @class = "control-label" })</td>
+                                    <td style="width: 30%;">
+
+                                        @Html.TextBoxFor(model => model.FechaOcurrencia, new { @class = "form-control datepicker", @style = "width: 300px;" })
+                                        @Html.ValidationMessageFor(model => model.FechaOcurrencia)
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="5">
+                                        @Html.Label("Descripcion:", new { @class = "control-label" })
+                                        @Html.TextAreaFor(model => model.Descripcion, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.Descripcion)
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="5">
+                                        @Html.Label("", new { @class = "control-label" })
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 5%;">@Html.LabelFor(model => model.Origen_Id, new { @class = "control-label" })</td>
+                                    <td style="width: 30%;">
+
+                                        @Html.DropDownListFor(model => model.Origen_Id, new SelectList(ViewBag.Origenes, "Id", "Descripcion"), "Seleccione", new { @class = "" })
+                                        @Html.ValidationMessageFor(model => model.Origen_Id)
+                                    </td>
+                                </tr>
+                                @*<tr style="width: 100%;">
+                                        <td style="width: 30%;">
+                                            @Html.LabelFor(model => model.AuditoriaClientes, new { @class = "control-label", @for = Model.Id })
+                                            @Html.RadioButtonFor(model => model.SelectedAnswer, "AuditoriaClientes", new { @Name = "SelectedAnswer" })
+                                        </td>
+                                        <td style="width: 25%;">
+                                            @Html.LabelFor(model => model.AuditoriaCertificacion, new { @class = "control-label" })
+                                            @Html.RadioButtonFor(model => model.SelectedAnswer, "AuditoriaCertificacion", new { @Name = "SelectedAnswer" })
+
+                                        </td>
+
+                                        <td style="width: 50%;">
+                                            @Html.LabelFor(model => model.InspeccionesArn, new { @class = "control-label" })
+                                            @Html.RadioButtonFor(model => model.SelectedAnswer, "InspeccionesArn", new { @Name = "SelectedAnswer" })
+
+                                        </td>
+
+                                        <td style="width: 0%;">
+                                            @Html.LabelFor(model => model.OtrasInspecciones, new { @class = "control-label" })
+                                            @Html.RadioButtonFor(model => model.SelectedAnswer, "OtrasInspecciones", new { @Name = "SelectedAnswer" })
+
+                                        </td>
+                                    </tr>
+                                    <tr style="width: 100%;">
+                                        <td style="width: 5%;">
+                                            @Html.LabelFor(model => model.AccidentesLaborales, new { @class = "control-label" })
+                                            @Html.RadioButtonFor(model => model.SelectedAnswer, "AccidentesLaborales", new { @Name = "SelectedAnswer" })
+                                        </td>
+                                        <td style="width: 5%;">
+                                            @Html.LabelFor(model => model.Eventualidades, new { @class = "control-label" })
+                                            @Html.RadioButtonFor(model => model.SelectedAnswer, "Eventualidades", new { @Name = "SelectedAnswer" })
+                                        </td>
+                                        <td style="width: 2%;">
+                                            @Html.LabelFor(model => model.ReclamoClientes, new { @class = "control-label" })
+                                            @Html.RadioButtonFor(model => model.SelectedAnswer, "ReclamoClientes", new { @Name = "SelectedAnswer" })
+                                        </td>
+
+                                        <td style="width: 5%;">
+                                            @Html.LabelFor(model => model.Novedades, new { @class = "control-label" })
+                                            @Html.RadioButtonFor(model => model.SelectedAnswer, "Novedades", new { @Name = "SelectedAnswer" })
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width: 5%;">
+                                            @Html.LabelFor(model => model.InformeRevision, new { @class = "control-label" })
+                                            @Html.RadioButtonFor(model => model.SelectedAnswer, "InformeRevision", new { @Name = "SelectedAnswer" })
+                                        </td>
+                                        <td style="width: 5%;">
+                                            @Html.LabelFor(model => model.EncuentaClientes, new { @class = "control-label" })
+                                            @Html.RadioButtonFor(model => model.SelectedAnswer, "EncuentaClientes", new { @Name = "SelectedAnswer" })
+                                        </td>
+                                        <td style="width: 5%;">
+                                            @Html.LabelFor(model => model.AnalisisVariosIonics, new { @class = "control-label" })
+                                            @Html.RadioButtonFor(model => model.SelectedAnswer, "AnalisisVariosIonics", new { @Name = "SelectedAnswer" })
+                                        </td>
+                                        <td style="width: 1px;">
+                                            @Html.LabelFor(model => model.Otras, new { @class = "control-label" })
+                                            @Html.RadioButtonFor(model => model.SelectedAnswer, "Otras", new { @Name = "SelectedAnswer", @Id = "Otras" })
+
+                                        </td>
+
+                                    </tr>*@
+                                <tr>
+                                    <td id="cellOtras" colspan="5">
+                                        @Html.Label("Descripcion Origen Otras:", new { @class = "control-label" })
+                                        @Html.TextAreaFor(model => model.OrigenOtras, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.OrigenOtras)
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="5">
+                                        @Html.Label("", new { @class = "control-label" })
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 5%">
+                                        @Html.Label("Análisis del Evento: ", new { @class = "control-label", @id = "analisis" })
+                                    </td>
+                                    <td colspan="4">
+                                        @Html.TextAreaFor(model => model.Raiz_Mejora_Cambio, new { @class = "form-control" })
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="5">
+                                        @Html.Label("Acciones:", new { @class = "control-label" })
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        @Html.LabelFor(model => model.AccionesInmediatas, new { @class = "control-label" })
+                                        @Html.CheckBoxFor(model => model.AccionesInmediatas, new { @class = "form-control", @Id = "chkAccionesInmediatas" })
+                                    </td>
+                                    <td id="cellAccionesInmediatas" colspan="4">
+                                        @Html.Label("Descripcion Acciones Inmediatas:", new { @class = "control-label" })
+                                        @Html.TextAreaFor(model => model.DescripcionAccionesInmediatas, new { @class = "form-control", @Id = "AI" })
+                                        @Html.ValidationMessageFor(model => model.OrigenOtras)
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        @Html.LabelFor(model => model.AccionesCorrectivas, new { @class = "control-label" })
+                                        @Html.CheckBoxFor(model => model.AccionesCorrectivas, new { @class = "form-control", @Id = "chkAccionesCorrectivas" })
+                                    </td>
+                                    <td id="cellAccionesCorrectivas" colspan="4">
+                                        @Html.Label("Descripcion Acciones Correctivas:", new { @class = "control-label" })
+                                        @Html.TextAreaFor(model => model.DescripcionAccionesCorrectivas, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.OrigenOtras)
+
+                                    </td>
+                                </tr>
+                                <tr>
+
+                                    <td>
+                                        @Html.LabelFor(model => model.AccionesMejora, new { @class = "control-label" })
+                                        @Html.CheckBoxFor(model => model.AccionesMejora, new { @class = "form-control" })
+                                    </td>
+                                    <td id="cellAccionesMejora" colspan="4">
+                                        @Html.Label("Descripcion Acciones de Mejora:", new { @class = "control-label" })
+                                        @Html.TextAreaFor(model => model.DescripcionAccionesMejora, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.OrigenOtras)
+
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td>
+                                        @Html.LabelFor(model => model.AccionesOtras, new { @class = "control-label" })
+                                        @Html.CheckBoxFor(model => model.AccionesOtras, new { @class = "form-control" })
+                                    </td>
+                                    <td id="cellOtras" colspan="4">
+                                        @Html.Label("Descripcion Otras Acciones:", new { @class = "control-label" })
+                                        @Html.TextAreaFor(model => model.DescripcionAccionesOtras, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.OrigenOtras)
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        @Html.LabelFor(model => model.SinAcciones, new { @class = "control-label" })
+                                        @Html.CheckBoxFor(model => model.SinAcciones, new { @class = "form-control" })
+                                    </td>
+                                    <td id="cellSinAcciones" colspan="4">
+                                        @Html.LabelFor(model => model.DescripcionSinAcciones, new { @class = "control-label" })
+                                        @Html.TextAreaFor(model => model.DescripcionSinAcciones, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.DescripcionSinAcciones)
+                                    </td>
+
+                                </tr>
+                                @*<tr>
+                                        <td colspan="4">
+                                            @Html.Label("Descripcion Acciones:", new { @class = "control-label" })
+                                            @Html.TextAreaFor(model => model.DescripcionAcciones, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(model => model.DescripcionAcciones)
+
+                                            <div class="input-group">
+                                                @Html.LabelFor(model => model.FechaImplementacion, new { @class = "control-label" })
+                                                @Html.TextBoxFor(model => model.FechaImplementacion, new { @class = "form-control datepicker", @style = "width: 150px; heigth :100px" })
+                                                @Html.ValidationMessageFor(model => model.FechaImplementacion)
+                                            </div>
+
+                                        </td>
+                                    </tr>*@
+                                <tr>
+                                    <td colspan="4">
+                                        @Html.Label("", new { @class = "control-label" })
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="5">
+                                        @Html.LabelFor(model => model.DescripcionEvaluacion, new { @class = "control-label" })
+                                        @Html.TextAreaFor(model => model.DescripcionEvaluacion, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.DescripcionEvaluacion)
+
+                                        <div class="input-group form-group">
+                                            @Html.LabelFor(model => model.FechaEvaluacion, new { @class = "control-label" })
+                                            @Html.TextBoxFor(model => model.FechaEvaluacion, new { @class = "form-control datepicker", @style = "height:35px;width: 150px;" })
+                                            @Html.ValidationMessageFor(model => model.FechaEvaluacion)
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="5">
+                                        @Html.LabelFor(model => model.NuevaAccion, new { @class = "control-label" })
+                                        @Html.TextAreaFor(model => model.NuevaAccion, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.NuevaAccion)
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="5">
+                                        <div class="input-group">
+                                            @Html.LabelFor(model => model.FechaCierreAccion, new { @class = "control-label" })
+                                            @Html.TextBoxFor(model => model.FechaCierreAccion, new { @class = "form-control datepicker", @style = "width: 150px" })
+                                        </div>
+
+                                        @Html.ValidationMessageFor(model => model.FechaCierreAccion)
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="5">
+                                        @Html.Label("", new { @class = "control-label" })
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="5">
+                                        @Html.Label("Firmas Digitales", new { @class = "control-label" })
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="1">
+                                        @Html.Label("Responsable Calidad", new { @class = "control-label" })
+                                        @Html.CheckBox("Responsable Calidad", new { @class = "form-control" })
+                                    </td>
+                                    <td colspan="1" style="width: 20px">
+                                        @Html.Label("gp", "Gte. de Produccion", new { @class = "control-label" })
+                                        @Html.CheckBox("Gte. de Produccion", new { @class = "form-control" })
+                                    </td>
+                                    <td colspan="1">
+                                        @Html.Label("gc", "Gte. Comercial", new { @class = "control-label" })
+                                        @Html.CheckBox("Gte. Comercial", new { @class = "form-control" })
+                                    </td>
+                                    <td colspan="1">
+                                        @Html.Label("gaf", "Gte. de Adm. y Finanzas", new { @class = "control-label" })
+                                        @Html.CheckBox("Gte. de Adm. y Finanzas", new { @class = "form-control" })
+                                    </td>
+                                    <td colspan="1">
+                                        @Html.Label("gg", "Gerente General", new { @class = "control-label" })
+                                        @Html.CheckBox("Gerente General", new { @class = "form-control" })
+                                    </td>
+                                </tr>
+                            </table>
+                            <br />
+                            @{Html.RenderPartial("_ListArchivos", Model.ArchivosModulo);}
+
+                            @Html.ActionLink("Adjuntar Archivo", "AddArchivoModulo", "Generic", new { @id = "AddArchivoModulo", @class = "modal-link btn btn-success pull-right col-lg-3" })
+
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+
+                            <div class="form-group relative">
+                                <a href="@Url.Action("Index", "Acontecimientos")" class="btn btn-default col-lg-offset-6 col-lg-2">Cancelar</a>
+                                <button id="btnGuardar" type="submit" class="btn btn-primary col-lg-3">Guardar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <div id="modal-container" class="modal fade" tabindex="-1" role="dialog" data-backdrop="static">
+        <div class="modal-content"></div>
+    </div>
+    <div id="" class="modal fade" tabindex="-1" role="dialog" data-backdrop="static">
+        <div class="modal-content"></div>
+    </div>
+    <div class="modal fade" id="modal-causas" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Analisis del Eevento</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <p>@Html.DisplayNameFor(model => model.Raiz_Mejora_Cambio) : </p>
+                        <p> @Html.TextAreaFor(model => model.Raiz_Mejora_Cambio, new { @class = "form-control"})</p>
+                        @*<p>@Html.DisplayNameFor(model => model.Descripcion) : @Html.TextAreaFor(model => model.Descripcion)</p>
+                        <p>@Html.DisplayNameFor(model => model.DescripcionAcciones) : @Html.TextAreaFor(model => model.DescripcionAcciones)</p>*@
+                    </div>
+                    
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger btn-success" data-dismiss="modal">Aceptar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @section scripts
+    {
+        <script type="text/javascript">
+
+            $(document).on('submit', 'form', function () {
+                $("#btnGuardar").attr('disabled', 'disabled');
+
+            });
+
+            $(document).ready(function () {
+
+                $("#TipoAcontecimiento_Id").on("change", function () {
+                    debugger
+                    var TipoEventualidad_Id = $(this).val();
+
+                    //var $el = $("#SubTipoEventualidad_Id");
+                    //$el.empty(); // remove old options
+                    //$el.append($("<option></option>").attr("value", '').text('Seleccione'));
+                    //$.uniform.update("#SubTipoEventualidad_Id");
+
+                    if (TipoEventualidad_Id != "") {
+                        var labelAnalisis = $("#analisis");
+                        if (TipoEventualidad_Id === "1") {
+                            labelAnalisis.text("Causas Raíz");
+                        }
+                        else if (TipoEventualidad_Id === "2") {
+                            labelAnalisis.text("Origen de la Mejora");
+                        }
+                        else if (TipoEventualidad_Id === "3") {
+                            labelAnalisis.text("Origen del Cambio");
+                        }
+                        else {
+                            labelAnalisis.text("Analisis del Evento:");
+                        }
+
+                        @*$.ajax({Origen del Cambio
+                            url: "@Url.Action("GetSubTiposEventualidad", "Eventualidad")",
+                            type: "POST",
+                            data: { TipoEventualidad_Id: TipoEventualidad_Id },
+                            success: function (json) {
+                                var $el = $("#SubTipoEventualidad_Id");
+                                $el.empty(); // remove old options
+                                $el.append($("<option></option>")
+                                        .attr("value", '').text('Seleccione'));
+
+                                $.each(json, function (i, subTipo) {
+                                    $($el).append('<option value="' + subTipo.Value + '">' +
+                                         subTipo.Text + '</option>');
+                                });
+                            }
+                        });*@
+                    }
+                });
+
+                $("#Origen_Id").on("change", function () {
+                    var origend_Id = $(this).val();
+                    debugger
+                    if (origend_Id === "13") {
+                        $("#cellOtras").show(250);
+                    }
+                    else {
+                    $("#cellOtras").hide(250);
+                }
+
+                });
+            });
+
+            $(function () {
+
+                $('body').on('click', '#AddArchivoModulo.modal-link', function (e) {
+                    e.preventDefault();
+                    //Optional: turn the chache off
+                    $.ajaxSetup({ cache: false });
+                    $(this).attr('data-target', '#modal-container');
+                    $(this).attr('data-toggle', 'modal');
+                });;
+
+                $('#modal-container').on('hidden.CRM.modal', function () {
+                    $(this).removeData('CRM.modal');
+                });
+
+                $('#CancelModal').on('click', function () {
+                    return false;
+                });
+
+                $("#causas").click(function (e) {
+                     e.preventDefault();
+                    $("#modal-causas").modal('show');
+                });
+
+            });
+
+
+            var value = $("input[type=radio][id=cellOtras]:checked").is(":checked");
+            if (value) {
+                $("#cellOtras").show(250);
+            }
+            else {
+                $("#cellOtras").hide(250);
+            }
+
+            debugger
+            var value = $("input[type=checkbox][id=chkAccionesInmediatas]:checked").is(":checked");
+            if (value) {
+                $("#AI").removeAttr("disabled");
+            }
+            else {
+                $("#AI").attr("disabled", 'disabled');
+                $("#AI").val('');
+            }
+
+            $("input[type=checkbox][id=chkAccionesInmediatas]").change(function () {
+                var value = $("input[type=checkbox][id=chkAccionesInmediatas]:checked").is(":checked");
+                debugger
+                if (value) {
+                    $("#AI").removeAttr("disabled");
+                }
+                else {
+                    $("#AI").attr("disabled", 'disabled');
+                    $("#AI").val('');
+                }
+
+            });
+
+            $("input[type=checkbox][id=SinAcciones]").change(function () {
+                var value = $("input[type=checkbox][id=SinAcciones]:checked").is(":checked");
+                debugger
+                if (value) {
+                    $("#DescripcionSinAcciones").removeAttr("disabled");
+                }
+                else {
+                    $("#DescripcionSinAcciones").attr("disabled", 'disabled');
+                    $("#DescripcionSinAcciones").val('');
+                }
+
+            });
+
+            var value = $("input[type=checkbox][id=SinAcciones]:checked").is(":checked");
+            debugger
+            if (value) {
+                $("#DescripcionSinAcciones").removeAttr("disabled");
+            }
+            else {
+                $("#DescripcionSinAcciones").attr("disabled", 'disabled');
+                $("#DescripcionSinAcciones").val('');
+            }
+
+            $("input[type=checkbox][id=chkAccionesCorrectivas]").change(function () {
+                var value = $("input[type=checkbox][id=chkAccionesCorrectivas]:checked").is(":checked");
+                                debugger
+                if (value) {
+                    $("#DescripcionAccionesCorrectivas").removeAttr("disabled");
+                }
+                else {
+                    $("#DescripcionAccionesCorrectivas").attr("disabled", 'disabled');
+                    $("#DescripcionAccionesCorrectivas").val('');
+                }
+
+            });
+
+            var value = $("input[type=checkbox][id=AccionesMejora]:checked").is(":checked");
+            if (value) {
+                $("#DescripcionAccionesMejora").removeAttr("disabled");
+            }
+            else {
+                $("#DescripcionAccionesMejora").attr("disabled", 'disabled');
+                $("#DescripcionAccionesMejora").val('');
+            }
+
+            $("input[type=checkbox][id=AccionesMejora]").change(function () {
+                var value = $("input[type=checkbox][id=AccionesMejora]:checked").is(":checked");
+                debugger
+                if (value) {
+                    $("#DescripcionAccionesMejora").removeAttr("disabled");
+                }
+                else {
+                    $("#DescripcionAccionesMejora").attr("disabled", 'disabled');
+                    $("#DescripcionAccionesMejora").val('');
+                }
+
+            });
+
+            var value = $("input[type=checkbox][id=AccionesOtras]:checked").is(":checked");
+            if (value) {
+                $("#DescripcionAccionesOtras").removeAttr("disabled");
+            }
+            else {
+                $("#DescripcionAccionesOtras").attr("disabled", 'disabled');
+                $("#DescripcionAccionesOtras").val('');
+            }
+
+            $("input[type=checkbox][id=AccionesOtras]").change(function () {
+                var value = $("input[type=checkbox][id=AccionesOtras]:checked").is(":checked");
+                debugger
+                if (value) {
+                    $("#DescripcionAccionesOtras").removeAttr("disabled");
+                }
+                else {
+                    $("#DescripcionAccionesOtras").attr("disabled", 'disabled');
+                    $("#DescripcionAccionesOtras").val('');
+                }
+
+            });
+
+
+            $("input[type=radio][name=SelectedAnswer]").change(function () {
+                var value = $("input[type=radio][id=Otras]:checked").is(":checked");
+                debugger
+                if (value) {
+                    $("#cellOtras").show(250);
+                }
+                else {
+                    $("#cellOtras").hide(250);
+                }
+            });
+
+            function checkSupportForInputTypeDate() {
+                jQuery.validator.methods.date = function (value, element) {
+                    var isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
+                    var isSafari = /Safari/.test(navigator.userAgent) && /Apple Computer/.test(navigator.vendor);
+                    if (isSafari || isChrome) {
+                        var d = new Date();
+                        return this.optional(element) || !/Invalid|NaN/.test(new Date(d.toLocaleDateString(value)));
+                    } else {
+                        return this.optional(element) || !/Invalid|NaN/.test(new Date(value));
+                    }
+                };
+            }
+
+        </script>
+
+    }
+}

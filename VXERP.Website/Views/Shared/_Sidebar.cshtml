@@ -1,0 +1,1730 @@
+﻿@using CRM.Website.App_Code;
+
+ <aside id="sidebar">
+       <div class="side-options">
+        
+             <img src="@Url.Content("~/images/Logo.gif")" alt="Ionics S.A." id="logo_in" class="img-responsive"> </div>
+            <div class="side-options">
+                <ul>
+                    <li><a href="#" id="collapse-nav" class="act act-primary tip" title=""><i class="icon16 i-arrow-left-7"></i></a></li>
+                </ul>
+            </div>
+
+            <div class="sidebar-wrapper">
+                <nav id="mainnav">
+                    <ul class="nav nav-list">
+					     @MenuHelpers.DrawMenuItems(Html)
+						
+						@*<li>
+                            <a href="#">
+                                <span class="icon"><i class="icon20 i-coins"></i></span>
+                                <span class="txt">Gestión Contable</span>
+                            </a>
+                            <ul class="sub">
+                                <li>
+                                    <a href="#">
+                                        <span class="icon"><i class="icon20 i-dashboard"></i></span>
+                                        <span class="txt">Dashboard</span>
+                                    </a>
+									<ul class="sub">
+										<li>
+											<a href="#">
+												<span class="icon"><i class="icon20 i-home"></i></span>
+												<span class="txt">Dashboard Contable</span>
+											</a>
+										</li>
+									</ul>
+								</li>
+								<li>
+                                    <a href="#">
+                                        <span class="icon"><i class="icon20 i-book"></i></span>
+                                        <span class="txt">Contabilidad General</span>
+                                    </a>
+									<ul class="sub">
+										<li>
+											<a href="#">
+												<span class="icon"><i class="icon20 i-tools"></i></span>
+												<span class="txt">Mantenimientos</span>
+											</a>
+											<ul class="sub">
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Plan de Cuentas</span>
+													</a>
+												</li>
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Clases de cuentas</span>
+													</a>
+												</li>
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Tipos de comprobantes</span>
+													</a>
+												</li>
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Tipos de retenciones</span>
+													</a>
+												</li>
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Plantillas de asientos contables</span>
+													</a>
+												</li>
+											</ul>
+										</li>
+										<li>
+											<a href="#">
+												<span class="icon"><i class="icon20 i-spinner-3"></i></span>
+												<span class="txt">Procesos</span>
+											</a>
+											<ul class="sub">
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Diarios Contables</span>
+													</a>
+												</li>
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Gestión de asientos por motivo</span>
+													</a>
+												</li>
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Cierre de periodo</span>
+													</a>
+												</li>												
+											</ul>
+										</li>
+										<li>
+											<a href="#">
+												<span class="icon"><i class="icon20 i-stats-up"></i></span>
+												<span class="txt">Reportes</span>
+											</a>
+											<ul class="sub">
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Emision de Balances</span>
+													</a>
+												</li>
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Reporteador con filtros dinámicos</span>
+													</a>
+												</li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+								
+								<li>
+                                    <a href="#">
+                                        <span class="icon"><i class="icon20 i-library-2"></i></span>
+                                        <span class="txt">Bancos</span>
+                                    </a>
+									<ul class="sub">
+										<li>
+											<a href="#">
+												<span class="icon"><i class="icon20 i-tools"></i></span>
+												<span class="txt">Mantenimientos</span>
+											</a>
+											<ul class="sub">
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Definición de Bancos</span>
+													</a>
+												</li>
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Definición de Cuentas</span>
+													</a>
+												</li>
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Tipos de movimientos bancarios</span>
+													</a>
+												</li>
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Motivos de movimientos</span>
+													</a>
+												</li>
+											</ul>
+										</li>
+										<li>
+											<a href="#">
+												<span class="icon"><i class="icon20 i-spinner-3"></i></span>
+												<span class="txt">Procesos</span>
+											</a>
+											<ul class="sub">
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Emisión de cheques</span>
+													</a>
+												</li>
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Movimientos bancarios</span>
+													</a>
+												</li>
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Conciliación bancaria</span>
+													</a>
+												</li>		
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Estatus de cheques emitidos</span>
+													</a>
+												</li>														
+											</ul>
+										</li>
+										<li>
+											<a href="#">
+												<span class="icon"><i class="icon20 i-stats-up"></i></span>
+												<span class="txt">Reportes</span>
+											</a>
+											<ul class="sub">
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Movimientos bancarios por tipo y periodo</span>
+													</a>
+												</li>
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Reporteador con filtros dinámicos</span>
+													</a>
+												</li>
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Conciliación bancaria por periodo</span>
+													</a>
+												</li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+								
+								<li>
+                                    <a href="#">
+                                        <span class="icon"><i class="icon20 i-users-3"></i></span>
+                                        <span class="txt">Proveedores</span>
+                                    </a>
+									<ul class="sub">
+										<li>
+											<a href="#">
+												<span class="icon"><i class="icon20 i-tools"></i></span>
+												<span class="txt">Mantenimientos</span>
+											</a>
+											<ul class="sub">
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Tipos de proveedores</span>
+													</a>
+												</li>	
+                                                <li>
+													<a href="@Url.Action("Index","TipoLocal")">
+														<span class="icon"><i class="icon20 i-tools"></i></span>
+														<span class="txt">Tipos de Local</span>
+													</a>
+												</li>
+                                               											
+											</ul>
+										</li>
+										<li>
+											<a href="#">
+												<span class="icon"><i class="icon20 i-spinner-3"></i></span>
+												<span class="txt">Procesos</span>
+											</a>
+											<ul class="sub">
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Factura de compra</span>
+													</a>
+												</li>
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Retenciones emitidas</span>
+													</a>
+												</li>
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Registro de anticipos</span>
+													</a>
+												</li>		
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Movimientos Proveedores</span>
+													</a>
+												</li>														
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Gestión de Pagos</span>
+													</a>
+												</li>
+											</ul>
+										</li>
+										<li>
+											<a href="#">
+												<span class="icon"><i class="icon20 i-stats-up"></i></span>
+												<span class="txt">Reportes</span>
+											</a>
+											<ul class="sub">
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Facturas de Compra</span>
+													</a>
+												</li>
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Retenciones emitidas</span>
+													</a>
+												</li>
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Reporteador con filtros dinámicos</span>
+													</a>
+												</li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+								
+								<li>
+                                    <a href="#">
+                                        <span class="icon"><i class="icon20 i-users-4"></i></span>
+                                        <span class="txt">Clientes</span>
+                                    </a>
+									<ul class="sub">
+										<li>
+											<a href="#">
+												<span class="icon"><i class="icon20 i-tools"></i></span>
+												<span class="txt">Mantenimientos</span>
+											</a>
+											<ul class="sub">
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Tipos de clientes</span>
+													</a>
+												</li>												
+											</ul>
+										</li>
+										<li>
+											<a href="#">
+												<span class="icon"><i class="icon20 i-home"></i></span>
+												<span class="txt">Facturación Exportación</span>
+											</a>
+											<ul class="sub">
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Factura Exportación</span>
+													</a>
+												</li>												
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Factura Banco Central</span>
+													</a>
+												</li>												
+											</ul>
+										</li>
+										<li>
+											<a href="#">
+												<span class="icon"><i class="icon20 i-home"></i></span>
+												<span class="txt">Facturación Local</span>
+											</a>
+											<ul class="sub">
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Factura Local</span>
+													</a>
+												</li>			
+											</ul>
+										</li>
+										<li>
+											<a href="#">
+												<span class="icon"><i class="icon20 i-spinner-3"></i></span>
+												<span class="txt">Procesos</span>
+											</a>
+											<ul class="sub">
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Retenciones aplicadas</span>
+													</a>
+												</li>
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Gestión de cobros</span>
+													</a>
+												</li>
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Movimientos clientes</span>
+													</a>
+												</li>
+											</ul>
+										</li>
+										<li>
+											<a href="#">
+												<span class="icon"><i class="icon20 i-stats-up"></i></span>
+												<span class="txt">Reportes</span>
+											</a>
+											<ul class="sub">
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Cuentas por cobrar por vencimiento</span>
+													</a>
+												</li>
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Reporteador con filtros dinámicos</span>
+													</a>
+												</li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+								
+								<li>
+                                    <a href="#">
+                                        <span class="icon"><i class="icon20 i-coin"></i></span>
+                                        <span class="txt">Caja Chica</span>
+                                    </a>
+									<ul class="sub">
+										<li>
+											<a href="#">
+												<span class="icon"><i class="icon20 i-tools"></i></span>
+												<span class="txt">Mantenimientos</span>
+											</a>
+											<ul class="sub">
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Definicion de cajas chicas</span>
+													</a>
+												</li>												
+											</ul>
+										</li>										
+										<li>
+											<a href="#">
+												<span class="icon"><i class="icon20 i-spinner-3"></i></span>
+												<span class="txt">Procesos</span>
+											</a>
+											<ul class="sub">
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Reposición de caja chica</span>
+													</a>
+												</li>
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Registro de gastos</span>
+													</a>
+												</li>
+											</ul>
+										</li>
+										<li>
+											<a href="#">
+												<span class="icon"><i class="icon20 i-stats-up"></i></span>
+												<span class="txt">Reportes</span>
+											</a>
+											<ul class="sub">
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Liquidación de caja chica por periodos</span>
+													</a>
+												</li>
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Reporteador con filtros dinámicos</span>
+													</a>
+												</li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+								
+								<li>
+                                    <a href="#">
+                                        <span class="icon"><i class="icon20 i-coins"></i></span>
+                                        <span class="txt">Tributación</span>
+                                    </a>
+									<ul class="sub">										
+										<li>
+											<a href="#">
+												<span class="icon"><i class="icon20 i-spinner-3"></i></span>
+												<span class="txt">Procesos</span>
+											</a>
+											<ul class="sub">
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Anexos transaccionales</span>
+													</a>
+												</li>												
+											</ul>
+										</li>										
+									</ul>
+								</li>
+								
+								<li>
+                                    <a href="#">
+                                        <span class="icon"><i class="icon20 i-stack-list"></i></span>
+                                        <span class="txt">Presupuesto</span>
+                                    </a>
+									<ul class="sub">										
+										<li>
+											<a href="#">
+												<span class="icon"><i class="icon20 i-spinner-3"></i></span>
+												<span class="txt">Procesos</span>
+											</a>
+											<ul class="sub">
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Definición de presupuesto</span>
+													</a>
+												</li>
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Evaluación de presupuesto</span>
+													</a>
+												</li>
+											</ul>
+										</li>
+										<li>
+											<a href="#">
+												<span class="icon"><i class="icon20 i-stats-up"></i></span>
+												<span class="txt">Reportes</span>
+											</a>
+											<ul class="sub">
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Presupuesto Vs Real</span>
+													</a>
+												</li>
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Reporteador con filtros dinámicos</span>
+													</a>
+												</li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+								
+								<li>
+                                    <a href="#">
+                                        <span class="icon"><i class="icon20 i-credit"></i></span>
+                                        <span class="txt">Activos Fijos</span>
+                                    </a>
+									<ul class="sub">										
+										<li>
+											<a href="#">
+												<span class="icon"><i class="icon20 i-tools"></i></span>
+												<span class="txt">Mantenimientos</span>
+											</a>
+											<ul class="sub">
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Activos</span>
+													</a>
+												</li>
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Tipos de activos</span>
+													</a>
+												</li>
+											</ul>
+										</li>
+										<li>
+											<a href="#">
+												<span class="icon"><i class="icon20 i-spinner-3"></i></span>
+												<span class="txt">Procesos</span>
+											</a>
+											<ul class="sub">
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Activación y entrega a custodio</span>
+													</a>
+												</li>
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Depreciación</span>
+													</a>
+												</li>
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Baja de activos</span>
+													</a>
+												</li>
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Orden de trabajo a activos</span>
+													</a>
+												</li>
+											</ul>
+										</li>
+										<li>
+											<a href="#">
+												<span class="icon"><i class="icon20 i-stats-up"></i></span>
+												<span class="txt">Reportes</span>
+											</a>
+											<ul class="sub">
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Reporteador con filtros dinámicos</span>
+													</a>
+												</li>
+											</ul>
+										</li>
+									</ul>
+								</li>															
+							</ul>
+						</li>
+						
+						<li>
+                            <a href="#">
+                                <span class="icon"><i class="icon20 i-books"></i></span>
+                                <span class="txt">Gestión Administrativa</span>
+                            </a>
+                            <ul class="sub">
+                                <li>
+                                    <a href="#">
+                                        <span class="icon"><i class="icon20 i-cart-2"></i></span>
+                                        <span class="txt">Compras</span>
+                                    </a>
+                                    <ul class="sub">										
+										<li>
+											<a href="#">
+												<span class="icon"><i class="icon20 i-dashboard"></i></span>
+												<span class="txt">Dashboard</span>
+											</a>
+											<ul class="sub">
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Dashboard Compras</span>
+													</a>
+												</li>
+											</ul>
+										</li>
+										<li>
+											<a href="#">
+												<span class="icon"><i class="icon20 i-tools"></i></span>
+												<span class="txt">Mantenimientos</span>
+											</a>
+											<ul class="sub">
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Prioridades Compra</span>
+													</a>
+												</li>
+											</ul>
+										</li>
+										<li>
+											<a href="#">
+												<span class="icon"><i class="icon20 i-spinner-3"></i></span>
+												<span class="txt">Procesos</span>
+											</a>
+											<ul class="sub">
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Solicitudes de compra</span>
+													</a>
+												</li>
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Orden de Compra</span>
+													</a>
+												</li>
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Gestión de aprobaciones</span>
+													</a>
+												</li>
+											</ul>
+										</li>
+										<li>
+											<a href="#">
+												<span class="icon"><i class="icon20 i-stats-up"></i></span>
+												<span class="txt">Reportes</span>
+											</a>
+											<ul class="sub">
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Estatus de O/Compra por periodo</span>
+													</a>
+												</li>
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Reporteador con filtros dinámicos</span>
+													</a>
+												</li>
+											</ul>
+										</li>
+									</ul>
+                                </li> 
+
+								<li>
+                                    <a href="#">
+                                        <span class="icon"><i class="icon20 i-numbered-list"></i></span>
+                                        <span class="txt">Inventarios Insumos & Materiales</span>
+                                    </a>
+                                    <ul class="sub">										
+										<li>
+											<a href="#">
+												<span class="icon"><i class="icon20 i-dashboard"></i></span>
+												<span class="txt">Dashboard</span>
+											</a>
+											<ul class="sub">
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Dashboard Inventarios</span>
+													</a>
+												</li>
+											</ul>
+										</li>										
+										<li>
+											<a href="#">
+												<span class="icon"><i class="icon20 i-spinner-3"></i></span>
+												<span class="txt">Procesos</span>
+											</a>
+											<ul class="sub">
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Ingresos por compra</span>
+													</a>
+												</li>
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Devoluciones en compra</span>
+													</a>
+												</li>
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Requerimientos a bodega por centro de costo</span>
+													</a>
+												</li>
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Gestión de aprobaciones</span>
+													</a>
+												</li>
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Movimientos de bodega por motivo</span>
+													</a>
+												</li>
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Control de minimos y maximos</span>
+													</a>
+												</li>
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Toma de inventarios fisicos</span>
+													</a>
+												</li>
+											</ul>
+										</li>
+										<li>
+											<a href="#">
+												<span class="icon"><i class="icon20 i-stats-up"></i></span>
+												<span class="txt">Reportes</span>
+											</a>
+											<ul class="sub">
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Stock de items</span>
+													</a>
+												</li>
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Kardex de Items</span>
+													</a>
+												</li>
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Rotación de Inventarios</span>
+													</a>
+												</li>
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Reporteador con filtros dinámicos</span>
+													</a>
+												</li>
+											</ul>
+										</li>
+									</ul>
+                                </li>								                               
+                            </ul>
+                        </li>	
+
+						<li>
+							<a href="#">
+								<span class="icon"><i class="icon20 i-stack-checkmark"></i></span>
+								<span class="txt">Control de Calidad</span>
+							</a>
+							<ul class="sub">										
+								<li>
+									<a href="#">
+										<span class="icon"><i class="icon20 i-dashboard"></i></span>
+										<span class="txt">Dashboard</span>
+									</a>
+									<ul class="sub">
+										<li>
+											<a href="#">
+												<span class="icon"><i class="icon20 i-home"></i></span>
+												<span class="txt">Dashboard Control de Calidad</span>
+											</a>
+										</li>
+									</ul>
+								</li>										
+								<li>
+									<a href="#">
+										<span class="icon"><i class="icon20 i-tools"></i></span>
+										<span class="txt">Mantenimientos</span>
+									</a>
+									<ul class="sub">
+										<li>
+											<a href="#">
+												<span class="icon"><i class="icon20 i-home"></i></span>
+												<span class="txt">Parámetros de Calidad</span>
+											</a>
+										</li>
+										<li>
+											<a href="#">
+												<span class="icon"><i class="icon20 i-home"></i></span>
+												<span class="txt">Tipos de Cuarentena</span>
+											</a>
+										</li>
+									</ul>
+								</li>		
+								<li>
+									<a href="#">
+										<span class="icon"><i class="icon20 i-spinner-3"></i></span>
+										<span class="txt">Procesos</span>
+									</a>
+									<ul class="sub">
+										<li>
+											<a href="#">
+												<span class="icon"><i class="icon20 i-home"></i></span>
+												<span class="txt">Muestreo producto fresco</span>
+											</a>
+										</li>
+										<li>
+											<a href="#">
+												<span class="icon"><i class="icon20 i-home"></i></span>
+												<span class="txt">Analisis Organolépticos</span>
+											</a>
+										</li>
+										<li>
+											<a href="#">
+												<span class="icon"><i class="icon20 i-home"></i></span>
+												<span class="txt">Analisis de línea</span>
+											</a>
+										</li>
+										<li>
+											<a href="#">
+												<span class="icon"><i class="icon20 i-home"></i></span>
+												<span class="txt">Analisis de descongelado</span>
+											</a>
+										</li>
+										<li>
+											<a href="#">
+												<span class="icon"><i class="icon20 i-home"></i></span>
+												<span class="txt">Gestión de no conformidades</span>
+											</a>
+										</li>
+										<li>
+											<a href="#">
+												<span class="icon"><i class="icon20 i-home"></i></span>
+												<span class="txt">Productos en cuarentena</span>
+											</a>
+										</li>										
+									</ul>
+								</li>
+								<li>
+									<a href="#">
+										<span class="icon"><i class="icon20 i-stats-up"></i></span>
+										<span class="txt">Reportes</span>
+									</a>
+									<ul class="sub">										
+										<li>
+											<a href="#">
+												<span class="icon"><i class="icon20 i-home"></i></span>
+												<span class="txt">Reporteador con filtros dinámicos</span>
+											</a>
+										</li>
+									</ul>
+								</li>
+							</ul>
+						</li> 
+					
+						<li>
+                            <a href="#">
+                                <span class="icon"><i class="icon20 i-file-8"></i></span>
+                                <span class="txt">Comercialización</span>
+                            </a>
+                            <ul class="sub">
+                                <li>
+                                    <a href="#">
+                                        <span class="icon"><i class="icon20 i-dashboard"></i></span>
+                                        <span class="txt">Dashboard</span>
+                                    </a>
+									<ul class="sub">										
+										<li>
+											<a href="#">
+												<span class="icon"><i class="icon20 i-home"></i></span>
+												<span class="txt">Dashboard Comercialización</span>
+											</a>
+										</li>
+									</ul>
+								</li>
+								<li>
+                                    <a href="#">
+                                        <span class="icon"><i class="icon20 i-stats-up"></i></span>
+                                        <span class="txt">Ventas</span>
+                                    </a>
+                                    <ul class="sub">										
+										<li>
+											<a href="#">
+												<span class="icon"><i class="icon20 i-tools"></i></span>
+												<span class="txt">Mantenimientos</span>
+											</a>
+											<ul class="sub">
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">% de Comisiones</span>
+													</a>
+												</li>
+											</ul>
+										</li>										
+										<li>
+											<a href="#">
+												<span class="icon"><i class="icon20 i-spinner-3"></i></span>
+												<span class="txt">Procesos</span>
+											</a>
+											<ul class="sub">
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Cotizaciones</span>
+													</a>
+												</li>
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Orden de Pedido/Orden de Producción</span>
+													</a>
+												</li>
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Liquidación de Comisiones</span>
+													</a>
+												</li>
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Registro de No Conformidades</span>
+													</a>
+												</li>
+											</ul>
+										</li>
+										<li>
+											<a href="#">
+												<span class="icon"><i class="icon20 i-stats-up"></i></span>
+												<span class="txt">Reportes</span>
+											</a>
+											<ul class="sub">
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Gestión de Pedidos</span>
+													</a>
+												</li>
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Ventas por periodo</span>
+													</a>
+												</li>
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Reporteador con filtros dinámicos</span>
+													</a>
+												</li>												
+											</ul>
+										</li>
+									</ul>
+								</li>
+								
+								<li>
+                                    <a href="#">
+                                        <span class="icon"><i class="icon20 i-stats-down"></i></span>
+                                        <span class="txt">Compras</span>
+                                    </a>
+                                    <ul class="sub">										
+										<li>
+											<a href="#">
+												<span class="icon"><i class="icon20 i-tools"></i></span>
+												<span class="txt">Mantenimientos</span>
+											</a>
+											<ul class="sub">
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Periodo de aguaje</span>
+													</a>
+												</li>
+											</ul>
+										</li>										
+										<li>
+											<a href="#">
+												<span class="icon"><i class="icon20 i-spinner-3"></i></span>
+												<span class="txt">Procesos</span>
+											</a>
+											<ul class="sub">
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Listas de precio por periodo</span>
+													</a>
+												</li>
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Gestión de aprobación de listas de precios</span>
+													</a>
+												</li>
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Liquidación pago de materia prima proveedores</span>
+													</a>
+												</li>
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Ajustes liquidación pago MP proveedores</span>
+													</a>
+												</li>
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Liquidación de comisiones</span>
+													</a>
+												</li>
+											</ul>
+										</li>
+										<li>
+											<a href="#">
+												<span class="icon"><i class="icon20 i-stats-up"></i></span>
+												<span class="txt">Reportes</span>
+											</a>
+											<ul class="sub">
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Compras por periodo</span>
+													</a>
+												</li>												
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Reporteador con filtros dinámicos</span>
+													</a>
+												</li>												
+											</ul>
+										</li>
+									</ul>
+								</li>
+							</ul>
+						</li>
+						
+						
+						<li>
+                            <a href="#">
+                                <span class="icon"><i class="icon20 i-cogs"></i></span>
+                                <span class="txt">Producción</span>
+                            </a>
+                            <ul class="sub">
+                                <li>
+                                    <a href="#">
+                                        <span class="icon"><i class="icon20 i-dashboard"></i></span>
+                                        <span class="txt">Dashboard</span>
+                                    </a>
+									<ul class="sub">										
+										<li>
+											<a href="#">
+												<span class="icon"><i class="icon20 i-home"></i></span>
+												<span class="txt">Dashboard Producción</span>
+											</a>
+										</li>
+									</ul>
+								</li>
+								<li>
+                                    <a href="#">
+                                        <span class="icon"><i class="icon20  i-tools"></i></span>
+                                        <span class="txt">Parámetros</span>
+                                    </a>
+                                    <ul class="sub">										
+										<li>
+											<a href="#">
+												<span class="icon"><i class="icon20 i-tools"></i></span>
+												<span class="txt">Mantenimientos</span>
+											</a>
+											<ul class="sub">
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Ficha de productos</span>
+													</a>
+												</li>
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Tipo de productos</span>
+													</a>
+												</li>
+											</ul>
+										</li>																				
+									</ul>
+								</li>
+								
+								<li>
+                                    <a href="#">
+                                        <span class="icon"><i class="icon20 i-truck"></i></span>
+                                        <span class="txt">Logística</span>
+                                    </a>
+                                    <ul class="sub">										
+										<li>
+											<a href="#">
+												<span class="icon"><i class="icon20 i-tools"></i></span>
+												<span class="txt">Mantenimientos</span>
+											</a>
+											<ul class="sub">
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Flota Vehiculos</span>
+													</a>
+												</li>
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Formas de despacho</span>
+													</a>
+												</li>
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Parametros de flete falso</span>
+													</a>
+												</li>
+											</ul>
+										</li>										
+										<li>
+											<a href="#">
+												<span class="icon"><i class="icon20 i-spinner-3"></i></span>
+												<span class="txt">Procesos</span>
+											</a>
+											<ul class="sub">
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Guia de despacho</span>
+													</a>
+												</li>
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Liquidación de viáticos</span>
+													</a>
+												</li>
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Liquidación de flete falso</span>
+													</a>
+												</li>
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Movimientos de Items de logística</span>
+													</a>
+												</li>
+											</ul>
+										</li>
+										<li>
+											<a href="#">
+												<span class="icon"><i class="icon20 i-stats-up"></i></span>
+												<span class="txt">Reportes</span>
+											</a>
+											<ul class="sub">
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Despachos realizados y costos</span>
+													</a>
+												</li>
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Kardex de items de logística</span>
+													</a>
+												</li>	
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Reporteador con filtros dinámicos</span>
+													</a>
+												</li>												
+											</ul>
+										</li>
+									</ul>
+								</li>
+								
+								<li>
+									<a href="#">
+										<span class="icon"><i class="icon20 i-package"></i></span>
+										<span class="txt">Recepción</span>
+									</a>
+									<ul class="sub">
+										<li>
+											<a href="#">
+												<span class="icon"><i class="icon20 i-home"></i></span>
+												<span class="txt">Recepción de Materia Prima</span>
+											</a>
+										</li>
+									</ul>
+								</li>
+								
+								<li>
+                                    <a href="#">
+                                        <span class="icon"><i class="icon20 i-spinner-3"></i></span>
+                                        <span class="txt">Procesos Planta</span>
+                                    </a>
+                                    <ul class="sub">										
+										<li>
+											<a href="#">
+												<span class="icon"><i class="icon20 i-tools"></i></span>
+												<span class="txt">Mantenimientos</span>
+											</a>
+											<ul class="sub">
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Tipos de Procesos y rendimientos</span>
+													</a>
+												</li>
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Tipos de envase</span>
+													</a>
+												</li>												
+											</ul>
+										</li>										
+										<li>
+											<a href="#">
+												<span class="icon"><i class="icon20 i-spinner-3"></i></span>
+												<span class="txt">Procesos</span>
+											</a>
+											<ul class="sub">
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Movimientos y Proceso de producto</span>
+													</a>
+												</li>
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Liquidación de materia prima</span>
+													</a>
+												</li>
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Liquidación de reprocesos</span>
+													</a>
+												</li>
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Liquidación de valor agregado</span>
+													</a>
+												</li>
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Liquidación de copacking</span>
+													</a>
+												</li>												
+											</ul>
+										</li>
+										<li>
+											<a href="#">
+												<span class="icon"><i class="icon20 i-stats-up"></i></span>
+												<span class="txt">Reportes</span>
+											</a>
+											<ul class="sub">
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Control de procesos</span>
+													</a>
+												</li>
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Rendimientos y mermas por procesos</span>
+													</a>
+												</li>	
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Liquidaciones emitidas</span>
+													</a>
+												</li>	
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Reporteador con filtros dinámicos</span>
+													</a>
+												</li>												
+											</ul>
+										</li>
+									</ul>
+								</li>
+								
+								<li>
+                                    <a href="#">
+                                        <span class="icon"><i class="icon20 i-list"></i></span>
+                                        <span class="txt">Inventarios</span>
+                                    </a>
+                                    <ul class="sub">										
+										<li>
+											<a href="#">
+												<span class="icon"><i class="icon20 i-spinner-3"></i></span>
+												<span class="txt">Procesos</span>
+											</a>
+											<ul class="sub">
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Emisión de etiquetas por lote</span>
+													</a>
+												</li>
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Transacciones de inventario por motivo</span>
+													</a>
+												</li>
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Proceso de congelación</span>
+													</a>
+												</li>
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Proceso de enmasterización</span>
+													</a>
+												</li>
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Control de embarques</span>
+													</a>
+												</li>		
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Toma de inventarios físicos</span>
+													</a>
+												</li>
+											</ul>
+										</li>
+										<li>
+											<a href="#">
+												<span class="icon"><i class="icon20 i-stats-up"></i></span>
+												<span class="txt">Reportes</span>
+											</a>
+											<ul class="sub">
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Rotación de inventarios</span>
+													</a>
+												</li>
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Stock de productos</span>
+													</a>
+												</li>	
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Kardex de productos</span>
+													</a>
+												</li>	
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Historial trazabilidad por lote</span>
+													</a>
+												</li>	
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Reporteador con filtros dinámicos</span>
+													</a>
+												</li>												
+											</ul>
+										</li>
+									</ul>
+								</li>
+							</ul>
+						</li>
+						
+						<li>
+                            <a href="#">
+                                <span class="icon"><i class="icon20 i-rulers"></i></span>
+                                <span class="txt">Costos de Producción</span>
+                            </a>
+                            <ul class="sub">
+                                <li>
+                                    <a href="#">
+                                        <span class="icon"><i class="icon20 i-dashboard"></i></span>
+                                        <span class="txt">Dashboard</span>
+                                    </a>
+                                    <ul class="sub">
+                                        <li>
+                                            <a href="#">
+                                                <span class="icon"><i class="icon20 i-home"></i></span>
+                                                <span class="txt">Dashboard Costos Producción</span>
+                                            </a>
+                                        </li>										
+                                    </ul>
+                                </li>                                
+								<li>
+                                    <a href="#">
+                                        <span class="icon"><i class="icon20 i-tools"></i></span>
+                                        <span class="txt">Mantenimientos</span>
+                                    </a>
+                                    <ul class="sub">
+                                        <li>
+											<a href="#">
+												<span class="icon"><i class="icon20 i-home"></i></span>
+												<span class="txt">Alicuotas de costos</span>
+											</a>											
+										</li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span class="icon"><i class="icon20 i-spinner-3"></i></span>
+                                        <span class="txt">Procesos</span>
+                                    </a>
+                                    <ul class="sub">
+                                        <li>
+											<a href="#">
+												<span class="icon"><i class="icon20 i-home"></i></span>
+												<span class="txt">Costos proyectados</span>
+											</a>											
+										</li>
+										<li>
+											<a href="#">
+												<span class="icon"><i class="icon20 i-home"></i></span>
+												<span class="txt">Cierre de costos</span>
+											</a>											
+										</li>
+                                    </ul>
+                                </li>
+								<li>
+                                    <a href="#">
+                                        <span class="icon"><i class="icon20 i-stats-up"></i></span>
+                                        <span class="txt">Reportes</span>
+                                    </a>
+                                    <ul class="sub">
+                                        <li>
+											<a href="#">
+												<span class="icon"><i class="icon20 i-home"></i></span>
+												<span class="txt">Costos por periodo</span>
+											</a>											
+										</li>
+										<li>
+											<a href="#">
+												<span class="icon"><i class="icon20 i-home"></i></span>
+												<span class="txt">Reporteador con filtros dinámicos</span>
+											</a>											
+										</li>
+                                    </ul>
+                                </li>
+
+                            </ul>
+                        </li>
+                        	<li>
+                            <a href="#">
+                                <span class="icon"><i class="icon20 i-equalizer-2"></i></span>
+                                <span class="txt">Parametros Generales</span>
+                            </a>
+                            <ul class="sub">
+                                <li>
+                                    <a href="#">
+                                        <span class="icon"><i class="icon20 i-office"></i></span>
+                                        <span class="txt">Estructura Empresa</span>
+                                    </a>
+                                    <ul class="sub">
+                                        <li>
+                                            <a href="@Url.Action("Index","Home")">
+                                                <span class="icon"><i class="icon20 i-dashboard"></i></span>
+                                                <span class="txt">Dashboard</span>
+                                            </a>
+                                        </li>
+                                        <li>
+											<a href="@Url.Action("Index","Actividad")">
+												<span class="icon"><i class="icon20 i-home"></i></span>
+												<span class="txt">Actividades</span>
+											</a>											
+										</li>
+									</ul>
+                                </li>                                
+								<li>
+                                    <a href="#">
+                                        <span class="icon"><i class="icon20 i-files"></i></span>
+                                        <span class="txt">Generales</span>
+                                    </a>
+                                    <ul class="sub">
+                                        <li>
+											<a href="#">
+												<span class="icon"><i class="icon20 i-home"></i></span>
+												<span class="txt">Formas de Pago</span>
+											</a>											
+										</li>
+										<li>
+											<a href="#">
+												<span class="icon"><i class="icon20 i-home"></i></span>
+												<span class="txt">Tipos de Crédito</span>
+											</a>											
+										</li>
+										<li>
+											<a href="#">
+												<span class="icon"><i class="icon20 i-home"></i></span>
+												<span class="txt">Cargos</span>
+											</a>											
+										</li>
+                                        <li>
+											<a href="@Url.Action("Index","Continente")">
+												<span class="icon"><i class="icon20 i-home"></i></span>
+												<span class="txt">Continentes</span>
+											</a>											
+										</li>
+										<li>
+											<a href="@Url.Action("Index","Pais")">
+												<span class="icon"><i class="icon20 i-home"></i></span>
+												<span class="txt">Pais</span>
+											</a>											
+										</li>
+										<li>
+											<a href="@Url.Action("Index","Provincia")">
+												<span class="icon"><i class="icon20 i-home"></i></span>
+												<span class="txt">Provincia</span>
+											</a>											
+										</li>
+										<li>
+											<a href="@Url.Action("Index","Ciudad")">
+												<span class="icon"><i class="icon20 i-home"></i></span>
+												<span class="txt">Ciudad</span>
+											</a>											
+										</li>
+										<li>
+											<a href="#">
+												<span class="icon"><i class="icon20 i-home"></i></span>
+												<span class="txt">Zona</span>
+											</a>											
+										</li>
+                                    </ul>
+                                </li> 
+								<li>
+                                    <a href="#">
+                                        <span class="icon"><i class="icon20 i-list-2"></i></span>
+                                        <span class="txt">Items</span>
+                                    </a>
+                                    <ul class="sub">
+                                        <li>
+											<a href="#">
+												<span class="icon"><i class="icon20 i-home"></i></span>
+												<span class="txt">Lista de Items</span>
+											</a>											
+										</li>								
+									</ul>
+								</li>
+								<li>
+                                    <a href="#">
+                                        <span class="icon"><i class="icon20 i-cart-2"></i></span>
+                                        <span class="txt">Bodega</span>
+                                    </a>
+                                    <ul class="sub">
+                                        <li>
+											<a href="#">
+												<span class="icon"><i class="icon20 i-home"></i></span>
+												<span class="txt">Bodegas</span>
+											</a>											
+										</li>
+										<li>
+											<a href="#">
+												<span class="icon"><i class="icon20 i-home"></i></span>
+												<span class="txt">Tipos de bodega</span>
+											</a>											
+										</li>										
+									</ul>
+								</li>
+                            </ul>
+                        </li>
+				        <li>
+                            <a href="#">
+                                <span class="icon"><i class="icon20 i-key"></i></span>
+                                <span class="txt">Seguridades</span>
+                            </a>
+                            <ul class="sub">
+                                <li>
+                                    <a href="#">
+                                        <span class="icon"><i class="icon20 i-database-3"></i></span>
+                                        <span class="txt">Datos Generales</span>
+                                    </a>
+                                    <ul class="sub">
+                                        <li>
+                                            <a href="@Url.Action("Index","Usuario")">
+                                                <span class="icon"><i class="icon20 i-home"></i></span>
+                                                <span class="txt">Usuarios</span>
+                                            </a>
+                                        </li>
+										<li>
+                                            <a href="#">
+                                                <span class="icon"><i class="icon20 i-home"></i></span>
+                                                <span class="txt">Perfiles de usuarios</span>
+                                            </a>
+                                        </li>
+										<li>
+                                            <a href="#">
+                                                <span class="icon"><i class="icon20 i-home"></i></span>
+                                                <span class="txt">Opciones</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>                                
+								<li>
+                                    <a href="#">
+                                        <span class="icon"><i class="icon20 i-lock-3"></i></span>
+                                        <span class="txt">Control de Acceso</span>
+                                    </a>
+                                    <ul class="sub">
+                                        <li>
+											<a href="#">
+												<span class="icon"><i class="icon20 i-users"></i></span>
+												<span class="txt">Usuarios</span>
+											</a>
+											<ul class="sub">
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Asignacion por perfil de usuarios</span>
+													</a>
+												</li>
+												<li>
+													<a href="#">
+														<span class="icon"><i class="icon20 i-home"></i></span>
+														<span class="txt">Asignacion de compañias por perfil</span>
+													</a>
+												</li>
+											</ul>
+										</li>
+                                    </ul>
+                                </li>                                
+                            </ul>
+                        </li>*@
+                    </ul>
+                </nav> <!-- End #mainnav --> <!-- End #mainnav -->
+            </div> <!-- End .sidebar-wrapper  -->
+</aside><!-- End #sidebar  -->

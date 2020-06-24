@@ -1,0 +1,231 @@
+﻿@Html.DevExpress().GridView(settings => {
+    settings.Name = "grid_StockSinTratar";
+    settings.CallbackRouteValues = new { Controller = (string)ViewBag.NameController, Action = "GridViewAllPartial_StockSinTratar" }; //, Fecha = ViewBag.Fecha };
+
+    settings.Settings.ShowFilterBar = GridViewStatusBarMode.Visible;
+    settings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
+    settings.SettingsSearchPanel.Visible = true;
+    settings.SettingsBehavior.AllowFixedGroups = true;
+    settings.SettingsBehavior.AllowDragDrop = true;
+    settings.SettingsBehavior.AllowSort = true;
+
+    settings.SettingsCookies.StoreFiltering = true;
+    settings.SettingsCookies.StoreGroupingAndSorting = true;
+    settings.SettingsCookies.StorePaging = true;
+    settings.SettingsCookies.Enabled = true;
+    settings.SettingsBehavior.EnableCustomizationWindow = true;
+
+    settings.CustomJSProperties = (s, e) =>
+    {
+        MVCxGridView gridView = (MVCxGridView)s;
+        e.Properties["cpClientLayout" + (string)ViewBag.NameController] = gridView.SaveClientLayout();
+
+        ASPxGridView gridJS = (ASPxGridView)s;
+        e.Properties["cpGridSettings"] = gridJS.Settings;
+        //e.Properties["cpGridColumns"] = gridJS.Columns;
+        List<string> columnsNames = new List<string>();
+        foreach (GridViewDataColumn item in gridJS.DataColumns)
+        {
+            columnsNames.Add(item.FieldName);
+        }
+        e.Properties["cpGridColumns"] = columnsNames;
+    };
+
+    settings.Settings.HorizontalScrollBarMode = ScrollBarMode.Auto;
+    settings.Settings.VerticalScrollBarMode = ScrollBarMode.Auto;
+    settings.Settings.VerticalScrollableHeight = 500;
+    settings.SettingsPager.EnableAdaptivity = true;
+
+    settings.CommandColumn.Visible = false;
+    settings.Settings.UseFixedTableLayout = true;
+
+    settings.CommandColumn.ShowClearFilterButton = true;
+    settings.CommandColumn.ShowSelectCheckbox = true;
+
+    settings.CommandColumn.SelectAllCheckboxMode = GridViewSelectAllCheckBoxMode.Page;
+    settings.CommandColumn.HeaderStyle.BackColor = System.Drawing.Color.Orange;
+
+    settings.SettingsBehavior.ColumnResizeMode = ColumnResizeMode.Control;
+
+    settings.Settings.ShowGroupPanel = true;
+    settings.SettingsPager.Position = System.Web.UI.WebControls.PagerPosition.TopAndBottom;
+    settings.SettingsPager.FirstPageButton.Visible = true;
+    settings.SettingsPager.LastPageButton.Visible = true;
+    settings.SettingsPager.PageSizeItemSettings.Visible = true;
+    settings.SettingsPager.PageSizeItemSettings.Items = new string[] { "10", "20", "50" };
+    settings.KeyFieldName = ViewBag.Id;
+
+
+    //settings.Columns.Add(column =>
+    //{
+    //    column.FieldName = ViewBag.Id;
+
+    //    column.Caption = "#"+ViewBag.Id;
+    //    column.HeaderStyle.BackColor = System.Drawing.Color.LightGray;
+    //    column.HeaderStyle.Font.Bold = true;
+
+    //});
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "Pedido";
+
+        column.Caption = "Pedido";
+        column.HeaderStyle.BackColor = System.Drawing.Color.LightGray;
+
+    });
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "Articulo";
+
+        column.Caption = "Articulo";
+        column.HeaderStyle.BackColor = System.Drawing.Color.LightGray;
+
+    });
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "Des_Art";
+
+        column.Caption = "Desc. Articulo";
+        column.HeaderStyle.BackColor = System.Drawing.Color.LightGray;
+
+    });
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "Stock";
+
+        column.Caption = "Stock";
+        column.HeaderStyle.BackColor = System.Drawing.Color.LightGray;
+
+    });
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "Importe1";
+
+        column.Caption = "$ Importe";
+        column.HeaderStyle.BackColor = System.Drawing.Color.LightGray;
+
+    });
+
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "StockVal";
+
+        column.Caption = "$ Stock Val.";
+        column.HeaderStyle.BackColor = System.Drawing.Color.LightGray;
+
+    });
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "Dosis";
+
+        column.Caption = "Dosis.";
+        column.HeaderStyle.BackColor = System.Drawing.Color.LightGray;
+
+    });
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "Ancho";
+
+        column.Caption = "Ancho";
+        column.HeaderStyle.BackColor = System.Drawing.Color.LightGray;
+
+    });
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "Largo";
+
+        column.Caption = "Largo";
+        column.HeaderStyle.BackColor = System.Drawing.Color.LightGray;
+
+    });
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "Altura";
+
+        column.Caption = "Altura";
+        column.HeaderStyle.BackColor = System.Drawing.Color.LightGray;
+
+    });
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "Diametro";
+
+        column.Caption = "Diametro";
+        column.HeaderStyle.BackColor = System.Drawing.Color.LightGray;
+
+    });
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "Unidad";
+
+        column.Caption = "Unidad";
+        column.HeaderStyle.BackColor = System.Drawing.Color.LightGray;
+
+    });
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "Horas";
+
+        column.Caption = "Horas";
+        column.HeaderStyle.BackColor = System.Drawing.Color.LightGray;
+
+    });
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "VOLFISICOUNIT";
+
+        column.Caption = "VOL. FISICO UNIT";
+        column.HeaderStyle.BackColor = System.Drawing.Color.LightGray;
+
+    });
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "VOLFISICOTOT";
+
+        column.Caption = "VOL. FISICO TOTAL";
+        column.HeaderStyle.BackColor = System.Drawing.Color.LightGray;
+
+    });
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "VOLEQUIVTOTAL";
+
+        column.Caption = "VOL. EQUIV. TOTAL";
+        column.HeaderStyle.BackColor = System.Drawing.Color.LightGray;
+
+    });
+    //  CRM.Website.DevExpressHelpers.GridHelper.AddColumnsSettingViewData(settings.Columns, Model.GetDynamicCollectionList(Model.Get_Datos(ViewBag.Fecha)));
+    settings.TotalSummary.Add(DevExpress.Data.SummaryItemType.Sum, "StockVal").DisplayFormat = "n";
+    settings.TotalSummary.Add(DevExpress.Data.SummaryItemType.Sum, "Horas").DisplayFormat = "n";
+    settings.TotalSummary.Add(DevExpress.Data.SummaryItemType.Sum, "VOLFISICOTOT").DisplayFormat = "n";
+    settings.TotalSummary.Add(DevExpress.Data.SummaryItemType.Sum, "VOLEQUIVTOTAL").DisplayFormat = "n";
+
+    settings.Settings.ShowFooter = true;
+
+    settings.Settings.ShowFilterRow = true;
+    settings.Settings.ShowFilterRowMenu = false;
+
+    //settings.HtmlDataCellPrepared = (sender, e) =>
+    //{
+    //    string controller = ViewBag.NameController;
+    //    CRM.Website.DevExpressHelpers.GridHelper.SetCellData(sender, e, controller);
+    //};
+
+    //Setear por defecto la condicion de filtrado
+    //de todas las columnas a Contains
+    //settings.DataBound = (sender, e) =>
+    //    {
+    //        MVCxGridView gv = sender as MVCxGridView;
+    //        gv.Visible = (gv.VisibleRowCount > 0);
+
+    //        string controller = ViewBag.NameController;
+    //        CRM.Website.DevExpressHelpers.GridHelper.SetHeaderColumnData(sender, e, controller);
+    //    };
+
+    settings.SettingsDetail.ExportMode = GridViewDetailExportMode.Expanded;
+    settings.SettingsBehavior.AllowSelectByRowClick = true;
+    settings.SettingsBehavior.AllowSelectSingleRowOnly = true;
+
+}).Bind( Model.Datos ).GetHtml()
+
+

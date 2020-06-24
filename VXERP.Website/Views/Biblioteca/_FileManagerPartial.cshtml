@@ -1,0 +1,32 @@
+@model string
+
+@Html.DevExpress().FileManager(settings => {
+    settings.Name = "FileManager";
+    settings.CallbackRouteValues = new { Controller = ViewBag.NameController, Action = "FileManagerPartial" };
+
+    settings.DownloadRouteValues = new { Controller = ViewBag.NameController, Action = "FileManagerPartialDownload" };
+    settings.SettingsEditing.AllowDownload = true;
+
+    settings.Settings.ThumbnailFolder = Url.Content("~/Content/FileManager/Thumbnails");
+
+    settings.Settings.AllowedFileExtensions = new string[] { ".doc", ".pdf" };
+
+
+    bool bPermite = (bool)ViewBag.IsAdminDoc;
+
+    settings.SettingsFolders.ShowFolderIcons = true;
+
+    settings.SettingsFileList.ShowFolders = true;
+    settings.SettingsFileList.ShowParentFolder = true;
+
+    settings.SettingsEditing.AllowCreate = bPermite;
+    settings.SettingsEditing.AllowRename = bPermite;
+    settings.SettingsEditing.AllowMove = bPermite;
+    settings.SettingsEditing.AllowDelete = bPermite;
+    settings.SettingsUpload.ShowUploadPanel = true;
+    settings.SettingsUpload.Enabled = bPermite;
+    settings.SettingsUpload.UseAdvancedUploadMode = true;
+    settings.SettingsUpload.AdvancedModeSettings.EnableMultiSelect = true;
+
+    settings.SettingsFileList.View = DevExpress.Web.FileListView.Details;
+}).BindToFolder(Model).GetHtml()

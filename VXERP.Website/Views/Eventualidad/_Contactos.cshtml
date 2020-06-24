@@ -1,0 +1,67 @@
+﻿@model  CRM.Business.Views.vContactosSinFoto
+
+<link href="~/Css/custom.css" rel="stylesheet" />
+<script type="text/javascript">
+    var selectedIDs = "";
+    function OnBeginCallback(s, e) {
+        e.customArgs["selectedIDs"] = selectedIDs;
+    }
+    function OnSelectionChanged(s, e) {
+        $('#loadingModal').modal('show');
+        s.GetSelectedFieldValues("ID", GetId);
+        s.GetSelectedFieldValues("Descripcion", GetDescripcion);
+    }
+
+    function GetId(values) {
+        $("input#NotificarContactos_Id").val(values);
+        $('#loadingModal').modal('hide');
+    }
+
+    function GetDescripcion(values) {
+        $("input#NotificarContactos").val(values.toString().replace(/\,/g,'; '));
+    }
+
+    $("button#btnContAceptar").on("click", function () {
+        $("#contactoModal-container").html("<div class='modal-content'></div>");
+        $("#contactoModal-container").modal('hide');
+    });
+
+    $("button#btnContClose").on("click", function () {
+        $("#contactoModal-container").html("<div class='modal-content'></div>");
+        $("#contactoModal-container").modal('hide');
+    });
+
+    $("button#btnContCerrar").on("click", function () {
+        $("#contactoModal-container").html("<div class='modal-content'></div>");
+        $("#contactoModal-container").modal('hide');
+    });
+
+</script>
+
+<div class="modal-dialog" role="document" style="display: inline;">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" id="btnContClose" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Contactos</h4>
+        </div>
+        <div class="modal-body">
+            <script src="@Url.Content("~/Scripts/clientGridFunctions.js")"></script>
+            @Html.Partial("_GridViewModalContactos", Model)
+
+            @if (Model == null || !(Model.Datos.Rows.Count > 0))
+            {
+                <p style="text-align: center; font-weight: bold; margin: 0;">No hay Contactos disponibles</p>
+                }
+        </div>
+        <div class="modal-footer">
+            @if (Model == null || !(Model.Datos.Rows.Count > 0))
+            { 
+                <button class="btn btn-primary pull-right col-lg-5" id="btnContCerrar" data-dismiss="modal" aria-hidden="true">Cerrar</button>
+                }
+            else
+            {
+                <button class="btn btn-primary pull-right col-lg-5" id="btnContAceptar" data-dismiss="modal" aria-hidden="true">Aceptar</button>
+                }
+        </div>
+    </div>
+</div>

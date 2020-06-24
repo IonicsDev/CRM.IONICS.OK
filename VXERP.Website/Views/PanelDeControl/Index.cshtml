@@ -1,0 +1,76 @@
+﻿@model Tuple<CRM.Business.Views.vStockValorizadoSinTratar, CRM.Business.Views.vStockValorizadoTratados, CRM.Business.Views.vHorasEnCartera>
+@{
+  
+    Layout = "~/Views/Shared/_Generic.cshtml";
+}
+
+<div class="wrapper">
+
+    <div class="container-fluid">
+        <div id="heading" class="page-header">
+            <h1><i class="icon20 i-cogs"></i>Panel de Control</h1>
+        </div>
+
+        <div class="row">
+            <ul id="tabPanelControl" class="nav nav-tabs">
+                @if (ViewContext.RouteData.Values["action"].ToString().ToUpper() == "INDEX") 
+                {
+                    <li class="active"><a href="#default" data-toggle="tab">Panel de Control</a></li>
+                    <li class=""><a href="#graficos" data-toggle="tab">Reportes</a></li>
+                }
+                else
+                {
+                    <li class=""><a href="#default" data-toggle="tab">Panel de Control</a></li>
+                    <li class="active"><a href="#graficos" data-toggle="tab">Reportes</a></li>
+                }
+            </ul>
+            
+            <div class="tab-content">
+
+                @* PANEL DE CONTROL *@
+                @if (ViewContext.RouteData.Values["action"].ToString().ToUpper() == "INDEX")
+                {
+                    <div class="tab-pane fade active in" id="default">
+                        @Html.Partial("_PanelDeControl", Model)
+                    </div>
+                    <div class="tab-pane fade" id="graficos">
+                        @Html.Partial("_Graficos")
+                    </div>
+                }
+                else
+                {
+                    <div class="tab-pane fade" id="default">
+                        @Html.Partial("_PanelDeControl", Model)
+                    </div>
+                    <div class="tab-pane fade active in" id="graficos">
+                        @Html.Partial("_Graficos")
+                    </div>
+                }
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Charts plugins -->
+<script src="@Url.Content("~/Scripts/plugins/charts/flot/date.js")"></script>
+<script src="@Url.Content("~/Scripts/plugins/charts/flot/jquery.flot.min.js")"></script>
+<script src="@Url.Content("~/Scripts/plugins/charts/flot/jquery.flot.orderBars.js")"></script>
+<script src="@Url.Content("~/Scripts/plugins/charts/flot/jquery.flot.pie.js")"></script>
+<script src="@Url.Content("~/Scripts/plugins/charts/flot/jquery.flot.resize.js")"></script>
+<script src="@Url.Content("~/Scripts/plugins/charts/flot/jquery.flot.time.min.js")"></script>
+<script src="@Url.Content("~/Scripts/plugins/charts/flot/jquery.flot.tooltip.min.js")"></script>
+<script src="@Url.Content("~/Scripts/plugins/charts/flot/html2canvas.js")"></script>
+
+
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".numericOnly").keypress(function (e) {
+            if (String.fromCharCode(e.keyCode).match(/[^0-9]/g)) return false;
+        });
+    });
+</script>

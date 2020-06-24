@@ -1,0 +1,64 @@
+﻿@using CRM.Common;
+@using System.Web.Mvc.Html
+@using MvcListItem = System.Web.Mvc.SelectListItem
+@using WpListItem = System.Web.WebPages.Html.SelectListItem
+
+@functions
+{
+
+    static string ToSpanClass(int span)
+    {
+        return String.Format("span{0}", span);
+    }
+
+    static System.Web.Mvc.HtmlHelper GetPageHelper(System.Web.WebPages.Html.HtmlHelper html)
+    {
+        return ((System.Web.Mvc.WebViewPage)WebPageContext.Current.Page).Html;
+    }
+
+}
+
+@helper InputControlGroup(string id, string label, string type = "text", string value = null, string helpText = null, int span = 3, bool required = false)
+{
+
+    <div class="control-group">
+        <label class="control-label" for="@id">@label</label>
+        <div class="controls">
+            <input type="@type" class="span@(span) @(required ? "required" : "")" id="@id" name="@id" value="@value">
+            @if (!String.IsNullOrWhiteSpace(helpText))
+            {             
+            <p class="help-block">@helpText</p>
+            }
+        </div>
+    </div>
+
+}
+
+@helper SelectControlGroup(string id, string label, IEnumerable<MvcListItem> items, string value = null, string helpText = null, int span = 3, bool required = false)
+{
+
+    <div class="control-group">
+        <label class="control-label" for="@id">@label</label>
+        <div class="controls">                        
+            <select  class="span@(span) @(required ? "required" : "")" id="@id" name="@id">
+            @foreach (var item in items)
+            {
+                var val = item.Value ?? item.Text;
+                if (val == value)
+                {
+                    <option value="@val" selected="selected">@item.Text</option>
+                }
+                else
+                {
+                    <option value="@val">@item.Text</option>
+                }
+            }
+            </select>
+            @if (!String.IsNullOrWhiteSpace(helpText))
+            {             
+            <p class="help-block">@helpText</p>
+            }
+        </div>
+    </div>
+
+}

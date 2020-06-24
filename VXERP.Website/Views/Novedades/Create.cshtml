@@ -1,0 +1,150 @@
+﻿@model CRM.Business.Entities.Novedad
+@using GridMvc.Html;
+@{
+    Layout = "~/Views/Shared/_Generic.cshtml";
+}
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+ 
+    <div class="wrapper">
+
+        <div class="container-fluid">
+            <div id="heading" class="page-header">
+                <h1><i class="icon20 i-cogs"></i>Configuración</h1>
+            </div>
+
+            <div class="row">
+
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <div class="icon"><i class="icon20 i-table"></i></div>
+                            <h4>Nueva Novedad</h4>
+                            <a href="#" class="minimize"></a>
+
+
+                        </div>
+                        <!-- End .panel-heading -->
+                        <div class="panel-body">
+                            <ul class="pager">
+                                <li class="previous">
+                                    <a href="@Url.Action("Index", "Novedades")">← Volver</a>
+                                </li>
+                            </ul>
+                            @Html.ValidationSummary(true)
+                            
+                            <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered table-hover">
+                                <tr>
+                                    <td>@Html.LabelFor(model => model.TipoNovedad_Id, new { @class = "control-label" })</td>
+                                    <td>@Html.DropDownListFor(model => model.TipoNovedad_Id, new SelectList(ViewBag.TipoNovedades, "Id", "Descripcion"), "Seleccione")
+                                        @Html.ValidationMessageFor(model => model.TipoNovedad_Id)
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>@Html.LabelFor(model => model.Titulo, new { @class = "control-label" })</td>
+                                    <td>@Html.TextBoxFor(model => model.Titulo, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.Titulo)
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>@Html.LabelFor(model => model.Descripcion, new { @class = "control-label" })</td>
+                                    <td>@Html.TextAreaFor(model => model.Descripcion, new { @class = "form-control", @style = "resize: vertical;"})
+                                        @Html.ValidationMessageFor(model => model.Descripcion)
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>@Html.Label("Notificar Personas", new { @class = "control-label" })</td>
+                                    <td>
+                                        @* Lo mas conveniente seria hacer una vista parcial donde tenga la tabla de abajo *@
+                                        <div id="listNotificarPersonas">
+                                            @{Html.RenderPartial("_UsuariosNotificados", Model.UsuariosNotificados);}
+                                        </div>
+
+                                        @Html.ActionLink("Notificar Personas", null, null, new { @id = "AddNotificarPersonas", @class = "modal-link btn btn-success pull-right col-lg-3" })
+                                    </td>
+                                </tr>
+                            </table>
+
+                            <br />
+
+                            @{Html.RenderPartial("_ListArchivos", Model.ArchivosModulo);}
+    
+                            @Html.ActionLink("Adjuntar Archivo", "AddArchivoModulo", "Novedades", new { @id = "AddArchivoModulo", @class = "modal-link btn btn-success pull-right col-lg-3" })
+
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+
+                            <div class="form-group relative">
+                                <button id="btnGuardar" type="submit" class="btn btn-primary pull-right col-lg-5">Guardar</button>
+                            </div>
+
+                            <div id="modal-container" class="modal fade" tabindex="-1" role="dialog" data-backdrop="static">
+                                <div class="modal-content"></div>
+                            </div>
+
+                            <div id="usuarioModal-container" class="modal fade" tabindex="-1" role="dialog">
+                                <div class="modal-content"></div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    @section scripts
+    {
+        <script src="~/Scripts/clientGridFunctions.js"></script>
+        <script type="text/javascript">
+
+            $(document).ready(function () {
+
+                $('a#AddNotificarPersonas').on('click', function (e) {
+
+                    var $divList = $("div#listNotificarPersonas");
+                    var usuariosNotificados = [];
+                    
+                    $divList.find("ul").children().each(function (column, td) {
+                        
+                        var usuario = $(td).find("[name=Usuarios]").val();
+                        usuariosNotificados.push(usuario);
+                    });
+
+                    $(this).attr("href", "/Novedades/GetUsuariosNotificacion?Usuarios=" + usuariosNotificados + "");
+                });
+
+            });
+
+            $(function () {
+                $('body').on('click', '#AddNotificarPersonas.modal-link', function (e) {
+                    e.preventDefault();
+                    //Optional: turn the chache off
+                    $.ajaxSetup({ cache: false });
+                    $(this).attr('data-target', '#usuarioModal-container');
+                    $(this).attr('data-toggle', 'modal');
+                });
+
+                $('body').on('click', '#AddArchivoModulo.modal-link', function (e) {
+                    e.preventDefault();
+                    //Optional: turn the chache off
+                    $.ajaxSetup({ cache: false });
+                    $(this).attr('data-target', '#modal-container');
+                    $(this).attr('data-toggle', 'modal');
+                });
+
+                $('#modal-container').on('hidden.CRM.modal', function () {
+                    $(this).removeData('CRM.modal');
+                });
+
+                $('#CancelModal').on('click', function () {
+                    return false;
+                });
+            });
+
+        </script>
+    }
+}

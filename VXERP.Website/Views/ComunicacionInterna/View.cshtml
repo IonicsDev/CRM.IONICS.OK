@@ -1,0 +1,142 @@
+﻿@model CRM.Business.Entities.Mail
+
+@{
+    Layout = "~/Views/Shared/_Generic.cshtml";
+}
+
+<div class="wrapper">
+
+    <div class="container-fluid">
+        <div id="heading" class="page-header">
+            <h1><i class="icon20 i-envelop-2"></i>Mensajes</h1>
+        </div>
+
+        <div class="row-fluid">
+
+            <div id="email" ">
+                <div class="email-bar">
+                    <div class="btn-group pull-left">
+                        <a href="@Url.Action("Create", "ComunicacionInterna")" class="btn btn-danger"><i class="icon16 i-pencil"></i> Nuevo Mensaje</a>
+                    </div>
+                    <div class="btn-group pull-right">
+                        <a href="@Url.Action("Responder", "ComunicacionInterna", new { id = Model.Id, todos = false })" class="btn">
+                            <i class="icon16 i-reply"></i>Responder
+                        </a>
+                        <a href="@Url.Action("Responder", "ComunicacionInterna", new { id = Model.Id, todos = true })" class="btn">
+                            @*  <i class="icon16 i-reply-2"></i>Responder a Todos</a>
+                                <a href="@Url.Action("Reenviar", "ComunicacionInterna", new { id = Model.Id })" class="btn">
+                                    <i class="icon16 i-forward"></i>Reenviar</a>*@
+                            <a class="btn" data-toggle="modal" data-target="#confirm-delete">
+                                <i class="icon16 i-remove"></i>Eliminar
+                            </a>
+                            <a href="@Url.Action("Index", "ComunicacionInterna")" class="btn btn-danger tip" data-original-title="Cerrar Mensaje">
+                                <i class="icon20 i-close-2"></i>
+                            </a>
+                    </div>
+                </div>
+                <div class="email-wrapper" style="padding: 15px 100px 5px 50px; width: 100%;">
+                    <div class="row-fluid" style="display: table; width: 100%;">
+                        @**@
+                        <div class="email-content">
+                            <h1 class="email-subject">@Model.Asunto</h1>
+                            <table style="width: 100%;" class="table-responsive">
+                                <tr style="width: 100%;vertical-align: top;">
+                                    @**@
+                                    <td style="white-space: nowrap; width: 1%">
+                                        <div class="from">
+                                            <span class="label label-info" style="font-size:medium">
+                                                De: @Model.Usuario.NombreApellido.ToUpper() ( @Model.Usuario.Email )
+                                            </span>
+                                        </div>
+                                    </td>
+                                    @*<td>
+                                            @if (((bool)Session["IsAdmin"]) == true)
+                                            {
+                                                <div class="to">Para: @ViewBag.Destinatarios</div>
+                                            }
+                                        </td>
+                                        <td>
+                                            <div class="date">@Model.FechaActualizacion</div>
+                                        </td>*@
+                                </tr>
+                                <tr style="width: 80%; vertical-align: top;">
+                                    <td>
+                                        @if (((bool)Session["IsAdmin"]) == true)
+                                        {
+                                            <div class="to"><strong>Para:</strong> @ViewBag.Destinatarios</div>
+                                        }
+                                    </td>
+                                    <td>
+                                        <div class="date">@Model.FechaActualizacion</div>
+                                    </td>
+                                </tr>
+                            </table>
+
+                            <br />
+
+                            <div class="message">
+                                @Html.Raw(HttpUtility.HtmlDecode(Model.Cuerpo))
+                                <br />
+                            </div>
+                            <br />
+                        </div>
+                    </div>
+                    <!-- End .row-fluid  -->
+                </div>
+
+                @if (Model.ArchivosModulo.Count() > 0)
+                {
+                    @Html.Partial("_ListArchivos", Model.ArchivosModulo);
+                }
+
+
+
+                <div class="email-bar">
+                    <div class="btn-group pull-left">
+                        <a href="@Url.Action("Create", "ComunicacionInterna")" class="btn btn-danger"><i class="icon16 i-pencil"></i> Nuevo Mensaje</a>
+                    </div>
+                    <div class="btn-group pull-right">
+                        <a href="@Url.Action("Responder", "ComunicacionInterna", new { id = Model.Id, todos = false })" class="btn">
+                            <i class="icon16 i-reply"></i>Responder
+                        </a>
+                        <a href="@Url.Action("Responder", "ComunicacionInterna", new { id = Model.Id, todos = true })" class="btn">
+                            @*  <i class="icon16 i-reply-2"></i>Responder a Todos</a>
+                                <a href="@Url.Action("Reenviar", "ComunicacionInterna", new { id = Model.Id })" class="btn">
+                                    <i class="icon16 i-forward"></i>Reenviar</a>*@
+                            <a class="btn" data-toggle="modal" data-target="#confirm-delete">
+                                <i class="icon16 i-remove"></i>Eliminar
+                            </a>
+                            <a href="@Url.Action("Index", "ComunicacionInterna")" class="btn btn-danger tip" data-original-title="Cerrar Mensaje">
+                                <i class="icon20 i-close-2"></i>
+                            </a>
+                    </div>
+                </div>
+
+            </div>
+            <!-- End #email  -->
+
+        </div>
+        <!-- End .row-fluid  -->
+
+    </div>
+    <!-- End .container-fluid  -->
+</div>
+
+<div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" style="margin-bottom: 15px;">
+                <button type="button" id="btnDeleteClose" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Eliminar Mensaje</h4>
+            </div>
+            <div class="modal-body">
+                <p style="text-align: center; font-weight: bold; margin: 0; font-family: 'Open Sans', sans-serif;">¿Esta seguro que quiere eliminar el Mensaje?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                <a href="@Url.Action("Delete", "ComunicacionInterna", new { id = Model.Id, ac = (bool)ViewBag.ActionController })"
+                   class="btn btn-danger btn-ok">Eliminar</a>
+            </div>
+        </div>
+    </div>
+</div>

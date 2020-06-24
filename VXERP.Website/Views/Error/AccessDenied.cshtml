@@ -1,0 +1,44 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+     @Html.Partial("~/Views/Shared/Header.cshtml")
+    <meta name="viewport" content="width=device-width" />
+    <title>AccessDenied</title>
+</head>
+<body>
+   <div class="container-fluid">
+
+        <div >
+            <div class="page-header">
+                <h1 class="center">403</h1>
+            </div>
+
+            <h2 class="center gap20">Acceso No permitido a la pagina. Por favor vuelva a identificarse</h2>
+
+            <div class="center gap-bottom5">
+                <form class="form-horizontal pad25 pad-bottom0 pad-top0" role="form">
+                    <div class="form-group">
+                        <div class="input-group">
+                          
+                        </div>                        
+                    </div><!-- End .control-group  -->
+                </form>
+
+                <div class="or center"><strong>or</strong></div>
+                <hr class="seperator">
+
+               
+                <a href="@Url.Action("Index","Home")" class="btn btn-default"><i class="icon16 i-home-6 gap-left0"></i> Dashboard</a>
+             
+            </div>
+
+        </div>
+        
+    </div>
+</body>
+</html>

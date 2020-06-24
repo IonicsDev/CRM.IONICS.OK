@@ -1,0 +1,333 @@
+﻿@model CRM.Business.Entities.Acontecimiento
+@using GridMvc.Html;
+@{
+    Layout = "~/Views/Shared/_Generic.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.Hidden("First")
+    @Html.HiddenFor(model => model.Id)
+    @Html.HiddenFor(model => model.FechaCreacion)
+    @Html.HiddenFor(model => model.FechaActualizacion)
+    @Html.HiddenFor(model => model.Estado)
+    <div class="wrapper">
+
+        <div class="container-fluid">
+            <div id="heading" class="page-header">
+                <h1><i class="icon20 i-cogs"></i>Configuración</h1>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <div class="icon"><i class="icon20 i-table"></i></div>
+                            <h4>Información Acontecimiento</h4>
+                            <a href="#" class="minimize"></a>
+
+                        </div>
+                        <!-- End .panel-heading -->
+                        <div class="panel-body">
+                            <ul class="pager">
+                                <li class="previous">
+                                    <a href="@Url.Action("Index", "Acontecimientos")">← Volver</a>
+                                </li>
+                            </ul>
+                            @Html.ValidationSummary(true)
+                            <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered table-hover">
+                                <tr>
+                                    <td colspan="1">
+                                        @Html.Label("Nro Documento: ", new { @class = "control-label" })
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(model => model.Id, new { @class = "form-control", @readonly = "readonly", @style = "width: 100px;" })
+                                        @Html.ValidationMessageFor(model => model.Id)
+                                    </td>
+                                    @*@if (@model.Id > 0)
+                                        {
+                                            <td colspan="1">
+                                                @Html.Label("Id Tipo Documento: ", new { @class = "control-label" })
+                                            </td>
+                                            <td colspan="3">
+                                                @Html.TextBoxFor(model => model.Id, new { @class = "form-control", @readonly = "readonly", @style = "width: 100px;" })
+                                                @Html.ValidationMessageFor(model => model.Id)
+                                            </td>
+
+                                        }*@
+                                </tr>
+                                <tr style="width: 100%;">
+                                    <td style="width: 5%;">@Html.Label("Fecha", new { @class = "control-label" })</td>
+                                    <td style="width: 5%;">
+                                        @Html.DisplayFor(model => model.Fecha, new { @class = "form-control datepicker", @style = "width: 200px;" })
+                                        @Html.ValidationMessageFor(model => model.Fecha)
+                                    </td>
+                                    <td style="width: 5%;">@Html.LabelFor(model => model.TipoAcontecimiento_Id, new { @class = "control-label" })</td>
+                                    <td style="width: 30%;">
+                                        @Html.DisplayFor(model => model.TipoAcontecimiento.Descripcion)
+                                        @Html.ValidationMessageFor(model => model.TipoAcontecimiento_Id)
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="4">
+                                        @Html.Label("", new { @class = "control-label" })
+                                    </td>
+                                </tr>
+                                <tr style="width: 100%;">
+                                    <td style="width: 10%;">@Html.LabelFor(model => model.FechaApertura, new { @class = "control-label" })</td>
+                                    <td style="width: 10%;">
+                                        @Html.DisplayFor(model => model.FechaApertura, new { @class = "form-control datepicker", @style = "width: 200px;" })
+                                        @Html.ValidationMessageFor(model => model.FechaApertura)
+                                    </td>
+                                    <td style="width: 10%;">@Html.LabelFor(model => model.FechaOcurrencia, new { @class = "control-label" })</td>
+                                    <td style="width: 30%;">
+
+                                        @Html.DisplayFor(model => model.FechaOcurrencia, new { @class = "form-control datepicker", @style = "width: 300px;" })
+                                        @Html.ValidationMessageFor(model => model.FechaOcurrencia)
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="4">
+                                        @Html.Label("Descripcion:", new { @class = "control-label" })
+                                        @Html.TextAreaFor(model => model.Descripcion, new { @class = "form-control", @disabled = "disabled" })
+                                        @Html.ValidationMessageFor(model => model.Descripcion)
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="4">
+                                        @Html.Label("", new { @class = "control-label" })
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="4">
+                                        @Html.Label("Origen:", new { @class = "control-label" })
+                                    </td>
+                                </tr>
+                                <tr style="width: 100%;">
+                                    <td style="width: 30%;">
+                                        @Html.LabelFor(model => model.AuditoriaClientes, new { @class = "control-label" })
+                                        @Html.CheckBoxFor(model => model.AuditoriaClientes, new { @class = "form-control", @disabled = "disabled"  })
+                                    </td>
+                                    <td style="width: 25%;">
+                                        @Html.LabelFor(model => model.AuditoriaCertificacion, new { @class = "control-label" })
+                                        @Html.CheckBoxFor(model => model.AuditoriaCertificacion, new { @class = "form-control", @disabled = "disabled" })
+                                    </td>
+
+                                    <td style="width: 50%;">
+                                        @Html.LabelFor(model => model.InspeccionesArn, new { @class = "control-label" })
+                                        @Html.CheckBoxFor(model => model.InspeccionesArn, new { @class = "form-control", @disabled = "disabled" })
+                                    </td>
+
+                                    <td style="width: 0%;">
+                                        @Html.LabelFor(model => model.OtrasInspecciones, new { @class = "control-label" })
+                                        @Html.CheckBoxFor(model => model.OtrasInspecciones, new { @class = "form-control", @disabled = "disabled" })
+                                    </td>
+                                </tr>
+                                <tr style="width: 100%;">
+                                    <td style="width: 5%;">
+                                        @Html.LabelFor(model => model.AccidentesLaborales, new { @class = "control-label" })
+                                        @Html.CheckBoxFor(model => model.AccidentesLaborales, new { @class = "form-control", @disabled = "disabled" })
+                                    </td>
+                                    <td style="width: 5%;">
+                                        @Html.LabelFor(model => model.Eventualidades, new { @class = "control-label" })
+                                        @Html.CheckBoxFor(model => model.Eventualidades, new { @class = "form-control", @disabled = "disabled" })
+                                    </td>
+                                    <td style="width: 2%;">
+                                        @Html.LabelFor(model => model.ReclamoClientes, new { @class = "control-label" })
+                                        @Html.CheckBoxFor(model => model.ReclamoClientes, new { @class = "form-control", @disabled = "disabled" })
+                                    </td>
+
+                                    <td style="width: 5%;">
+                                        @Html.LabelFor(model => model.Novedades, new { @class = "control-label" })
+                                        @Html.CheckBoxFor(model => model.Novedades, new { @class = "form-control", @disabled = "disabled" })
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 5%;">
+                                        @Html.LabelFor(model => model.InformeRevision, new { @class = "control-label" })
+                                        @Html.CheckBoxFor(model => model.InformeRevision, new { @class = "form-control", @disabled = "disabled" })
+                                    </td>
+                                    <td style="width: 5%;">
+                                        @Html.LabelFor(model => model.EncuentaClientes, new { @class = "control-label" })
+                                        @Html.CheckBoxFor(model => model.EncuentaClientes, new { @class = "form-control", @disabled = "disabled" })
+                                    </td>
+                                    <td style="width: 5%;">
+                                        @Html.LabelFor(model => model.AnalisisVariosIonics, new { @class = "control-label" })
+                                        @Html.CheckBoxFor(model => model.AnalisisVariosIonics, new { @class = "form-control", @disabled = "disabled" })
+                                    </td>
+                                    <td style="width: 1px;">
+                                        @Html.LabelFor(model => model.Otras, new { @class = "control-label" })
+                                        @Html.CheckBoxFor(model => model.Otras, new { @class = "form-control", @disabled = "disabled" })
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td colspan="4">
+                                        @Html.Label("", new { @class = "control-label" })
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="4">
+                                        @Html.Label("Acciones:", new { @class = "control-label" })
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        @Html.LabelFor(model => model.AccionesInmediatas, new { @class = "control-label" })
+                                        @Html.CheckBoxFor(model => model.AccionesInmediatas, new { @class = "form-control", @disabled = "disabled" })
+                                    </td>
+                                    <td>
+                                        @Html.LabelFor(model => model.AccionesCorrectivas, new { @class = "control-label" })
+                                        @Html.CheckBoxFor(model => model.AccionesCorrectivas, new { @class = "form-control", @disabled = "disabled" })
+                                    </td>
+                                    <td>
+                                        @Html.LabelFor(model => model.AccionesMejora, new { @class = "control-label" })
+                                        @Html.CheckBoxFor(model => model.AccionesMejora, new { @class = "form-control", @disabled = "disabled" })
+                                    </td>
+                                    <td>
+                                        @Html.LabelFor(model => model.AccionesOtras, new { @class = "control-label" })
+                                        @Html.CheckBoxFor(model => model.AccionesOtras, new { @class = "form-control", @disabled = "disabled" })
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td colspan="4">
+                                        @Html.LabelFor(model => model.SinAcciones, new { @class = "control-label" })
+                                        @Html.CheckBoxFor(model => model.SinAcciones, new { @class = "form-control", @disabled = "disabled" })
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td colspan="4">
+                                        @Html.Label("Descripcion Acciones:", new { @class = "control-label" })
+                                        @Html.TextAreaFor(model => model.DescripcionAcciones, new { @class = "form-control", @disabled = "disabled" })
+                                        @Html.ValidationMessageFor(model => model.DescripcionAcciones)
+
+                                        <div class="input-group">
+                                            @Html.LabelFor(model => model.FechaImplementacion, new { @class = "control-label" })
+                                            @Html.TextBoxFor(model => model.FechaImplementacion, new { @class = "form-control datepicker", @style = "width: 150px;", @disabled = "disabled" })
+                                            @Html.ValidationMessageFor(model => model.FechaImplementacion)
+                                        </div>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="4">
+                                        @Html.Label("", new { @class = "control-label" })
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="4">
+                                        @Html.LabelFor(model => model.DescripcionEvaluacion, new { @class = "control-label" })
+                                        @Html.TextAreaFor(model => model.DescripcionEvaluacion, new { @class = "form-control", @disabled = "disabled" })
+                                        @Html.ValidationMessageFor(model => model.DescripcionEvaluacion)
+
+                                        <div class="input-group">
+                                            @Html.LabelFor(model => model.FechaEvaluacion, new { @class = "control-label" })
+                                            @Html.TextBoxFor(model => model.FechaEvaluacion, new { @class = "form-control datepicker", @style = "width: 150px;", @disabled = "disabled" })
+                                            @Html.ValidationMessageFor(model => model.FechaEvaluacion)
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="4">
+                                        @Html.LabelFor(model => model.ResultadoEvaluacion, new { @class = "control-label" })
+                                        @Html.TextAreaFor(model => model.ResultadoEvaluacion, new { @class = "form-control", @disabled = "disabled" })
+                                        @Html.ValidationMessageFor(model => model.ResultadoEvaluacion)
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="4">
+                                        @Html.LabelFor(model => model.NuevaAccion, new { @class = "control-label" })
+                                        @Html.TextAreaFor(model => model.NuevaAccion, new { @class = "form-control", @disabled = "disabled" })
+                                        @Html.ValidationMessageFor(model => model.NuevaAccion)
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="4">
+                                        @Html.LabelFor(model => model.Observaciones, new { @class = "control-label" })
+                                        @Html.TextAreaFor(model => model.Observaciones, new { @class = "form-control", @disabled = "disabled" })
+                                        @Html.ValidationMessageFor(model => model.Observaciones)
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="4">
+                                        <div class="input-group">
+                                            @Html.LabelFor(model => model.FechaCierreAccion, new { @class = "control-label" })
+                                            @Html.TextBoxFor(model => model.FechaCierreAccion, new { @class = "form-control datepicker", @style = "width: 150px", @disabled = "disabled" })
+                                        </div>
+
+                                        @Html.ValidationMessageFor(model => model.FechaCierreAccion)
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="4">
+                                        @Html.Label("", new { @class = "control-label" })
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="4">
+                                        @Html.Label("Firmas", new { @class = "control-label" })
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        @Html.Label("Gcia. General", new { @class = "control-label" })
+                                    </td>
+                                    <td>
+                                        @Html.Label("Gcia. Comercial", new { @class = "control-label" })
+                                    </td>
+                                    <td>
+                                        @Html.Label("Gcia. Planta", new { @class = "control-label" })
+                                    </td>
+                                    <td>
+                                        @Html.Label("Gcia. A y Fin", new { @class = "control-label" })
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        @Html.TextArea("GciaGeneral", "", new { @class = "control-label", @disabled = "disabled" })
+                                    </td>
+                                    <td>
+                                        @Html.TextArea("GciaComercial", "", new { @class = "control-label", @disabled = "disabled" })
+                                    </td>
+                                    <td>
+                                        @Html.TextArea("GciaPlanta", "", new { @class = "control-label", @disabled = "disabled" })
+                                    </td>
+                                    <td>
+                                        @Html.TextArea("GciaAFin", "", new { @class = "control-label", @disabled = "disabled" })
+                                    </td>
+                                </tr>
+                            </table>
+                            <br />
+                            @{Html.RenderPartial("_ListArchivos", Model.ArchivosModulo);}
+
+
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+
+                            <div class="form-group relative">
+                                <a href="@Url.Action("Index", "Acontecimientos")" class="btn btn-default col-lg-offset-7 col-lg-2">Cancelar</a>
+                                <button id="btnImprimir" type="submit" class="btn btn-primary col-lg-3">Imprimir</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <div id="modal-container" class="modal fade" tabindex="-1" role="dialog" data-backdrop="static">
+        <div class="modal-content"></div>
+    </div>
+    @section scripts
+    {
+        <link href="~/Css/custom.css" rel="stylesheet" />
+        <script src="~/Scripts/clientGridFunctions.js"></script>
+    }
+}

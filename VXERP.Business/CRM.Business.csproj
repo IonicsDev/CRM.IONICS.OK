@@ -1,0 +1,213 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B08342C3-4C84-4CCD-B014-0E559FA501D5}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CRM.Business</RootNamespace>
+    <AssemblyName>CRM.Business</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevExpress.Web.Mvc.v19.2, Version=19.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Office.v19.2.Core, Version=19.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.RichEdit.v19.2.Core, Version=19.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Web.v19.2, Version=19.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Mvc, Version=4.0.0.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Contexts\ConfigurationContext.cs" />
+    <Compile Include="Contexts\ModelBuilderConfiguration\ParametroEntityTypeConfiguration.cs" />
+    <Compile Include="Contexts\ModelBuilderConfiguration\RolesEmpresaEntityTypeConfiguration.cs" />
+    <Compile Include="Contexts\ModelBuilderConfiguration\RolEntityTypeConfiguration.cs" />
+    <Compile Include="Contexts\ModelBuilderConfiguration\NoConformidadEntityTypeConfiguration.cs" />
+    <Compile Include="Contexts\ModelBuilderConfiguration\UsuarioEntityTypeConfiguration.cs" />
+    <Compile Include="DAL\AcontecimientoDetalleRepository.cs" />
+    <Compile Include="DAL\AcontecimientoRepository.cs" />
+    <Compile Include="DAL\ArchivoModuloRepository.cs" />
+    <Compile Include="DAL\ColorEstadoRepository.cs" />
+    <Compile Include="DAL\EstadoPedidoRepository.cs" />
+    <Compile Include="DAL\EventualidadContactoRepository.cs" />
+    <Compile Include="DAL\NoConformidadRepository.cs" />
+    <Compile Include="DAL\EventualidadUsuarioRepository.cs" />
+    <Compile Include="DAL\EventualidadRepository.cs" />
+    <Compile Include="DAL\OrigenRepository.cs" />
+    <Compile Include="DAL\ParametroRepository.cs" />
+    <Compile Include="DAL\SubTipoRepository.cs" />
+    <Compile Include="DAL\SubTipoEventualidadRepository.cs" />
+    <Compile Include="DAL\TipoAcontecimientoRepository.cs" />
+    <Compile Include="DAL\Origen_NoConformidadesRepository.cs" />
+    <Compile Include="DAL\Identificacion_NoConformidadesRepository.cs" />
+    <Compile Include="DAL\Tipos_NoConformidadesRepository.cs" />
+    <Compile Include="DAL\TipoEventualidadRepository.cs" />
+    <Compile Include="DAL\MailDestinatarioRepository.cs" />
+    <Compile Include="DAL\MailRepository.cs" />
+    <Compile Include="DAL\PedidoEstadoRepository.cs" />
+    <Compile Include="DAL\PedidoDetalleRepository.cs" />
+    <Compile Include="DAL\PedidoRepository.cs" />
+    <Compile Include="DAL\PropiedadNavegacionListadoRepository.cs" />
+    <Compile Include="DAL\ListadoRepository.cs" />
+    <Compile Include="DAL\NovedadUsuariosRepository.cs" />
+    <Compile Include="DAL\NovedadRepository.cs" />
+    <Compile Include="DAL\TipoNovedadRepository.cs" />
+    <Compile Include="DAL\TiposAcontecimientoRepository.cs" />
+    <Compile Include="DAL\UsuarioRolClienteRepository.cs" />
+    <Compile Include="DAL\TipoArchivoModuloRepository.cs" />
+    <Compile Include="DAL\RoleEmpresaRepository.cs" />
+    <Compile Include="DAL\ModuloPermisoRepository.cs" />
+    <Compile Include="DAL\ModuloRepository.cs" />
+    <Compile Include="DAL\RolRepository.cs" />
+    <Compile Include="DAL\UsuarioRepository.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataService\Secutity\AppSettings.cs" />
+    <Compile Include="DataService\SQLSrv\DataAcces.cs" />
+    <Compile Include="Entities\Acontecimiento.cs" />
+    <Compile Include="Entities\AcontecimientoDetalle.cs" />
+    <Compile Include="Entities\ArchivoModulo.cs" />
+    <Compile Include="Entities\BaseEntities\BaseEntity.cs" />
+    <Compile Include="Entities\BaseEntities\Helper.cs" />
+    <Compile Include="Entities\BaseEntities\IUserContext.cs" />
+    <Compile Include="Entities\BaseEntities\UserContext.cs" />
+    <Compile Include="Entities\ColorEstado.cs" />
+    <Compile Include="Entities\Contacto.cs" />
+    <Compile Include="Entities\EstadoPedido.cs" />
+    <Compile Include="Entities\NoConformidad.cs" />
+    <Compile Include="Entities\EventualidadContacto.cs" />
+    <Compile Include="Entities\EventualidadUsuario.cs" />
+    <Compile Include="Entities\Eventualidad.cs" />
+    <Compile Include="Entities\Origen.cs" />
+    <Compile Include="Entities\Parametro.cs" />
+    <Compile Include="Entities\SubTipo.cs" />
+    <Compile Include="Entities\SubTipoEventualidad.cs" />
+    <Compile Include="Entities\TipoAcontecimiento.cs" />
+    <Compile Include="Entities\Origen_NoConformidades.cs" />
+    <Compile Include="Entities\Identificacion_NoConformidades.cs" />
+    <Compile Include="Entities\Tipos_NoConformidades.cs" />
+    <Compile Include="Entities\TipoEventualidad.cs" />
+    <Compile Include="Entities\MailDestinatario.cs" />
+    <Compile Include="Entities\Mail.cs" />
+    <Compile Include="Entities\PedidoEstado.cs" />
+    <Compile Include="Entities\PedidoDetalle.cs" />
+    <Compile Include="Entities\Pedido.cs" />
+    <Compile Include="Entities\PropiedadNavegacionListado.cs" />
+    <Compile Include="Entities\Listado.cs" />
+    <Compile Include="Entities\Novedad.cs" />
+    <Compile Include="Entities\NovedadUsuarios.cs" />
+    <Compile Include="Entities\TipoArchivoModulo.cs" />
+    <Compile Include="Entities\ModuloPermiso.cs" />
+    <Compile Include="Entities\Rol.cs" />
+    <Compile Include="Entities\Modulo.cs" />
+    <Compile Include="Entities\RolEmpresa.cs" />
+    <Compile Include="Entities\TipoNovedad.cs" />
+    <Compile Include="Entities\Usuario.cs" />
+    <Compile Include="Entities\UsuarioRolCliente.cs" />
+    <Compile Include="Exceptions\AppException.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Views\BaseViews\BaseView.cs" />
+    <Compile Include="Views\BaseViews\BaseViewString.cs" />
+    <Compile Include="Views\vAcontecimientos.cs" />
+    <Compile Include="Views\vDesactivarContacto.cs" />
+    <Compile Include="Views\vDetallePedidos.cs" />
+    <Compile Include="Views\vEmpleadosEnIonics.cs" />
+    <Compile Include="Views\vEstadosPedidos.cs" />
+    <Compile Include="Views\vGetListadoNoConformidades.cs" />
+    <Compile Include="Views\vGetListadoPedidos.cs" />
+    <Compile Include="Views\vPersonasEnEspera.cs" />
+    <Compile Include="Views\vPersonasFueradePlanta.cs" />
+    <Compile Include="Views\vPersonasEnPlanta.cs" />
+    <Compile Include="Views\vProductosAll.cs" />
+    <Compile Include="Views\vRPT_PanelControl_Horas.cs" />
+    <Compile Include="Views\vRPT_PanelControl_Valorizado.cs" />
+    <Compile Include="Views\vRPT_PanelControl_Fisico.cs" />
+    <Compile Include="Views\vRPT_PanelControl_Equivalente.cs" />
+    <Compile Include="Views\vContactosSinFoto.cs" />
+    <Compile Include="Views\vGetScheduleRetiro.cs" />
+    <Compile Include="Views\vEliminarContacto.cs" />
+    <Compile Include="Views\vGuardarContacto.cs" />
+    <Compile Include="Views\vGetSchedule.cs" />
+    <Compile Include="Views\vDetalleFactura.cs" />
+    <Compile Include="Views\vDetalleEntrega.cs" />
+    <Compile Include="Views\vGetListadoEventualidades.cs" />
+    <Compile Include="Views\vGetProductosCliente.cs" />
+    <Compile Include="Views\vPedidosFechaMaximaAnticipacion.cs" />
+    <Compile Include="Views\vGetListado.cs" />
+    <Compile Include="Views\vHorasEnCartera.cs" />
+    <Compile Include="Views\vStockValorizadoTratados.cs" />
+    <Compile Include="Views\vStockValorizadoSinTratar.cs" />
+    <Compile Include="Views\vPrecios.cs" />
+    <Compile Include="Views\vProductos.cs" />
+    <Compile Include="Views\vSecuenciamiento.cs" />
+    <Compile Include="Views\vContactos.cs" />
+    <Compile Include="Views\vIndustrias.cs" />
+    <Compile Include="Views\vClientes.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\VXERP.Common\CRM.Common.csproj">
+      <Project>{d5053f47-d146-411b-bc03-2b5b47a59951}</Project>
+      <Name>CRM.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VXERP.Framework\CRM.Framework.csproj">
+      <Project>{6e768ea3-26d4-4eab-adc3-6eca8c117e64}</Project>
+      <Name>CRM.Framework</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

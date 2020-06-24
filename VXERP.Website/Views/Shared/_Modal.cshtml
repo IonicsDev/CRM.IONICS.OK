@@ -1,0 +1,35 @@
+﻿@{
+    var formAction = ViewBag.FormAction ?? "";
+    var formTarget = ViewBag.FormTarget ?? "_self";
+    var formMethod = ViewBag.FormTarget ?? "post";
+    var formEnctype = ViewBag.FormEnctype ?? "application/x-www-form-urlencoded";
+}
+
+<div class="modal" id="myModal">
+ <form id="@ViewBag.FormId" class="modal-form @ViewBag.FormCssClasses" action="@ViewBag.FormAction" target="@formTarget" method="@formMethod" enctype="@formEnctype">
+
+  <div class="modal-header">
+    <a class="close" data-dismiss="modal">×</a>
+    <h3>@ViewBag.Title</h3>
+  </div>
+  
+  <div class="modal-body">
+    @RenderBody()
+  </div>
+
+  @if (IsSectionDefined("Footer"))
+  {
+      <div class="modal-footer">
+        @RenderSection("Footer", false)        
+      </div>
+  }
+  
+ </form>
+
+ <script type="text/javascript">
+
+     startUpComponents();
+
+ </script>
+
+</div>

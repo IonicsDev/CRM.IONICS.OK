@@ -1,0 +1,332 @@
+﻿@model CRM.Business.Views.vGetListadoPedidos
+@using GridMvc.Html;
+@{
+
+    Layout = "~/Views/Shared/_Generic.cshtml";
+}
+<script type="text/javascript">
+    function OnInit(s, e) {
+        AdjustSize();
+        ASPxClientUtils.AttachEventToElement(window, "resize", function (evt) {
+            AdjustSize();
+        });
+    }
+
+    function OnEndCallback(s, e) {
+        AdjustSize();
+    }
+    function AdjustSize() {
+        debugger
+        var height = document.documentElement.clientHeight;
+        grid.SetHeight(height - 200);
+    }
+
+    
+
+</script>
+
+<div class="wrapper">
+    <div class="container-fluid">
+        <div id="heading" class="page-header">
+            <h1><i class="icon20 i-cogs"></i>Configuración</h1>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <div class="icon"><i class="icon20 i-table"></i></div>
+                        <h4>Administración de Pedidos</h4>
+                        <a href="#" class="minimize"></a>
+
+                    </div>
+                    <!-- End .panel-heading -->
+
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-12 form-inline">
+
+                                <div class="form-group" style="float:right">
+                                    @Html.ActionLink("Actualizar", "Refresh", null, new { @class = "btn btn-sm i-spinner" })
+                                </div>
+
+                                @if (((CRM.Website.Models.CustomPrincipal)User).IsInRole("EDIT", ViewBag.NameController))
+                                {
+                                    <div class="form-group">
+                                        @Html.ActionLink("Agregar un nuevo Pedido", "Create", null, new { @class = "btn btn-sm btn-info" })
+                                    </div>
+                                    <br />
+                                }
+
+                                <br />
+                                @*<div class="form-row">*@
+                                @using (Html.BeginForm("Index", "PedidoProceso", FormMethod.Post))
+                                {
+                                    <div class="form-row">
+                                        <div class="form-inline col-lg-8">
+                                            <span class="float-left" style="font-size:smaller">Filtro Solo Pedidos:</span>
+                                            <div class="form-group btn-default" style="width:200px">
+                                                @Html.DropDownList("ddlEstados", new SelectList(ViewBag.EstadosPedido, "key", "value"), new { onchange = "this.form.submit();", @class = "form-control" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+
+                                @using (Html.BeginForm("ExportXLS", "PedidoProceso", FormMethod.Post))
+                                {
+                                    <link href="~/Css/custom.css" rel="stylesheet" />
+                                            <script src="~/Scripts/clientGridFunctions.js"></script>
+                                            <script type="text/javascript">
+                                        function UpdatePedido(s, id) {
+                                            $.ajax({
+                                                url: '@Url.Action("GetAuthentication", "Base")',
+                                                type: "POST",
+                                                success: function (result) {
+                                                    if (result != true) {
+                                                        window.location.href = "/Usuario/Login";
+                                                    }
+                                                    else
+                                                    {
+                                                        BootstrapDialog.show({
+                                                            title: 'Actualizar Fecha Autorizada Recepción',
+                                                            message: '¿Está seguro que desea realizar esta acción?',
+                                                            cssClass: 'custom-bootstrap-dialog',
+                                                            buttons: [{
+                                                                label: 'Cancelar',
+                                                                cssClass: 'btn-default',
+                                                                action: function (dialog) {
+                                                                    dialog.close();
+                                                                }
+                                                            }, {
+                                                                label: 'Actualizar',
+                                                                cssClass: 'btn-success',
+                                                                action: function (dialog) {
+                                                                    dialog.close();
+                                                                    var d = new Date(s.GetDate());
+                                                                    var fecha = d.getDate() + "/" + (d.getMonth() + 1) + "/" + d.getFullYear();
+                                                                    $.ajax({
+                                                                        url: "@Url.Action("EditFecha","PedidoProceso")",
+                                                                        type: "POST",
+                                                                        data: { id: id, fecha_autorizada: fecha },
+                                                                        beforeSend: function () {
+                                                                            $('#loadingModal').modal('show');
+                                                                        },
+                                                                        complete: function () {
+                                                                            $('#loadingModal').modal('hide');
+                                                                        },
+                                                                        success: function (result) {
+                                                                            if (result == 'OK') {
+                                                                                createSuccessMsg("Se ha guardado correctamente. Nro Pedido: " +id);
+                                                                                //BootstrapDialog.show({
+                                                                                //    title: 'Fecha Autorizada Recepción Actualizada',
+                                                                                //    message: 'El Pedido Numero ' + id + 'se modifico a Fecha Autorizada Recepción : ' + fecha,
+                                                                                //    cssClass: 'custom-bootstrap-dialog',
+                                                                                //    buttons: [{
+                                                                                //        label: 'Ok',
+                                                                                //        cssClass: 'btn-default',
+                                                                                //        action: function (dialog) {
+                                                                                //            dialog.close();
+                                                                                //        }
+                                                                                //    }]
+                                                                                //})
+
+                                                                            }
+                                                                            else
+                                                                                createErrorMsg("Ha ocurrido un error al guardar.");
+                                                                        }
+                                                                    });
+                                                                }
+                                                            }]
+                                                        });
+                                                    }
+                                                }
+                                            });
+
+
+                            }
+
+                            function checkSession() {
+                                $.ajax({
+                                    url: '@Url.Action("GetAuthentication", "Base")',
+                                    type: "POST",
+                                    success: function (result) {
+                                        if (result != true) {
+                                            window.location.href = "/Usuario/Login";
+                                        }
+                                    }
+                                });
+                                return true;
+                            }
+                                            </script>
+                                            <div id="refreshme">
+                                                <div class="btn-default">
+                                                    @Html.Partial("_GridExportOptionsPartial", Model)
+                                                </div>
+                                                @Html.Partial("_GridViewPedidos", Model)
+
+                                            </div>
+                                }
+
+                            </div>
+
+
+
+
+                            <script type="text/javascript">
+                            function refresh() {
+                                debugger
+                                $.get('/PedidoProceso/GridViewPedidoRefresh', function (result) {
+                                    $('#refreshme').html(result);
+                                });
+                            }
+                            setInterval(refresh, 5000000);
+
+                            var grid = eval("grid_" + "@ViewBag.NameController");
+                            $(document).ready(function () {
+                                $("#btShowCustomizationWindow").click(
+                                    function () {
+                                        UpdateCustomizationWindowVisibility();
+                                    }
+                                );
+                            });
+                            function grid_CustomizationWindowCloseUp(s, e) {
+                                UpdateButtonText();
+                            }
+                            function UpdateCustomizationWindowVisibility() {
+                                eval("grid_" + "@ViewBag.NameController").HideCustomizationWindow();
+                              if (grid.IsCustomizationWindowVisible())
+                                  grid.HideCustomizationWindow();
+                              else
+                                  grid.ShowCustomizationWindow();
+                              UpdateButtonText();
+                          }
+                          function UpdateButtonText() {
+                              var text = grid.IsCustomizationWindowVisible() ? "Ocultar" : "Mostrar";
+                              text += " Configuración de columnas";
+                              $("#btShowCustomizationWindow").val(text);
+                          }
+                            </script>
+
+                            <div style="float: right">
+                                <p>@Html.ActionLink("Configuración de Columnas", null, null, new { @id = "btShowCustomizationWindow", @class = "btn btn-sm btn-info", @href = "#" })</p>
+                            </div>
+                            @*<br />*@
+                        </div>
+
+
+                    </div>
+
+                    <div id="detallePedidoModal-container" class="modal fade" tabindex="-1" role="dialog" data-backdrop="static">
+                        <div class="modal-content"></div>
+                    </div>
+
+                    <div id="imprimirModal-container" class="modal fade" tabindex="-1" role="dialog" data-backdrop="static">
+                        <div class="modal-content"></div>
+                    </div>
+
+                    <div id="detalleFacturaModal-container" class="modal fade" tabindex="-1" role="dialog" data-backdrop="static">
+                        <div class="modal-content"></div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <table border="0" Align="Left" width="100%" style="font-size:small">
+                <tr>
+                    <td Align="Left" class="Text">0.</td>
+                    <td Align="Left" class="Text" bgcolor="#000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                    <td Align="Left" class="Text">No Recepcionados</td>
+                    <td Align="Left" class="Text">1.</td>
+                    <td Align="Left" class="Text" bgcolor="#CC0000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                    <td Align="Left" class="Text">Recepcionados</td>
+                    <td Align="Left" class="Text">9.</td>
+                    <td Align="Left" class="Text" bgcolor="#ffafaf">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                    <td Align="Left" class="Text">Programados</td>
+                    @*<td Align="Left" class="Text">2.</td>
+                        <td Align="Left" class="Text" bgcolor="#FF6600">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td Align="Left" class="Text">En Proceso</td>
+                        <td Align="Left" class="Text">3.</td>
+                        <td Align="Left" class="Text" bgcolor="#66CCCC">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td Align="Left" class="Text">Completados en forma Parcial</td>*@
+                    <td Align="Left" class="Text">4.</td>
+                    <td Align="Left" class="Text" bgcolor="#009900">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                    <td Align="Left" class="Text">Completados en forma Total</td>
+                    @*<td Align="Left" class="Text">5.</td>
+                        <td Align="Left" class="Text" bgcolor="#9999CC">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td Align="Left" class="Text">Entregados en forma Parcial</td>*@
+                    <td Align="Left" class="Text">6.</td>
+                    <td Align="Left" class="Text" bgcolor="#0000CC">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                    <td Align="Left" class="Text">Entregados en forma Total</td>
+                    <td Align="Left" class="Text">7.</td>
+                    <td Align="Left" class="Text" bgcolor="#663399">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                    <td Align="Left" class="Text">Cerrados</td>
+                    @*<td Align="Left" class="Text">8.</td>
+                        <td Align="Left" class="Text" bgcolor="#aeb446">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td Align="Left" class="Text">Facturados pero no Entregados</td>*@
+                </tr>
+            </table>
+
+        </div>
+    </div>
+</div>
+
+@section scripts
+{
+    <script>
+        $(function () {
+            $('body').on('click', '.DetallePedido.modal-link', function (e) {
+                e.preventDefault();
+                //Optional: turn the chache off
+                $.ajaxSetup({ cache: false });
+                $(this).attr('data-target', '#detallePedidoModal-container');
+                $(this).attr('data-toggle', 'modal');
+            });
+
+            $('body').on('click', '.Impresora.modal-link', function (e) {
+                e.preventDefault();
+                //Optional: turn the chache off
+                $.ajaxSetup({ cache: false });
+                $(this).attr('data-target', '#imprimirModal-container');
+                $(this).attr('data-toggle', 'modal');
+            })
+
+            $('body').on('click', '.DetalleFactura.modal-link', function (e) {
+                e.preventDefault();
+                //Optional: turn the chache off
+                $.ajaxSetup({ cache: false });
+                $(this).attr('data-target', '#detalleFacturaModal-container');
+                $(this).attr('data-toggle', 'modal');
+            });
+
+            $('#detallePedidoModal-container').on('hidden.CRM.modal', function () {
+                $(this).removeData('CRM.modal');
+            });
+
+            $('#detallePedidoModal-container').on('hidden.CRM.modal', function () {
+                $(this).removeData('CRM.modal');
+            });
+
+            $('#imprimirModal-container').on('hidden.CRM.modal', function () {
+                $(this).removeData('CRM.modal');
+            });
+
+            $('#imprimirModal-container').on('hidden.CRM.modal', function () {
+                $(this).removeData('CRM.modal');
+            });
+
+            $('#detalleFacturaModal-container').on('hidden.CRM.modal', function () {
+                $(this).removeData('CRM.modal');
+            });
+
+            $('#detalleFacturaModal-container').on('hidden.CRM.modal', function () {
+                $(this).removeData('CRM.modal');
+            });
+
+            $('#CancelModal').on('click', function () {
+                return false;
+            });
+        });
+
+    </script>
+}

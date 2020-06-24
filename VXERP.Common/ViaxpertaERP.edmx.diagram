@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="4bae808d6199498e80b38c6ca8aefc69" Name="Diagram1" ZoomLevel="18">
+        <EntityTypeShape EntityType="VXERPModel.Actividades" Width="1.5" PointX="3.1474483903252746" PointY="9.6615022763896281" />
+        <EntityTypeShape EntityType="VXERPModel.Cantones" Width="1.5" PointX="8.211763745272421" PointY="27.082515401338465" />
+        <EntityTypeShape EntityType="VXERPModel.Ciudades" Width="1.5" PointX="0.70273612472356117" PointY="18.872188010659155" />
+        <EntityTypeShape EntityType="VXERPModel.Companias" Width="1.5" PointX="11.15613016074343" PointY="3.0386542841040782" />
+        <EntityTypeShape EntityType="VXERPModel.Continentes" Width="1.5" PointX="8.2812258677004031" PointY="27.415909168969797" />
+        <EntityTypeShape EntityType="VXERPModel.Divisiones" Width="1.5" PointX="5.2609431190700011" PointY="20.042466009055481" />
+        <EntityTypeShape EntityType="VXERPModel.GruposEmpresarial" Width="1.5" PointX="11.46032546435498" PointY="16.264889039222567" />
+        <EntityTypeShape EntityType="VXERPModel.Ocupaciones" Width="1.5" PointX="10.806293544734965" PointY="18.372325950475563" />
+        <EntityTypeShape EntityType="VXERPModel.Paises" Width="1.5" PointX="0.24251630354789844" PointY="29.368425129618693" />
+        <EntityTypeShape EntityType="VXERPModel.Parroquias" Width="1.5" PointX="7.2418035172120687" PointY="27.24333721177808" />
+        <EntityTypeShape EntityType="VXERPModel.Proveedores" Width="1.5" PointX="1.9343124711580169" PointY="4.854304002995744" />
+        <EntityTypeShape EntityType="VXERPModel.Provincias" Width="1.5" PointX="3.51096033282157" PointY="17.484828912413132" />
+        <EntityTypeShape EntityType="VXERPModel.ReferenciasBancarias" Width="1.5" PointX="5.5879179712328675" PointY="19.844144830407643" />
+        <EntityTypeShape EntityType="VXERPModel.ReferenciasComerciales" Width="1.5" PointX="1.1145557244841735" PointY="28.561018226929484" />
+        <EntityTypeShape EntityType="VXERPModel.Roles" Width="1.5" PointX="7.8245643600004549" PointY="25.289496299479854" />
+        <EntityTypeShape EntityType="VXERPModel.Sucursales" Width="1.5" PointX="2.5775933035545022" PointY="21.774612645513663" />
+        <EntityTypeShape EntityType="VXERPModel.sysdiagrams" Width="1.5" PointX="4.88785242144384" PointY="5.4018780763269767" />
+        <EntityTypeShape EntityType="VXERPModel.TiposLocal" Width="1.5" PointX="6.0091956323055529" PointY="10.497933347941345" />
+        <EntityTypeShape EntityType="VXERPModel.TiposProveedor" Width="1.5" PointX="1.7431685727756323" PointY="12.882716050782575" />
+        <EntityTypeShape EntityType="VXERPModel.Usuarios" Width="1.5" PointX="3.6477528864740174" PointY="6.665003183607479" />
+        <EntityTypeShape EntityType="VXERPModel.Zonas" Width="1.5" PointX="8.94080455645025" PointY="9.3233010663293765" />
+        <AssociationConnector Association="VXERPModel.FK_Actividades_Usuarios" />
+        <AssociationConnector Association="VXERPModel.FK_Proveedores_Actividades" />
+        <AssociationConnector Association="VXERPModel.FK_Cantones_Ciudades" />
+        <AssociationConnector Association="VXERPModel.FK_Cantones_Usuarios" />
+        <AssociationConnector Association="VXERPModel.FK_Parroquias_Cantones" />
+        <AssociationConnector Association="VXERPModel.FK_Proveedores_Cantones" />
+        <AssociationConnector Association="VXERPModel.FK_Ciudades_Provincias" />
+        <AssociationConnector Association="VXERPModel.FK_Ciudades_Usuarios" />
+        <AssociationConnector Association="VXERPModel.FK_Companias_Ciudades" />
+        <AssociationConnector Association="VXERPModel.FK_Proveedores_Ciudades" />
+        <AssociationConnector Association="VXERPModel.FK_Sucursales_Ciudades" />
+        <AssociationConnector Association="VXERPModel.FK_Companias_GruposEmpresarial" />
+        <AssociationConnector Association="VXERPModel.FK_Companias_Usuarios" />
+        <AssociationConnector Association="VXERPModel.FK_Divisiones_Companias" />
+        <AssociationConnector Association="VXERPModel.FK_Sucursales_Companias" />
+        <AssociationConnector Association="VXERPModel.FK_Continentes_Usuarios" />
+        <AssociationConnector Association="VXERPModel.FK_Paises_Continentes" />
+        <AssociationConnector Association="VXERPModel.FK_Divisiones_Divisiones" />
+        <AssociationConnector Association="VXERPModel.FK_Divisiones_GruposEmpresarial" />
+        <AssociationConnector Association="VXERPModel.FK_Divisiones_Usuarios" />
+        <AssociationConnector Association="VXERPModel.FK_Sucursales_Divisiones" />
+        <AssociationConnector Association="VXERPModel.FK_GruposEmpresarial_Usuarios" />
+        <AssociationConnector Association="VXERPModel.FK_Sucursales_GruposEmpresarial" />
+        <AssociationConnector Association="VXERPModel.FK_Ocupaciones_Usuarios" />
+        <AssociationConnector Association="VXERPModel.FK_Proveedores_Ocupaciones" />
+        <AssociationConnector Association="VXERPModel.FK_Paises_Usuarios" />
+        <AssociationConnector Association="VXERPModel.FK_Provincias_Paises" />
+        <AssociationConnector Association="VXERPModel.FK_Parroquias_Usuarios" />
+        <AssociationConnector Association="VXERPModel.FK_Proveedores_Parroquias" />
+        <AssociationConnector Association="VXERPModel.FK_Proveedores_Provincias" />
+        <AssociationConnector Association="VXERPModel.FK_Proveedores_TiposLocal" />
+        <AssociationConnector Association="VXERPModel.FK_Proveedores_TiposProveedor" />
+        <AssociationConnector Association="VXERPModel.FK_Proveedores_Usuarios" />
+        <AssociationConnector Association="VXERPModel.FK_Provincias_Usuarios" />
+        <AssociationConnector Association="VXERPModel.FK_ReferenciasBancarias_Usuarios" />
+        <AssociationConnector Association="VXERPModel.FK_ReferenciasComerciales_Usuarios" />
+        <AssociationConnector Association="VXERPModel.FK_Sucursales_Usuarios" />
+        <AssociationConnector Association="VXERPModel.FK_TiposLocal_Usuarios" />
+        <AssociationConnector Association="VXERPModel.FK_TiposProveedor_TiposProveedor" />
+        <AssociationConnector Association="VXERPModel.FK_TiposProveedor_Usuarios" />
+        <AssociationConnector Association="VXERPModel.FK_Zonas_Usuarios" />
+        <AssociationConnector Association="VXERPModel.FK_Zonas_Zonas" />
+        <AssociationConnector Association="VXERPModel.UsuarioRols" />
+        <EntityTypeShape EntityType="VXERPModel.Modulos" Width="1.5" PointX="0.557068627587086" PointY="7.0141330841063212" />
+        <EntityTypeShape EntityType="VXERPModel.RolModulos" Width="1.5" PointX="9.8886671820137035" PointY="14.559718287810552" />
+        <AssociationConnector Association="VXERPModel.FK_Modulos_Modulos" />
+        <AssociationConnector Association="VXERPModel.FK_RolModulos_Modulos" />
+        <AssociationConnector Association="VXERPModel.FK_RolModulos_Roles" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

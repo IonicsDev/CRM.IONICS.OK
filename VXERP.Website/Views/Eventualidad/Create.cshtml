@@ -1,0 +1,342 @@
+﻿@model CRM.Business.Entities.Eventualidad
+@using GridMvc.Html;
+@{
+    Layout = "~/Views/Shared/_Generic.cshtml";
+}
+@using (Html.BeginForm("Create","Eventualidad",FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+ 
+    <div class="wrapper">
+
+        <div class="container-fluid">
+            <div id="heading" class="page-header">
+                <h1><i class="icon20 i-cogs"></i>Configuración</h1>
+            </div>
+
+            <div class="row">
+
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <div class="icon"><i class="icon20 i-table"></i></div>
+                            <h4>Nueva Eventualidad</h4>
+                            <a href="#" class="minimize"></a>
+
+
+                        </div>
+                        <!-- End .panel-heading -->
+                        <div class="panel-body">
+                            <ul class="pager">
+                                <li class="previous">
+                                    <a href="@Url.Action("Index", "Eventualidad")">← Volver</a>
+                                </li>
+                            </ul>
+                            @Html.ValidationSummary(true)
+
+                            <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered table-hover">
+                                <tr>
+                                    <td>
+                                        @Html.LabelFor(model => model.Nombre_Cliente, new { @class = "control-label" })
+                                    </td>
+                                    <td colspan="3">
+                                        <div class="input-group" style="width:100%;">
+                                            @Html.TextBoxFor(model => model.Nombre_Cliente, new { @readonly = "readonly", @class = "form-control" })
+                                            @Html.HiddenFor(model => model.Cg_Clie, new { @class = "control-label" })
+                                            <span class="input-group-btn">
+                                                @Html.ActionLink("Mostrar Clientes", "GetClientes", "Eventualidad", 
+                                                new { @id = "GetClientes", @style="width: 350px;", @class = "modal-link btn btn-success" })
+                                            </span>
+                                        </div><!-- /input-group -->
+                                        @Html.ValidationMessageFor(model => model.Cg_Clie)
+                                    </td>
+                                </tr>
+                                <tr style="width: 100%;">
+                                    <td style="width: 10%;">
+                                        @Html.LabelFor(model => model.Pedido_Id, new { @class = "control-label" })
+                                    </td>
+                                    <td style="width: 30%;">
+                                        <div class="input-group" style="width:100%;">
+                                            @Html.TextBoxFor(model => model.Pedido_Id, new { @readonly = "readonly", @class = "form-control" })
+                                            <span class="input-group-btn">
+                                                @Html.ActionLink("Mostrar Pedidos", "GetPedidos", "Eventualidad", 
+                                                new { @id = "GetPedidos", @style="width: 250px;", @class = "modal-link btn btn-success" })
+                                            </span>
+                                        </div><!-- /input-group -->
+                                        @Html.ValidationMessageFor(model => model.Pedido_Id)
+                                    </td>
+                                    <td style="width: 10%;">
+                                        @Html.LabelFor(model => model.Remito, new { @class = "control-label" })
+                                    </td>
+                                    <td style="width: 30%;">
+                                        @Html.TextBoxFor(model => model.Remito, new { @readonly = "readonly", @class = "form-control" })
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>@Html.LabelFor(model => model.NombreProducto, new { @class = "control-label" })</td>
+                                    <td colspan="3">
+                                        @Html.TextBoxFor(model => model.NombreProducto, new { @readonly = "readonly", @class = "form-control" })
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>@Html.LabelFor(model => model.OrdenFabricacion, new { @class = "control-label" })</td>
+                                    <td>@Html.TextBoxFor(model => model.OrdenFabricacion, new { @readonly = "readonly", @class = "form-control" })
+                                    </td>
+                                    <td>@Html.LabelFor(model => model.LoteCliente, new { @class = "control-label" })</td>
+                                    <td>@Html.TextBoxFor(model => model.LoteCliente, new { @readonly = "readonly", @class = "form-control" })
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>@Html.LabelFor(model => model.FechaOcurrencia, new { @class = "control-label" })</td>
+                                    <td>@Html.TextBoxFor(model => model.FechaOcurrencia, new { @class = "form-control datepicker" })
+                                        @Html.ValidationMessageFor(model => model.FechaOcurrencia)
+                                    </td>
+                                    <td>@Html.LabelFor(model => model.FechaApertura, new { @class = "control-label" })</td>
+                                    <td>@Html.TextBoxFor(model => model.FechaApertura, new { @class = "form-control", @readonly = "readonly" })
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>@Html.LabelFor(model => model.TipoEventualidad_Id, new { @class = "control-label" })</td>
+                                    <td colspan="3">
+                                        @Html.DropDownListFor(model => model.TipoEventualidad_Id, new SelectList(ViewBag.TiposEventualidad, "Id", "Descripcion"), "Seleccione")
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>@Html.LabelFor(model => model.SubTipoEventualidad_Id, new { @class = "control-label" })</td>
+                                    <td colspan="3">
+                                        @Html.DropDownListFor(model => model.SubTipoEventualidad_Id, new SelectList(ViewBag.SubTiposEventualidad, "Id", "Descripcion"), "Seleccione")
+                                        @Html.ValidationMessageFor(model => model.SubTipoEventualidad_Id)
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="4">
+                                        @Html.LabelFor(model => model.Descripcion, new { @class = "control-label" })
+                                        @Html.TextAreaFor(model => model.Descripcion, new { @class = "form-control", @style = "resize: vertical;"})
+                                        @Html.ValidationMessageFor(model => model.Descripcion)
+                                    </td>
+                                </tr>
+                             @*   <tr>
+                                    <td colspan="4">
+                                        @Html.LabelFor(model => model.Observaciones, new { @class = "control-label" })
+                                        @Html.TextAreaFor(model => model.Observaciones, new { @class = "form-control", @style = "resize: vertical;"})
+                                        @Html.ValidationMessageFor(model => model.Observaciones)
+                                    </td>
+                                </tr>*@
+                               @* <tr>
+                                    <td colspan="4">
+                                        @Html.LabelFor(model => model.Causas, new { @class = "control-label" })
+                                        @Html.TextAreaFor(model => model.Causas, new { @class = "form-control", @style = "resize: vertical;"})
+                                        @Html.ValidationMessageFor(model => model.Causas)
+                                    </td>
+                                </tr>*@
+                                <tr>
+                                    <td colspan="4">
+                                        @Html.LabelFor(model => model.AccionesInmediatas, new { @class = "control-label" })
+                                        @Html.TextAreaFor(model => model.AccionesInmediatas, new { @class = "form-control", @style = "resize: vertical;"})
+                                        @Html.ValidationMessageFor(model => model.AccionesInmediatas)
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="4">
+                                        @Html.Label("Notificar a las siguientes personas:", new { @class = "control-label" })
+
+                                        <div class="input-group" style="width:100%; padding-bottom: 15px;">
+                                            @Html.HiddenFor(model => model.NotificarUsuarios_Id)
+                                            @Html.TextBoxFor(model => model.NotificarUsuarios, new { @readonly = "readonly", @class = "form-control" })
+                                            <span class="input-group-btn">
+                                                @Html.ActionLink("Mostrar Usuarios", "GetUsuarios", "Eventualidad", 
+                                                new { @id = "GetUsuarios", @style="width: 350px;", @class = "modal-link btn btn-success" })
+                                            </span>
+                                        </div><!-- /input-group -->
+
+                                        <div class="input-group" style="width:100%;">
+                                            @Html.HiddenFor(model => model.NotificarContactos_Id)
+                                            @Html.TextBoxFor(model => model.NotificarContactos, new { @readonly = "readonly", @class = "form-control" })
+                                            <span class="input-group-btn">
+                                                @Html.ActionLink("Mostrar Contactos", "GetContactos", "Eventualidad", 
+                                                new { @id = "GetContactos", @style="width: 350px;", @class = "modal-link btn btn-success" })
+                                            </span>
+                                        </div><!-- /input-group -->
+                                        @Html.ValidationMessageFor(model => model.NotificarUsuarios)
+                                        @Html.ValidationMessageFor(model => model.NotificarContactos)
+                                    </td>
+                                </tr>
+                            </table>
+
+                            <br />
+
+                            @{Html.RenderPartial("_ListArchivos", Model.ArchivosModulo);}
+    
+                            @Html.ActionLink("Adjuntar Archivo", "AddArchivoModulo", "Generic", new { @id = "AddArchivoModulo", @class = "modal-link btn btn-success pull-right col-lg-3" })
+
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+
+                            <div class="form-group relative">
+                                <a href="@Url.Action("Index", "Eventualidad")" class="btn btn-default col-lg-offset-7 col-lg-2">Cancelar</a>
+                                <button id="btnGuardar" type="submit" class="btn btn-primary col-lg-3">Guardar</button>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="clienteModal-container" class="modal fade" tabindex="-1" role="dialog" data-backdrop="static">
+        <div class="modal-content"></div>
+    </div>
+    
+    <div id="pedidoModal-container" class="modal fade" tabindex="-1" role="dialog" data-backdrop="static">
+        <div class="modal-content"></div>
+    </div>
+    
+    <div id="usuarioModal-container" class="modal fade" tabindex="-1" role="dialog" data-backdrop="static">
+        <div class="modal-content"></div>
+    </div>
+    
+    <div id="contactoModal-container" class="modal fade" tabindex="-1" role="dialog" data-backdrop="static">
+        <div class="modal-content"></div>
+    </div>
+    
+    <div id="modal-container" class="modal fade" tabindex="-1" role="dialog" data-backdrop="static">
+        <div class="modal-content"></div>
+    </div>
+    
+    @section scripts
+    {
+        <script type="text/javascript">
+
+            $(document).on('submit', 'form', function () {
+                $("#btnGuardar").attr('disabled', 'disabled');
+
+            });
+
+            $(document).ready(function () {
+                $(function () {
+                    var nombreCliente = $("input#Nombre_Cliente").val();
+                    if (nombreCliente != "") {
+                        $("a#GetPedidos").removeAttr("disabled");
+                    }
+                });
+
+                $("input#Nombre_Cliente").on("change", function () {
+                    $("a#GetPedidos").removeAttr("disabled");
+                });
+
+                $(".numericOnly").keypress(function (e) {
+                    if (String.fromCharCode(e.keyCode).match(/[^0-9]/g)) return false;
+                });
+
+                $("a#GetPedidos").on("click", function () {
+                    var idCliente = $("input#Cg_Clie").val();
+                    $(this).attr("href", "/Eventualidad/GetPedidos?CliID=" + idCliente + "");
+                });
+
+                $("a#GetContactos").on("click", function () {
+                    var idCliente = $("input#Cg_Clie").val();
+                    $(this).attr("href", "/Eventualidad/GetContactos?CliID=" + idCliente + "");
+                });
+
+                $("#TipoEventualidad_Id").on("change", function () {
+                    var TipoEventualidad_Id = $(this).val();
+
+                    var $el = $("#SubTipoEventualidad_Id");
+                    $el.empty(); // remove old options
+                    $el.append($("<option></option>").attr("value", '').text('Seleccione'));
+                    $.uniform.update("#SubTipoEventualidad_Id");
+
+                    if (TipoEventualidad_Id != "") {
+                        $.ajax({
+                            url: "@Url.Action("GetSubTiposEventualidad", "Eventualidad")",
+                            type: "POST",
+                            data: { TipoEventualidad_Id: TipoEventualidad_Id },
+                            success: function (json) {
+                                var $el = $("#SubTipoEventualidad_Id");
+                                $el.empty(); // remove old options
+                                $el.append($("<option></option>")
+                                        .attr("value", '').text('Seleccione'));
+
+                                $.each(json, function (i, subTipo) {
+                                    $($el).append('<option value="' + subTipo.Value + '">' +
+                                         subTipo.Text + '</option>');
+                                });
+                            }
+                        });
+                    }
+                });
+            });
+
+            $(function () {
+                $('body').on('click', '#GetClientes.modal-link', function (e) {
+                    e.preventDefault();
+                    //Optional: turn the chache off
+                    $.ajaxSetup({ cache: false });
+                    $(this).attr('data-target', '#clienteModal-container');
+                    $(this).attr('data-toggle', 'modal');
+                });
+
+                $('body').on('click', '#GetPedidos.modal-link', function (e) {
+                    e.preventDefault();
+                    //Optional: turn the chache off
+                    $.ajaxSetup({ cache: false });
+                    $(this).attr('data-target', '#pedidoModal-container');
+                    $(this).attr('data-toggle', 'modal');
+                });
+
+                $('body').on('click', '#GetUsuarios.modal-link', function (e) {
+                    e.preventDefault();
+                    //Optional: turn the chache off
+                    $.ajaxSetup({ cache: false });
+                    $(this).attr('data-target', '#usuarioModal-container');
+                    $(this).attr('data-toggle', 'modal');
+                });
+
+                $('body').on('click', '#GetContactos.modal-link', function (e) {
+                    e.preventDefault();
+                    //Optional: turn the chache off
+                    $.ajaxSetup({ cache: false });
+                    $(this).attr('data-target', '#contactoModal-container');
+                    $(this).attr('data-toggle', 'modal');
+                });
+
+                $('body').on('click', '#AddArchivoModulo.modal-link', function (e) {
+                    e.preventDefault();
+                    //Optional: turn the chache off
+                    $.ajaxSetup({ cache: false });
+                    $(this).attr('data-target', '#modal-container');
+                    $(this).attr('data-toggle', 'modal');
+                });
+
+                $('#pedidoModal-container').on('hidden.CRM.modal', function () {
+                    $(this).removeData('CRM.modal');
+                });
+
+                $('#clienteModal-container').on('hidden.CRM.modal', function () {
+                    $(this).removeData('CRM.modal');
+                });
+
+                $('#usuarioModal-container').on('hidden.CRM.modal', function () {
+                    $(this).removeData('CRM.modal');
+                });
+
+                $('#contactoModal-container').on('hidden.CRM.modal', function () {
+                    $(this).removeData('CRM.modal');
+                });
+
+                $('#modal-container').on('hidden.CRM.modal', function () {
+                    $(this).removeData('CRM.modal');
+                });
+
+                $('#CancelModal').on('click', function () {
+                    return false;
+                });
+            });
+
+        </script>
+    }
+}

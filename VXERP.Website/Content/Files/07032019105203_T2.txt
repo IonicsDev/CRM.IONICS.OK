@@ -1,0 +1,7 @@
+hacer las dos validaciones en la pantalla de .net de despacho.
+
+
+
+Notas:
+Al eliminar un pedido del CRM verificar que no aparezca mas en solutiion.
+

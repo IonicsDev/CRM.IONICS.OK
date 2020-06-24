@@ -1,0 +1,39 @@
+﻿@model CRM.Business.Entities.Usuario
+
+@{
+    Layout = "~/Views/Shared/_Generic.cshtml";
+}
+
+<div class="wrapper">
+    <div class="container-fluid">
+        <div id="heading" class="page-header">
+            <h1><i class="icon20 i-cogs"></i>Configuración</h1>
+        </div>
+
+        <div class="row">
+
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <div class="icon"><i class="icon20 i-table"></i></div>
+                        <h4>Edición Usuario</h4>
+                        <a href="#" class="minimize"></a>
+                    </div>
+
+                    <div class="panel-body">
+                        <ul class="pager">
+                            <li class="previous">
+                                <a href="@Url.Action("Index", "Home")">← Volver</a>
+                            </li>
+                        </ul>
+
+                        @{Html.RenderPartial("Form", Model);}
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>

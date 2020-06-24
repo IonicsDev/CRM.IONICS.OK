@@ -1,0 +1,16 @@
+# use glob syntax.
+syntax: glob
+
+Bin/
+bin/
+Obj/
+obj/
+TestResults/
+*.suo
+*.csproj.user
+*.vbproj.user
+.svn/
+*.vb.TBD
+_ReSharper.*/ 
+*.xap
+*.Xap

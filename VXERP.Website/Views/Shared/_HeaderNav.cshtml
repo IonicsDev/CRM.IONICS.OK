@@ -1,0 +1,143 @@
+﻿@using CRM.Website.App_Code;
+
+  <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <a class="navbar-brand" href="@Url.Action("Index","Home")"></a>
+
+             <ul class="nav navbar-nav pull-left" style="margin-left:0px">
+            
+                   <li class="divider-vertical"></li>
+                   <li role="presentation">
+                       <a> 
+                           <h4 class="small" style="color:whitesmoke;font-size:10px;margin-bottom:0px"> @Html.Label("lblHello", "Bienvenido " + User.Identity.Name, new {@style="margin-bottom:0px", @styke="margin-top:0px" })</h4>
+           
+                     @*   @MenuHelpers.DrawPerfilSelecto(Html)*@
+                           </a>
+                       </li>
+                   <li class="divider-vertical"></li>
+                 </ul>
+            <button type="button" class="navbar-toggle btn-danger" data-toggle="collapse" data-target="#navbar-to-collapse">
+                <span class="sr-only">Toggle right menu</span>
+                <i class="icon16 i-arrow-8"></i>
+            </button>          
+            <div class="collapse navbar-collapse" id="navbar-to-collapse">  
+             
+                <ul class="nav navbar-nav pull-right">
+                    <li class="divider-vertical"></li>
+                  
+                   <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="icon24 i-bell-2"></i>
+                            @if (ViewBag.Notificaciones != null && ViewBag.Eventualidades != null 
+                                && Enumerable.Count(ViewBag.Notificaciones) > 0 && Enumerable.Count(ViewBag.Eventualidades) > 0)
+                            {
+                                <span class="notification red">@(Enumerable.Count(ViewBag.Notificaciones) + Enumerable.Count(ViewBag.Eventualidades))</span>
+                            }
+                            else
+                            {
+                                if (ViewBag.Notificaciones != null && Enumerable.Count(ViewBag.Notificaciones) > 0)
+                                {
+                                    <span class="notification red">@Enumerable.Count(ViewBag.Notificaciones)</span>
+                                }
+                                
+                                if (ViewBag.Eventualidades != null && Enumerable.Count(ViewBag.Eventualidades) > 0)
+                                {
+                                    <span class="notification red">@Enumerable.Count(ViewBag.Eventualidades)</span>
+                                }
+                            }
+                        </a>
+
+                        <ul class="dropdown-menu messages" role="menu">
+                            <li class="head" role="presentation">
+                                <h4>Novedades</h4>
+                            </li>
+                            @if (ViewBag.Notificaciones != null)
+                            {
+                                foreach (CRM.Business.Entities.Novedad novedad in ViewBag.Notificaciones)
+                                {
+                                    <li role="presentation">
+                                        <a href="@Url.Action("View", "Novedades", new { id = novedad.Id})" class="clearfix">
+                                            <span class="icon20 i-bell-2" style="float: left; margin: 3px 0px 0px 10px;"></span>
+                                            <span class="msg">@novedad.Titulo.Substring(0, (novedad.Titulo.Length > 150 ? 150: novedad.Titulo.Length))</span>
+                                            @*<button class="btn close"><i class="icon12 i-close-2"></i></button>*@
+                                        </a>
+                                    </li>
+                                }
+                            }
+                            <li class="foot" role="presentation"><a href="@Url.Action("Index", "Novedades")">Ver todas las novedades</a></li>
+
+                            <li class="head" role="presentation">
+                                <h4>Eventualidades</h4>
+                            </li>
+                            @if (ViewBag.Eventualidades != null)
+                            {
+                                foreach (CRM.Business.Entities.Eventualidad eventualidad in ViewBag.Eventualidades)
+                                {
+                                    <li role="presentation">
+                                        <a href="@Url.Action("View", "Eventualidad", new { id = eventualidad.Id})" class="clearfix">
+                                            <span class="icon20 i-bell-2" style="float: left; margin: 3px 0px 0px 10px;"></span>
+                                            <span class="msg">@eventualidad.Descripcion.Substring(0, (eventualidad.Descripcion.Length > 150?   150: eventualidad.Descripcion.Length))</span>
+                                            @*<button class="btn close"><i class="icon12 i-close-2"></i></button>*@
+                                        </a>
+                                    </li>
+                                }
+                            }
+                            <li class="foot" role="presentation"><a href="@Url.Action("Index", "Eventualidad")">Ver todas las eventualidades</a></li>
+                        </ul>
+                    </li>
+                    
+                    <li class="divider-vertical"></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="icon24 i-envelop-2"></i>
+                            @if (ViewBag.MensajesNoLeidos != null && Enumerable.Count(ViewBag.MensajesNoLeidos) > 0)
+                            {
+                                <span class="notification red">@Enumerable.Count(ViewBag.MensajesNoLeidos)</span>
+                            }
+                        </a>
+                        <ul class="dropdown-menu messages" role="menu" style="min-width: 300px;">
+                            <li class="head" role="presentation">
+                                <h4>Bandeja de Entrada</h4>
+                                @if (ViewBag.MensajesNoLeidos != null && Enumerable.Count(ViewBag.MensajesNoLeidos) > 0)
+                                {
+                                    if (Enumerable.Count(ViewBag.MensajesNoLeidos) == 1){
+                                        <span class="count">@Enumerable.Count(ViewBag.MensajesNoLeidos) mensaje</span>
+                                    }
+                                    else{
+                                        <span class="count">@Enumerable.Count(ViewBag.MensajesNoLeidos) mensajes</span>  
+                                    }
+                                }
+                                @*<span class="new-msg"><a href="@Url.Action("Create", "ComunicacionInterna")" class="tipB" title="Escribir Mensaje"><i class="icon16 i-pencil-5"></i></a></span>*@
+                            </li>
+
+                            @if (ViewBag.MensajesNoLeidos != null)
+                            {
+                                foreach(CRM.Business.Entities.Mail mail in ViewBag.MensajesNoLeidos)
+                                {
+                                    <li role="presentation">
+                                        <a href="@Url.Action("View", "ComunicacionInterna", new { id = mail.Id, ac = true })" class="clearfix">
+                                            <span class="icon20  i-envelop-2" style="float: left; margin: 3px 0px 0px 10px;"></span>
+                                            <span class="msg">@mail.Asunto.Substring(0, ( mail.Asunto.Length > 150 ?  150 : mail.Asunto.Length))</span>
+                                            @*<button class="btn close"><i class="icon12 i-close-2"></i></button>*@
+                                        </a>
+                                    </li>
+                                }
+                            }
+                            <li class="foot" role="presentation"><a href="@Url.Action("Index", "ComunicacionInterna")">Ver todos los mensajes</a></li>
+                        </ul>
+                    </li>
+                    <li class="divider-vertical"></li>
+                    <li class="dropdown user">
+                         <a href="#" class="dropdown-toggle avatar" data-toggle="dropdown">
+                            <img src="@Url.Content("~/Images/avatars/no_avatar.jpg")" alt="sugge">
+                            <span class="more"><i class="icon16 i-arrow-down-2"></i></span>
+                        </a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li role="presentation"><a href="~/Usuario/Edit/@(((CRM.Website.Models.CustomPrincipal)User).UserID.ToString())" class=""><i class="icon16 i-lock-3"></i>Mi Perfil</a></li>
+                            <li role="presentation"><a href="@Url.Action("Logout","Usuario")" class=""><i class="icon16 i-exit"></i> Logout</a></li>
+                        </ul>
+                    </li>
+                    <li class="divider-vertical"></li>
+                  
+                </ul>
+            </div><!--/.nav-collapse -->
+        </nav>

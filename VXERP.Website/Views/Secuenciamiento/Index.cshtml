@@ -1,0 +1,287 @@
+﻿@model  CRM.Business.Views.vSecuenciamiento
+
+@{
+  
+    Layout = "~/Views/Shared/_Generic.cshtml";
+}
+<div class="wrapper">
+
+    <div class="container-fluid">
+        <div id="heading" class="page-header">
+            <h1><i class="icon20 i-cogs"></i>PRODUCTOS</h1>
+        </div>
+
+        <h2> Unidad 1</h2>
+
+        <div class="row">
+
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <div class="icon"><i class="icon20 i-table"></i></div>
+                        <h4>Secuenciamiento PROCESO DINAMICO</h4>
+                        <a href="#" class="minimize"></a>
+
+                    </div>
+                    <!-- End .panel-heading -->
+
+                    <div class="panel-body">
+
+                        @using (Html.BeginForm("ExportXLS", "Contacto", FormMethod.Post))
+                        {
+                            <link href="~/Css/custom.css" rel="stylesheet" />
+
+                            <table width=100% border=0 cellpadding=4 cellspacing=0 bordercolor='#CCCCCC'>
+                                <tr align='Left' class='Text' bgcolor='#FFFFCC'>
+                                    <td>Cliente</td>
+                                    <td>Seg. x Cara</td>
+                                    <td>Codigo</td>
+                                    <td>Cantidad</td>
+                                    <td>Bultos</td>
+                                    <td>OF</td>
+                                    <td>Pedido</td>
+                                    <td>Dosis Min.</td>
+                                    <td>Producto</td>
+                                    <td>Lotes</td>
+                                </tr>
+                                @foreach (System.Data.DataRow dr in Model.Get_Dinamico().Rows)
+                                {
+                                    <tr align='Left' class='Text'>
+                                        <td style='border-bottom-style: solid; border-bottom-width: 1'> @dr["DES_CLI"]</td>
+                                        <td style='border-bottom-style: solid; border-bottom-width: 1'> @dr["TIEMPOSECUEN"]</td>
+                                        <td style='border-bottom-style: solid; border-bottom-width: 1'> @dr["CG_ART1"]</td>
+                                        <td style='border-bottom-style: solid; border-bottom-width: 1'> @dr["CANT"]</td>
+                                        <td style='border-bottom-style: solid; border-bottom-width: 1'> @dr["CAMPOCOM1"]</td>
+                                        <td style='border-bottom-style: solid; border-bottom-width: 1'> @dr["CG_ORDF"]</td>
+                                        <td style='border-bottom-style: solid; border-bottom-width: 1'> @dr["PEDIDO"]</td>
+                                        <td Style='border-bottom-style: solid; border-bottom-width: 1'> @dr["DOSISMINIMA"]</td>
+                                        <td style='border-bottom-style: solid; border-bottom-width: 1'> @dr["DES_PROD"]</td>
+                                        <td style='border-bottom-style: solid; border-bottom-width: 1'>
+                                        @if (dr["Lotes"].ToString() == "") { Html.Label("&nbsp;"); }
+                                        else
+                                        { @dr["Lotes"].ToString() }
+                                        </td>
+                                    </tr>
+                                    if (dr["OBSERSECUEN"].ToString() != "")
+                                    {
+                                        <tr align='Left' class='Text' bgcolor='#CCCCCC'>
+                                            <td colspan=9 style='border-bottom-style: solid; border-bottom-width: 1'><b>@dr["OBSERSECUEN"]</b></td>
+                                        </tr>
+                                    }
+                                }
+                            </table>
+
+                            <br>
+
+                        }
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="row">
+             <div class="col-lg-12">
+                  <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <div class="icon"><i class="icon20 i-table"></i></div>
+                        <h4>Secuenciamiento PROCESO ESTATICO</h4>
+                        <a href="#" class="minimize"></a>
+
+                    </div>
+                    <!-- End .panel-heading -->
+
+                    <div class="panel-body">
+
+                        @using (Html.BeginForm("ExportXLS", "Contacto", FormMethod.Post))
+                        {
+                            <link href="~/Css/custom.css" rel="stylesheet" />
+                            
+                            
+
+                                               
+                                                <table width=100% border=0 cellpadding=4 cellspacing=0 bordercolor='#CCCCCC'>
+                                                    <tr Align='Left' Class='Text' bgcolor='#FFFFCC'> 
+		                                                <td>Cliente</td>
+		                                                <td>Seg. x Cara</td>
+		                                                <td>Codigo</td>
+		                                                <td>Cantidad</td>
+		                                                <td>Bultos</td>
+		                                                <td>OF</td>
+		                                                <td>Pedido</td>
+                                                        <td>Dosis Min.</td>
+		                                                <td>Producto</td>
+		                                                <td>Lotes</td>
+	                                                </tr>
+                                                    @foreach(System.Data.DataRow dr in Model.Get_Estatico().Rows){
+                                                            <tr Align='Left' Class='Text'>
+			                                                <td Style='border-bottom-style: solid; border-bottom-width: 1'> @dr["DES_CLI"] </td>
+			                                                <td Style='border-bottom-style: solid; border-bottom-width: 1'> @dr["TIEMPOSECUEN"]</td>
+			                                                <td Style='border-bottom-style: solid; border-bottom-width: 1'> @dr["CG_ART1" ]</td>
+			                                                <td Style='border-bottom-style: solid; border-bottom-width: 1'> @dr["CANT" ]</td>
+			                                                <td Style='border-bottom-style: solid; border-bottom-width: 1'> @dr["CAMPOCOM1"]</td>
+			                                                <td Style='border-bottom-style: solid; border-bottom-width: 1'> @dr["CG_ORDF"]</td>
+			                                                <td Style='border-bottom-style: solid; border-bottom-width: 1'> @dr["PEDIDO" ]</td>
+                                                            <td Style='border-bottom-style: solid; border-bottom-width: 1'> @dr["DOSISMINIMA"]</td>
+			                                                <td Style='border-bottom-style: solid; border-bottom-width: 1'> @dr["DES_PROD"]</td>
+			                                                <td Style='border-bottom-style: solid; border-bottom-width: 1'> @if (dr["Lotes"].ToString() == "") { Html.Label("&nbsp;"); } else { @dr["Lotes"].ToString() }</td>
+		                                                </tr>
+                                                        if (dr["OBSERSECUEN"].ToString() != "") {   <tr Align='Left' Class='Text' bgcolor='#CCCCCC'>
+			                                                <td colspan=9 Style='border-bottom-style: solid; border-bottom-width: 1'><B>@dr["OBSERSECUEN"]</B></td>
+		                                                </tr> }
+                                                    }
+                                                </table>
+
+                           
+                        }
+
+
+                        </div>
+                    </div>
+             </div>
+        </div>
+        
+
+        <h2> Unidad 2</h2>
+
+        <div class="row">
+
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <div class="icon"><i class="icon20 i-table"></i></div>
+                        <h4>Secuenciamiento PROCESO DINAMICO</h4>
+                        <a href="#" class="minimize"></a>
+
+                    </div>
+                    <!-- End .panel-heading -->
+
+                    <div class="panel-body">
+
+                        @using (Html.BeginForm("ExportXLS", "Contacto", FormMethod.Post))
+                        {
+                            <link href="~/Css/custom.css" rel="stylesheet" />
+
+                            <table width=100% border=0 cellpadding=4 cellspacing=0 bordercolor='#CCCCCC'>
+                                <tr align='Left' class='Text' bgcolor='#FFFFCC'>
+                                    <td>Cliente</td>
+                                    <td>Seg. x Cara</td>
+                                    <td>Codigo</td>
+                                    <td>Cantidad</td>
+                                    <td>Bultos</td>
+                                    <td>OF</td>
+                                    <td>Pedido</td>
+                                    <td>Dosis Min.</td>
+                                    <td>Producto</td>
+                                    <td>Lotes</td>
+                                </tr>
+                                @foreach (System.Data.DataRow dr in Model.Get_DinamicoSegundaPlanta().Rows)
+                                {
+                                    <tr align='Left' class='Text'>
+                                        <td style='border-bottom-style: solid; border-bottom-width: 1'> @dr["DES_CLI"]</td>
+                                        <td style='border-bottom-style: solid; border-bottom-width: 1'> @dr["TIEMPOSECUEN"]</td>
+                                        <td style='border-bottom-style: solid; border-bottom-width: 1'> @dr["CG_ART1"]</td>
+                                        <td style='border-bottom-style: solid; border-bottom-width: 1'> @dr["CANT"]</td>
+                                        <td style='border-bottom-style: solid; border-bottom-width: 1'> @dr["CAMPOCOM1"]</td>
+                                        <td style='border-bottom-style: solid; border-bottom-width: 1'> @dr["CG_ORDF"]</td>
+                                        <td style='border-bottom-style: solid; border-bottom-width: 1'> @dr["PEDIDO"]</td>
+                                        <td Style='border-bottom-style: solid; border-bottom-width: 1'> @dr["DOSISMINIMA"]</td>
+                                        <td style='border-bottom-style: solid; border-bottom-width: 1'> @dr["DES_PROD"]</td>
+                                        <td style='border-bottom-style: solid; border-bottom-width: 1'> @if (dr["Lotes"].ToString() == "") { Html.Label("&nbsp;"); }
+                                        else
+                                        { @dr["Lotes"].ToString() }</td>
+                                    </tr>
+                                    if (dr["OBSERSECUEN"].ToString() != "")
+                                    {
+                                    <tr align='Left' class='Text' bgcolor='#CCCCCC'>
+                                        <td colspan=9 style='border-bottom-style: solid; border-bottom-width: 1'><b>@dr["OBSERSECUEN"]</b></td>
+                                    </tr>
+                                    }
+                                }
+                            </table>
+
+                            <br>
+                            
+                        }
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <div class="icon"><i class="icon20 i-table"></i></div>
+                        <h4>Secuenciamiento PROCESO ESTATICO</h4>
+                        <a href="#" class="minimize"></a>
+
+                    </div>
+                    <!-- End .panel-heading -->
+
+                    <div class="panel-body">
+
+                        @using (Html.BeginForm("ExportXLS", "Contacto", FormMethod.Post))
+                        {
+                            <link href="~/Css/custom.css" rel="stylesheet" />
+
+                            <table style="width:100%" border=0 cellpadding=4 cellspacing=0 bordercolor='#CCCCCC'>
+                                <tr align='Left' class='Text' bgcolor='#FFFFCC'>
+                                    <td>Cliente</td>
+                                    <td>Seg. x Cara</td>
+                                    <td>Codigo</td>
+                                    <td>Cantidad</td>
+                                    <td>Bultos</td>
+                                    <td>OF</td>
+                                    <td>Pedido</td>
+                                    <td>Dosis Min.</td>
+                                    <td>Producto</td>
+                                    <td>Lotes</td>
+                                </tr>
+                                @foreach (System.Data.DataRow dr in Model.Get_EstaticoSegundaPlanta().Rows)
+                                {
+                                    <tr align='Left' class='Text'>
+                                        <td style='border-bottom-style: solid; border-bottom-width: 1'> @dr["DES_CLI"] </td>
+                                        <td style='border-bottom-style: solid; border-bottom-width: 1'> @dr["TIEMPOSECUEN"]</td>
+                                        <td style='border-bottom-style: solid; border-bottom-width: 1'> @dr["CG_ART1"]</td>
+                                        <td style='border-bottom-style: solid; border-bottom-width: 1'> @dr["CANT"]</td>
+                                        <td style='border-bottom-style: solid; border-bottom-width: 1'> @dr["CAMPOCOM1"]</td>
+                                        <td style='border-bottom-style: solid; border-bottom-width: 1'> @dr["CG_ORDF"]</td>
+                                        <td style='border-bottom-style: solid; border-bottom-width: 1'> @dr["PEDIDO"]</td>
+                                        <td Style='border-bottom-style: solid; border-bottom-width: 1'> @dr["DOSISMINIMA"]</td>
+                                        <td style='border-bottom-style: solid; border-bottom-width: 1'> @dr["DES_PROD"]</td>
+                                        <td style='border-bottom-style: solid; border-bottom-width: 1'> @if (dr["Lotes"].ToString() == "") { Html.Label("&nbsp;"); }
+                                        else
+                                        { @dr["Lotes"].ToString() }</td>
+                                    </tr>
+                                    if (dr["OBSERSECUEN"].ToString() != "")
+                                    {
+                                    <tr align='Left' class='Text' bgcolor='#CCCCCC'>
+                                        <td colspan=9 style='border-bottom-style: solid; border-bottom-width: 1'><b>@dr["OBSERSECUEN"]</b></td>
+                                    </tr> }
+                                }
+                            </table>
+
+                        }
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
+</div>
+<script type="text/javascript">
+    $(document).ajaxStart(function () {
+        $(document.body).css({ 'cursor': 'wait' });
+    }).ajaxStop(function () {
+        $(document.body).css({ 'cursor': 'default' });
+    });
+</script>

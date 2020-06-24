@@ -1,0 +1,40 @@
+﻿
+@using System.Web.Mvc
+
+
+
+
+@helper NotAllowedBuiltInAppShortcut(string iconKey, string caption, string action, string controller, string area)
+{
+        
+    <div class="pull-left" style="width: 150px; height: 150px; text-align: center; font-size: 12pt; line-height: 10pt">
+        <a href="javascript:alert('Su usuario no tiene permisos para acceder a esta aplicación.')" style="text-decoration: none; color: #777777">
+            <img src="/content/appicons/@(iconKey).png" style="margin-bottom: 3px; width: 100px;" /><br />
+            <span style="">@caption</span>
+        </a>
+    </div>
+    
+}
+
+@helper BuiltInAppShortcut(string iconKey, string caption, string action, string controller, string area)
+{
+    
+    @BuiltInAppShortcut(iconKey, caption, action, controller, new { area = area });
+    
+}
+
+@helper BuiltInAppShortcut(string iconKey, string caption, string action, string controller, object actionParams)
+{
+       
+    var url = new UrlHelper(Context.Request.RequestContext);
+    
+    <div class="pull-left" style="width: 150px; height: 150px; text-align: center; font-size: 12pt; line-height: 10pt">
+        <a href="@url.Action(action, controller, actionParams)" style="text-decoration: none; color: #777777">
+            <img src="/content/appicons/@(iconKey).png" style="margin-bottom: 3px; width: 100px;" /><br />
+            <span style="">@caption</span>
+        </a>
+    </div>
+       
+}
+
+

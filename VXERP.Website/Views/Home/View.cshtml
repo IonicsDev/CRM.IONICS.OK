@@ -1,0 +1,120 @@
+﻿@model CRM.Business.Entities.Usuario
+
+@{
+    Layout = "~/Views/Shared/_Generic.cshtml";
+}
+
+<div class="wrapper">
+
+    <div class="container-fluid">
+        <div id="heading" class="page-header">
+            <h1><i class="icon20 i-cogs"></i>Configuración</h1>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <div class="icon"><i class="icon20 i-table"></i></div>
+                        <h4>Detalles Usuario</h4>
+                        <a href="#" class="minimize"></a>
+
+                    </div>
+                    <!-- End .panel-heading -->
+                    <div class="panel-body">
+                        <ul class="pager">
+                            <li class="previous">
+                                <a href="@Url.Action("Index", "Home")">← Volver</a>
+                            </li>
+                        </ul>
+
+
+                        @Html.HiddenFor(model => model.Id)
+                        @Html.HiddenFor(model => model.Estado)
+                        @Html.HiddenFor(model => model.FechaCreacion)
+                        @Html.HiddenFor(model => model.FechaActualizacion)
+                        @Html.HiddenFor(model => model.DescripcionEstado)
+                        @Html.HiddenFor(model => model.idUsuario)
+
+                        <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered table-hover">
+                            <tr>
+                                <td>@Html.LabelFor(model => model.NombreApellido, new { @class = "control-label" })</td>
+                                <td>@Html.TextBoxFor(model => model.NombreApellido, new { @class = "form-control", @readonly = "readonly" })
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>@Html.LabelFor(model => model.UserName, new { @class = "control-label" })</td>
+                                <td>@Html.TextBoxFor(model => model.UserName, new { @class = "form-control", @readonly = "readonly" })
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>@Html.LabelFor(model => model.Password, new { @class = "control-label" })</td>
+                                <td>@Html.EditorFor(model => model.Password, new { @class = "form-control", @readonly = "readonly" })
+                                </td>
+                            </tr>
+                        </table>
+
+                        <br />
+
+                        <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th colspan="4">Archivos</th>
+                                </tr>
+                                <tr>
+                                    <th>Descripción</th>
+                                    <th colspan="2">Descripción Corta</th>
+                                </tr>
+                            </thead>
+                            <tbody id="archivos">
+
+                                @if (Model.ArchivosModulo != null)
+                                {
+                                    for (int i = 0; i < Model.ArchivosModulo.Length; i++)
+                                    {
+                                    <tr>
+                                        <td>
+                                            @if (Model.ArchivosModulo[i].Id != null && Model.ArchivosModulo[i].Id != 0)
+                                            {
+                                                <input class="form-control" type="hidden" name="ArchivosModulo[@i].Entity_Id" value="@Model.ArchivosModulo[i].Entity_Id">
+                                                <input class="form-control" type="hidden" name="ArchivosModulo[@i].TipoArchivoModulo_Id" value="@Model.ArchivosModulo[i].TipoArchivoModulo_Id">
+                                                <input class="form-control" type="hidden" name="ArchivosModulo[@i].Id" value="@Model.ArchivosModulo[i].Id">
+                                                <input class="form-control" type="hidden" name="ArchivosModulo[@i].idUsuario" value="@Model.ArchivosModulo[i].idUsuario">
+                                                <input class="form-control" type="hidden" name="ArchivosModulo[@i].Estado" value="@Model.ArchivosModulo[i].Estado.ToString()">
+                                                <input class="form-control" type="hidden" name="ArchivosModulo[@i].FechaCreacion" value="@Model.ArchivosModulo[i].FechaCreacion">
+                                                <input class="form-control" type="hidden" name="ArchivosModulo[@i].FechaActualizacion" value="@Model.ArchivosModulo[i].FechaActualizacion">
+                                                <input class="form-control" type="hidden" name="ArchivosModulo[@i].DescripcionEstado" value="@Model.ArchivosModulo[i].DescripcionEstado">
+                                                }
+
+                                            <input class="form-control" type="text" name="ArchivosModulo[@i].Descripcion" disabled="disabled" value="@Model.ArchivosModulo[i].Descripcion">
+                                            <input class="form-control" type="hidden" name="ArchivosModulo[@i].Descripcion" value="@Model.ArchivosModulo[i].Descripcion">
+                                        </td>
+                                        <td class="tdDeleted">
+                                            <input class="form-control" type="text" name="ArchivosModulo[@i].DescripcionCorta" disabled="disabled" value="@Model.ArchivosModulo[i].DescripcionCorta">
+                                            <input class="form-control" type="hidden" name="ArchivosModulo[@i].DescripcionCorta" value="@Model.ArchivosModulo[i].DescripcionCorta">
+
+                                            <input class="form-control" type="hidden" name="ArchivosModulo[@i].NombreTipoArchivoModulo" value="@Model.ArchivosModulo[i].TipoArchivoModulo.Tipo">
+                                            <input class="form-control" type="hidden" name="ArchivosModulo[@i].Path" value="@Model.ArchivosModulo[i].Path">
+
+                                            <input class="form-control" type="hidden" name="ArchivosModulo[@i].TipoArchivoModulo.Id" value="@Model.ArchivosModulo[i].TipoArchivoModulo.Id">
+                                            <input class="form-control" type="hidden" name="ArchivosModulo[@i].TipoArchivoModulo.Tipo" value="@Model.ArchivosModulo[i].TipoArchivoModulo.Tipo">
+                                            <input class="form-control" type="hidden" name="ArchivosModulo[@i].TipoArchivoModulo.idUsuario" value="@Model.ArchivosModulo[i].TipoArchivoModulo.idUsuario">
+                                            <input class="form-control" type="hidden" name="ArchivosModulo[@i].TipoArchivoModulo.DescripcionEstado" value="@Model.ArchivosModulo[i].TipoArchivoModulo.DescripcionEstado">
+                                            <input class="form-control" type="hidden" name="ArchivosModulo[@i].TipoArchivoModulo.FechaActualizacion" value="@Model.ArchivosModulo[i].TipoArchivoModulo.FechaActualizacion">
+                                            <input class="form-control" type="hidden" name="ArchivosModulo[@i].TipoArchivoModulo.FechaCreacion" value="@Model.ArchivosModulo[i].TipoArchivoModulo.FechaCreacion">
+                                            <input class="form-control Deleted" type="hidden" name="ArchivosModulo[@i].Deleted" value="false">
+                                        </td>
+                                    </tr>
+                                    }
+                                }
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>

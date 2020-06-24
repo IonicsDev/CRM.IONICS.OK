@@ -1,0 +1,18 @@
+﻿@functions
+{
+
+    public static string NodeLandingUrl(string type, string id)
+    {
+        switch (type)
+        {
+            case "person":                
+            case "site":
+                return String.Format("/profiles/{0}", id);
+            case "app":
+                return String.Format("/apps/{0}", id);
+            default:
+                throw new InvalidDataException();
+        }
+    }
+   
+}

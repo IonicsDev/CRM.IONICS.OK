@@ -1,0 +1,171 @@
+﻿@model CRM.Business.Entities.PedidoDetalle[]
+
+<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th width="38%">Producto</th>
+            <th width="6%">Dosis</th>
+            <th width="8%">Cantidad</th>
+            <th width="8%">Unidad de Facturación</th>
+            <th>Lotes</th>
+            <th>OC Cliente</th>
+            @if (((CRM.Website.Models.CustomPrincipal)User).IsInRole("EDIT", ViewBag.NameController))
+                {
+                    if (ViewContext.RouteData.Values["action"].ToString().ToUpper() != "VIEW")
+                    {
+                    <th></th>
+                    }
+                }
+        </tr>
+    </thead>
+    <tbody id="productos" style="text-align:center">
+
+        @if (Model != null)
+        {
+            for (int i = 0; i < Model.Length; i++)
+            {
+            <tr >
+                <td style='vertical-align: middle;'>
+                    @if (Model[i].Id != null && Model[i].Id != 0)
+                    {
+                        <input class="form-control" type="hidden" name="[@i].Id" value="@Model[i].Id">
+                        }
+                    <input class="form-control" type="hidden" name="[@i].PedidoID" value="@Model[i].PedidoID">
+                    <input class="form-control Cg_Prod" type="hidden" name="[@i].Cg_Prod" value="@Model[i].Cg_Prod">
+                    @Html.TextBox("[" + i + "].NombreProducto", Model[i].NombreProducto, new { @class = "form-control NombreProducto", @readonly = "readonly" })
+                </td>
+
+                <td style='vertical-align: middle;'>
+                    @Html.TextBox("[" + i + "].Dosis", Model[i].Dosis, new { @class = "form-control Dosis", @readonly = "readonly" })
+                </td>
+                <td style='vertical-align: middle;'>
+                    @Html.TextBox("[" + i + "].Cantidad", Model[i].Cantidad, new { @class = "form-control Cantidad", @readonly = "readonly" })
+                </td>
+                <td style='vertical-align: middle;'>
+                    @Html.TextBox("[" + i + "].Unid_Fac", Model[i].Unid_Fac, new { @class = "form-control UnidadFac", @readonly = "readonly" })
+                </td>
+                <td style='vertical-align: middle;'>
+                    @Html.TextBox("[" + i + "].Lotes", Model[i].Lotes, new { @class = "form-control Lotes", @readonly = "readonly" })
+                </td>
+                <td style='vertical-align: middle;'>
+                    @Html.TextBox("[" + i + "].Orco", Model[i].Orco, new { @class = "form-control Orco", @readonly = "readonly" })
+                </td>
+                @if (((CRM.Website.Models.CustomPrincipal)User).IsInRole("EDIT", ViewBag.NameController))
+                {
+                    if (ViewContext.RouteData.Values["action"].ToString().ToUpper() != "VIEW")
+                    {
+                        if(Session["ProductosEditablePedido"] == null)
+                        {
+                        <td class='tdDeleted' style='text-align: center; vertical-align: middle; width: 10%;'>
+                            <input class="form-control Deleted" type="hidden" name="[@i].Deleted" value="false">
+                            <!-- Modal -->
+                            <div class="modal fade" id="myModal2" role="dialog">
+                                <div class="modal-dialog">
+                                    <!-- Modal content-->
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            <h4 class="modal-title">Edicion de Pedido @Model.First().PedidoID</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <a style="text-align: center; font-weight: bold; margin: 0; font-family: 'Open Sans', sans-serif;"> ¿Desea eliminar el Producto?</a>
+                                    
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-danger btn-success" data-dismiss="modal" id="modal-btn-si">Aceptar</button>
+                                            <button type="button" class="btn btn-primary btn-warning" data-dismiss="modal" id="modal-btn-no">Cancelar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <a href="#" class="ModifyProducto"><i class="i-pencil-5" title="Modificar"></i></a>
+                            <span>|  </span>
+                            <a href="#" class="DeleteProducto"><i class="i-remove-7" title="Eliminar"></i></a>
+
+                        </td>
+                        }
+                        else
+                        {
+                            <td class='tdDeleted' style='text-align: center; vertical-align: middle; width: 10%;'>
+                                <input class="form-control Deleted" type="hidden" name="[@i].Deleted" value="false">
+
+                                <a href="#" class="ModifyProducto"><i class="i-pencil-5" title="Modificar"></i></a>
+
+                            </td>
+                        }
+                    }
+                }
+            </tr>
+            }
+        }
+    </tbody>
+</table>
+
+<script type="text/javascript">
+    $("body").on('click', '#productos a.DeleteProducto', function () {
+        //var modalConfirm = function (callback) {
+        //    $("#myModal2").modal('show');
+
+        //    $("#modal-btn-si").on("click", function () {
+        //        callback(true);
+        //        $("#myModal2").modal('hide');
+        //    });
+
+        //    $("#modal-btn-no").on("click", function () {
+        //        callback(false);
+        //        $("#myModal2").modal('hide');
+        //});
+        if (confirm('¿Desea eliminar el Producto?')) {
+            var parent = $(this).parent().parent().css("display", "none");
+
+            //Cambiar el atributo deleted a true
+            var row = $(this).parent().parent();
+
+            row.children(".tdDeleted").children(".Deleted").val(true);
+        }
+        return false;
+    });
+
+        //modalConfirm(function (confirm) {
+        //    debugger
+        //    if (confirm) {
+        //        //Acciones si el usuario confirma
+        //        var parent = $(this).parent().parent().css("display", "none");
+
+        //        //Cambiar el atributo deleted a true
+        //        var row = $(this).parent().parent();
+
+        //        row.children(".tdDeleted").children(".Deleted").val(true);
+        //    }
+        //});
+
+        //return false;
+    //});
+
+    
+
+    
+
+    $("body").on('click', '#productos a.ModifyProducto', function () {
+        
+        var row = $(this).parent().parent();
+        var idProducto = row.children("td").children(".Cg_Prod").val();
+        var nombreProducto = row.children("td").children(".NombreProducto").val();
+        var dosis = row.children("td").children(".Dosis").val();
+        var cantidad = row.children("td").children(".Cantidad").val();
+        var unidadFac = row.children("td").children(".UnidadFac").val();
+        var lotes = row.children("td").children(".Lotes").val();
+        var orco = row.children("td").children(".Orco").val();
+        
+       
+        $("input#Item2_Cg_Prod").val(idProducto);
+        $("input#Item2_NombreProducto").val(nombreProducto);
+        $("input#Item2_Dosis").val(dosis);
+        $("input#Item2_Cantidad").val(cantidad);
+        $("input#Item2_Unid_Fac").val(unidadFac);
+        $("input#Item2_Lotes").val(lotes);
+        $("input#Item2_Orco").val(orco);
+        
+    });
+</script>

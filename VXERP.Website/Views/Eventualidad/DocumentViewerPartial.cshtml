@@ -1,0 +1,102 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Generic.cshtml";
+}
+
+
+<div class="wrapper">
+    <div class="container-fluid">
+        <div id="heading" class="page-header">
+            <h1><i class="icon20 i-cogs"></i>Eventualidad</h1>
+        </div>
+
+        <div class="row">
+
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <div class="icon"><i class="icon20 i-table"></i></div>
+                        <h4>Reporte Eventualidad</h4>
+                        <a href="#" class="minimize"></a>
+
+
+                    </div>
+                    <!-- End .panel-heading -->
+
+                    <div class="panel-body">
+                        <ul class="pager">
+                            <li class="previous">
+                                <a href="@Url.Action("Index", "Eventualidad")">← Volver</a>
+                            </li>
+                        </ul>
+
+                        @*@Html.DevExpress().WebDocumentViewer(settings =>
+                        {
+                            settings.Name = "WebDocumentViewer";
+
+                        }).Bind((XtraReportEventualidad)ViewData["ReporteEventualidad"]).GetHtml()*@
+                        
+                   @*@Html.DevExpress().DocumentViewer(settings =>
+                   {
+                       settings.Name = "DocumentViewer";
+                       settings.Report = (XtraReportEventualidad)ViewData["ReporteEventualidad"];
+                       settings.SettingsReportViewer.EnableRequestParameters = false;
+                       settings.SettingsSplitter.SidePaneVisible = true;
+                       settings.SettingsDocumentMap.ShowTreeLines = true;
+                       settings.SettingsSplitter.DocumentMapCollapsed = false;
+                       settings.SettingsSplitter.SidePanePosition =
+                       DevExpress.XtraReports.Web.DocumentViewer.DocumentViewerSidePanePosition.Left;
+                       settings.SettingsSplitter.ParametersPanelCollapsed = true;
+
+                       settings.StylesSplitter.SidePaneWidth = new System.Web.UI.WebControls.Unit(150, System.Web.UI.WebControls.UnitType.Pixel);
+                       settings.CallbackRouteValues = new { Controller = "Eventualidad", Action = "DocumentViewerPartial" };
+                       settings.ExportRouteValues = new { Controller = "Eventualidad", Action = "ExportDocumentViewer" };
+
+                       //settings.SetRemoteSourceSettings(s =>
+                       //{
+                       //    //s.ServerUri = @"http://localhost:9521//ReportService.svc";
+                       ////    s.ReportTypeName = "CRM.Website.XtraReportEventualidad, CRM.Website";
+                       //});
+                   }).GetHtml()*@
+
+
+                        @*@Html.Action("DocumentViewerPartial")*@
+                        @Html.Partial("_DocumentViewerPartial")
+
+
+
+                        <script type="text/javascript">
+                                var grid = eval("grid_" + "@ViewBag.NameController");
+                                $(document).ready(function () {
+                                    $("#btShowCustomizationWindow").click(
+                                        function () {
+                                            UpdateCustomizationWindowVisibility();
+                                        }
+                                    );
+                                });
+                                function grid_CustomizationWindowCloseUp(s, e) {
+                                    UpdateButtonText();
+                                }
+                                function UpdateCustomizationWindowVisibility() {
+                                    eval("grid_" + "@ViewBag.NameController").HideCustomizationWindow();
+                                  if (grid.IsCustomizationWindowVisible())
+                                      grid.HideCustomizationWindow();
+                                  else
+                                      grid.ShowCustomizationWindow();
+                                  UpdateButtonText();
+                              }
+                              function UpdateButtonText() {
+                                  var text = grid.IsCustomizationWindowVisible() ? "Ocultar" : "Mostrar";
+                                  text += " Configuración de columnas";
+                                  $("#btShowCustomizationWindow").val(text);
+                              }
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

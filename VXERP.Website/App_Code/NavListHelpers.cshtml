@@ -1,0 +1,53 @@
+﻿
+@helper NavListItem(string key, string title, string badgeType, string badgeValue, Func<string, string> urlKeyAction, string activeKey = null)
+{
+    
+    if (key == null)
+    {        
+        @NavListItem(key, title, badgeType, badgeValue, urlKeyAction, new string[0])
+    }
+    else
+    {
+        @NavListItem(key, title, badgeType, badgeValue, urlKeyAction, new string[] { activeKey })
+    }
+    
+}
+
+@helper NavListItem(string key, string title, string badgeType, string badgeValue, Func<string, string> urlKeyAction, IEnumerable<string> activeKeys)
+{
+    
+    if (activeKeys == null)
+    {
+        activeKeys = new string[0];
+    }
+
+    if (activeKeys.Contains(key))
+    {
+        @NavListItem(key, title, badgeType, badgeValue, urlKeyAction, true)   
+    }
+    else if (key == "*" && !activeKeys.Any())
+    {
+        @NavListItem(key, title, badgeType, badgeValue, urlKeyAction, true)
+    }
+    else if (String.IsNullOrWhiteSpace(key) && !activeKeys.Any())
+    {
+        @NavListItem(key, title, badgeType, badgeValue, urlKeyAction, true)
+    }
+    else
+    {
+        @NavListItem(key, title, badgeType, badgeValue, urlKeyAction, false)
+    }
+    
+}
+
+@helper NavListItem(string key, string title, string badgeType, string badgeValue, Func<string, string> urlKeyAction, bool isActive)
+{
+    if (isActive)
+    {
+        <li class="active"><a href="@urlKeyAction(key)"><span class="badge badge-@badgeType">@badgeValue</span>&nbsp;@title</a></li>
+    }
+    else
+    {
+        <li><a href="@urlKeyAction(key)"><span class="badge badge-@badgeType">@badgeValue</span>&nbsp;@title</a></li>
+    }
+}

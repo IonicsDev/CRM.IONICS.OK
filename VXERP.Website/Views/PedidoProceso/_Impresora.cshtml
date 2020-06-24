@@ -1,0 +1,55 @@
+﻿@model  CRM.Business.Views.vGetListadoPedidos
+
+<script type="text/javascript">
+    var selectedIDs;
+    function OnBeginCallback(s, e) {
+        e.customArgs["selectedIDs"] = selectedIDs;
+    }
+
+    $("button#btnImpCerrar").on("click", function () {
+        $("#imprimirModal-container").html("<div class='modal-content'></div>");
+        $("#imprimirModal-container").modal('hide');
+    });
+
+    $("button#btnImpClose").on("click", function () {
+        $("#imprimirModal-container").html("<div class='modal-content'></div>");
+        $("#imprimirModal-container").modal('hide');
+    });
+</script>
+
+<div class="modal-dialog" role="document" style="display:inline">
+
+    @using (Html.BeginForm("Imprimir", "PedidoProceso", new { @Id = "formImprimir" }, FormMethod.Post))
+    {
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" id="btnImpClose" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Imprimir Pedido</h4>
+            </div>
+            <div class="modal-body">
+
+                <link href="~/Css/custom.css" rel="stylesheet" />
+
+                @Html.Partial("_GridViewImpresora", Model)
+
+                @if (Model == null || !(Model.Datos.Rows.Count > 0))
+                {
+                    <p style="text-align: center; font-weight: bold; margin: 0;">No hay datos disponibles</p>
+                }
+            </div>
+            <div class="modal-footer">
+                @if (Model == null || !(Model.Datos.Rows.Count > 0))
+                {
+                    <button class="btn btn-primary pull-right col-lg-5" id="btnImpCerrar" type="button">Cerrar</button>
+                }
+                else
+                {
+
+                    <button type="submit" class="btn btn-primary col-lg-2" style="float:right;" id="btnImpAceptar" name="btnImpAceptar" onclick="$('#imprimirModal-container').modal('hide');">Imprimir</button>
+                    <button class="btn col-lg-2" style="float:right;" id="btnImpCerrar" type="button">Cerrar</button>
+                }
+            </div>
+        </div>
+    }
+
+</div>

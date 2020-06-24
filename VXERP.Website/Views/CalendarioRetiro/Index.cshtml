@@ -1,0 +1,238 @@
+﻿
+@{
+
+    Layout = "~/Views/Shared/_Generic.cshtml";
+}
+<div class="wrapper">
+
+    <div class="container-fluid">
+        <div id="heading" class="page-header">
+            <h1><i class="icon20 i-calendar-4"></i>Calendario de Retiros</h1>
+        </div>
+
+        <div class="row">
+
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <div class="icon"><i class="icon20 i-calendar-3"></i></div>
+                        <h4>Calendario de Retiros</h4>
+                        <a href="#" class="minimize"></a>
+
+                    </div>
+                    <!-- End .panel-heading -->
+
+                    <div class="panel-body">
+
+                        <div class="row" style="margin-bottom: 0px;">
+                            @if (((CRM.Website.Models.CustomPrincipal)User).IsInRole("EDIT", ViewBag.NameController))
+                            {
+                                <div class="col-lg-2">@Html.ActionLink("Crear Evento +", "Create", null, new { @class = "btn btn-info" })</div>
+                            }
+                            <div class="col-lg-offset-2 col-lg-2">@Html.DropDownList("ddlMonth", new SelectList(ViewBag.Meses, "value", "key", DateTime.Now.Month))</div>
+                            <div class="col-lg-2">@Html.DropDownList("ddlYear", new SelectList(ViewBag.Anios, "value", "key", DateTime.Now.Year))</div>
+                        </div>
+
+                        <div id="calendar" class="fc fc-ltr">
+
+                        </div>
+
+                        <table class="fc-header" style="width: 100%">
+                            <tbody>
+                                <tr>
+                                    <td class="fc-header-left"><span class="fc-button fc-button-prev down fc-state-default fc-corner-left fc-corner-right" unselectable="on"><i class="icon24 i-arrow-left-7"></i></span></td>
+                                    <td class="fc-header-right"><span class="fc-button fc-button-next down fc-state-default fc-corner-left fc-corner-right" unselectable="on"><i class="icon24 i-arrow-right-8"></i></span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<div id="modalLoading" class="modal fade" role="dialog" data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog" style="padding: 0; width: 162px; height: 162px; top:0; bottom: 0; left: 0; right: 0; margin: auto; position: absolute">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-body">
+                <img id="image" src="../Images/gears.gif" alt="Cargando" />
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<link href="@Url.Content("~/Scripts/plugins/misc/fullcalendar/fullcalendar.min.css")" rel="stylesheet" />
+<!-- Misc plugins -->
+<script src="@Url.Content("~/Scripts/plugins/misc/fullcalendar/fullcalendar.min.js")"></script>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $('.fc-button-prev.down').click(function () {
+            var date1 = $('#calendar').fullCalendar('prev').fullCalendar('getDate');
+            return false;
+        });
+
+        $('.fc-button-next.down').click(function () {
+            var date1 = $('#calendar').fullCalendar('next').fullCalendar('getDate');
+            return false;
+        });
+
+        $('#external-events div.external-event').each(function () {
+
+            var eventObject = {
+                title: $.trim($(this).text()) // use the element's text as the event title
+            };
+
+            // store the Event Object in the DOM element so we can get to it later
+            $(this).data('eventObject', eventObject);
+
+            // make the event draggable using jQuery UI
+            $(this).draggable({
+                zIndex: 999,
+                revert: true,      // will cause the event to go back to its
+                revertDuration: 0  //  original position after the drag
+            });
+
+        });
+
+        function get_calendar_height() {
+            return $(window).height() - 30;
+        }
+
+        //$(window).resize(function () {
+        //    $('#calendar').fullCalendar('option', 'height', get_calendar_height());
+        //});
+
+        function checkSession() {
+            $.ajax({
+                url: '@Url.Action("GetAuthentication", "Base")',
+                type: "POST",
+                success: function (result) {
+                    if (result != true) {
+                        window.location.href = "/Usuario/Login";
+                    }
+                }
+            });
+        }
+
+        $(function () {
+            var date = new Date();
+            var mes = $("#ddlMonth").val();
+            var anio = $("#ddlYear").val();
+            var tipo = $("#ddlTipo").val();
+
+            //calendar example
+            $('#calendar').fullCalendar({
+                height: get_calendar_height,
+                header: {
+                    left: 'prev',
+                    center: 'title,today',
+                    right: 'next'//'month,agendaWeek,agendaDay'
+                },
+                firstDay: 1,
+                weekends: false,
+                dayNamesShort: ['Sabado', 'Lunes', 'Martes', 'Miercoles',
+                                'Jueves', 'Viernes', 'Domingo'],
+                monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio',
+                            'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+                buttonText: {
+                    prev: '<i class="icon24 i-arrow-left-7"></i>',
+                    next: '<i class="icon24 i-arrow-right-8"></i>',
+                    today: '<i class="icon24 i-home-6"></i>',
+                    month: 'Mes',
+                    agendaWeek: 'Semana',
+                    agendaDay: 'Día'
+                },
+                editable: false,
+                droppable: false, // this allows things to be dropped onto the calendar !!!
+                drop: function (date, allDay) { // this function is called when something is dropped
+
+                    // retrieve the dropped element's stored Event Object
+                    var originalEventObject = $(this).data('eventObject');
+
+                    // we need to copy it, so that multiple events don't have a reference to the same object
+                    var copiedEventObject = $.extend({}, originalEventObject);
+
+                    // assign it the date that was reported
+                    copiedEventObject.start = date;
+                    copiedEventObject.allDay = allDay;
+
+                    // render the event on the calendar
+                    // the last `true` argument determines if the event "sticks" (http://arshaw.com/fullcalendar/docs/event_rendering/renderEvent/)
+                    $('#calendar').fullCalendar('renderEvent', copiedEventObject, true);
+                    $(this).remove();
+                },
+                events: {
+                    url: '@Url.Action("GetEvents", "CalendarioRetiro")',
+                    error: function () {
+                        checkSession();
+                        alert("Error");
+                    }
+                },
+                loading: function (bool) {
+                    if (bool) {
+                        $('#modalLoading').modal('show');
+                    }
+                    else
+                        $('#modalLoading').modal('hide');
+                },
+                eventColor: '#72c380',
+                eventBorderColor: '#379e49',
+                eventClick: function (calEvent, jsEvent, view) {
+
+                    var idPedido = calEvent.title.match(/\((.*)\)/);
+
+                    var link = '@Url.Action("Edit", "CalendarioRetiro", new { Id = "-1"})';
+                    link = link.replace("-1", idPedido[1]);
+                    window.location.href = link;
+
+                },
+                eventMouseover: function (calEvent, jsEvent, view) {
+                    $(this).css('-webkit-filter', 'brightness(87%)');
+                    $(this).css('filter', 'brightness(87%)');
+                },
+                eventMouseout: function (calEvent, jsEvent, view) {
+                    $(this).css('-webkit-filter', 'brightness(100%)');
+                    $(this).css('filter', 'brightness(100%)');
+                }
+            });
+        });
+
+
+        function GetTipo()
+        {
+            return $("#ddlTipo").val();
+        }
+
+        $("body").on("change", "#ddlMonth, #ddlYear, #ddlTipo", function () {
+
+            var mes = $("#ddlMonth").val();
+            var anio = $("#ddlYear").val();
+            //$("#ddlTipo").val($("#ddlTipo").val());
+            //var tipo = $("#ddlTipo").val();
+
+            @*$.post('@Url.Action("SetSessionVariable", "CalendariaRetiro")',
+                { key: "Tipo", value: tipo }, function (data) {
+           });*@
+
+            var date = anio + "-" + mes + "-15";
+
+            $('#calendar').fullCalendar('removeEvents');
+            $('#calendar').fullCalendar('refetchEvents');
+            $('#calendar').fullCalendar('gotoDate', anio, (mes - 1));
+
+        });
+
+    });
+
+</script>

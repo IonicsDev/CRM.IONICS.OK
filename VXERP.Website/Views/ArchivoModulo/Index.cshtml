@@ -1,0 +1,58 @@
+﻿@model IEnumerable<CRM.Business.Entities.ArchivoModulo>
+@using GridMvc.Html;
+@{
+  
+    Layout = "~/Views/Shared/_Generic.cshtml";
+}
+
+  <div class="wrapper">
+                 <div class="container-fluid">
+                    <div id="heading" class="page-header">
+                        <h1><i class="icon20 i-file-5"></i> Configuración - Archivos</h1>
+                    </div>
+
+                    <div class="row">
+
+                    <div class="col-lg-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <div class="icon"><i class="icon20 i-table"></i></div> 
+                                <h4>Listado </h4>
+                                <a href="#" class="minimize"></a>
+
+                                   
+                            </div><!-- End .panel-heading -->
+                           
+                         <div class="panel-body">
+                                
+                                     
+                         <p>  @Html.ActionLink("Crear +", "Create",null, new { @class="btn btn-info"})</p>
+                     
+                    @Html.Partial("_GridParcial", Model)
+                    @*@Html.Grid(Model).Columns(columns =>
+                    {
+                        columns.Add(c => c.Descripcion).Titled(Html.DisplayNameFor(model => model.Descripcion).ToString()).Filterable(true).Css("gradeC");
+                        columns.Add(c => c.DescripcionCorta).Titled(Html.DisplayNameFor(model => model.DescripcionCorta).ToString()).Filterable(true).Css("gradeC");
+                        columns.Add(c => c.TipoArchivoModulo.Tipo).Titled("Tipo ArchivoModulo").Filterable(true).Css("gradeC");
+                     
+                        columns.Add(c => c.DescripcionEstado).Titled(Html.DisplayNameFor(model => model.DescripcionEstado).ToString()).Filterable(true).Css("gradeC");
+                        columns.Add(o => o.Id)
+                                    .Titled("Acciones")
+                                    .Sanitized(false)
+                                    .Encoded(false)
+                                    .RenderValueAs(o => CRM.Website.App_Code.GridHelper.GridManageItemColumnwithView(Html, o.Id, o.Estado));
+                    }).WithPaging(10).Sortable(true).WithMultipleFilters()*@
+
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+ 
+  </div>
+    
+    @section scripts
+{
+  
+}
+

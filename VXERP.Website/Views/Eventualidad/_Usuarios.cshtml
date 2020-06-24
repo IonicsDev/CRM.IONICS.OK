@@ -1,0 +1,116 @@
+﻿@model  List<CRM.Business.Entities.Usuario>
+
+<link href="~/Css/custom.css" rel="stylesheet" />
+<script type="text/javascript">
+    var defaultUser = $("input#NotificarUsuarios").val();
+    var defaultId = $("input#NotificarUsuarios_Id").val();
+    var selectedIDs = $("input#NotificarUsuarios_Id").val();
+    function OnBeginCallback(s, e) {
+        e.customArgs["selectedIDs"] = selectedIDs;
+    }
+    function OnSelectionChanged(s, e) {
+        //var keys = s.GetSelectedKeysOnPage();
+        //selectedIDs = GetSelectedIds(keys);
+
+        //$("input#NotificarUsuarios_Id").val(selectedIDs);
+        $('#loadingModal').modal('show');
+        s.GetSelectedFieldValues("Id", GetId);
+        s.GetSelectedFieldValues("UserName", GetUserName);
+    }
+
+    //function GetSelectedIds(keys)
+    //{
+    //    var arrayIds = selectedIDs.toString().split(',');
+    //    var arrayKeys = keys.toString().split(',');
+
+    //    arrayIds = $.grep(arrayIds, function (n) { return (n); });
+
+    //    $.each(arrayIds, function (i, id) {
+    //        if (id == "") {
+    //            exist = true;
+    //        }
+    //    });
+
+    //    $.each(arrayKeys, function (i, key) {
+    //        var exist = false;
+
+    //        $.each(arrayIds, function (i, id) {
+    //            if (id == key) {
+    //                exist = true;
+    //            }
+    //        });
+
+    //        if (exist == false) {
+    //            arrayIds.push(key);
+    //        }
+    //    });
+
+    //    return arrayIds.join();
+    //}
+
+    function GetId(values) {
+        var exist = false;
+        $.each(values, function (i, val) {
+            if (defaultId == val)
+            {
+                exist = true;
+            }
+        });
+
+        if(exist == true)
+            $("input#NotificarUsuarios_Id").val(values);
+        else
+            $("input#NotificarUsuarios_Id").val(selectedIDs + "," + values);
+
+        $('#loadingModal').modal('hide');
+    }
+
+    function GetUserName(values) {
+        var usuarios = defaultUser + values.toString().replace(/\,/g, '; ');
+        $("input#NotificarUsuarios").val(usuarios);
+    }
+
+    $("button#btnUsuAceptar").on("click", function () {
+        $("#usuarioModal-container").html("<div class='modal-content'></div>");
+        $("#usuarioModal-container").modal('hide');
+    });
+
+    $("button#btnUsuClose").on("click", function () {
+        $("#usuarioModal-container").html("<div class='modal-content'></div>");
+        $("#usuarioModal-container").modal('hide');
+    });
+
+    $("button#btnUsuCerrar").on("click", function () {
+        $("#usuarioModal-container").html("<div class='modal-content'></div>");
+        $("#usuarioModal-container").modal('hide');
+    });
+
+</script>
+
+<div class="modal-dialog" role="document" style="display: inline">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" id="btnUsuClose" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Usuarios</h4>
+        </div>
+        <div class="modal-body">
+            <script src="@Url.Content("~/Scripts/clientGridFunctions.js")"></script>
+            @Html.Partial("_GridViewModalUsuarios", Model)
+
+            @if (Model == null || !(Model.Count > 0))
+            {
+                <p style="text-align: center; font-weight: bold; margin: 0;">No hay Usuarios disponibles</p>
+                }
+        </div>
+        <div class="modal-footer">
+            @if (Model == null || !(Model.Count > 0))
+            { 
+                <button class="btn btn-primary pull-right col-lg-5" id="btnUsuCerrar" data-dismiss="modal" aria-hidden="true">Cerrar</button>
+                }
+            else
+            {
+                <button class="btn btn-primary pull-right col-lg-5" id="btnUsuAceptar" data-dismiss="modal" aria-hidden="true">Aceptar</button>
+                }
+        </div>
+    </div>
+</div>

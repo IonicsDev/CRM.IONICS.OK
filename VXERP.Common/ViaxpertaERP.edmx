@@ -1,0 +1,2763 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="VXERPModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="VXERPModelStoreContainer">
+          <EntitySet Name="Actividades" EntityType="VXERPModel.Store.Actividades" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Cantones" EntityType="VXERPModel.Store.Cantones" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Ciudades" EntityType="VXERPModel.Store.Ciudades" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Companias" EntityType="VXERPModel.Store.Companias" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Continentes" EntityType="VXERPModel.Store.Continentes" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Divisiones" EntityType="VXERPModel.Store.Divisiones" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="GruposEmpresarial" EntityType="VXERPModel.Store.GruposEmpresarial" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Modulos" EntityType="VXERPModel.Store.Modulos" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Ocupaciones" EntityType="VXERPModel.Store.Ocupaciones" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Paises" EntityType="VXERPModel.Store.Paises" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Parroquias" EntityType="VXERPModel.Store.Parroquias" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Proveedores" EntityType="VXERPModel.Store.Proveedores" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Provincias" EntityType="VXERPModel.Store.Provincias" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ReferenciasBancarias" EntityType="VXERPModel.Store.ReferenciasBancarias" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ReferenciasComerciales" EntityType="VXERPModel.Store.ReferenciasComerciales" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Roles" EntityType="VXERPModel.Store.Roles" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="RolModulos" EntityType="VXERPModel.Store.RolModulos" store:Type="Tables" store:Schema="dbo" store:Name="RolModulos">
+            <DefiningQuery>SELECT 
+      [RolModulos].[Rol_Id] AS [Rol_Id], 
+      [RolModulos].[Modulo_Id] AS [Modulo_Id], 
+      [RolModulos].[Accion] AS [Accion]
+      FROM [dbo].[RolModulos] AS [RolModulos]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Sucursales" EntityType="VXERPModel.Store.Sucursales" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="sysdiagrams" EntityType="VXERPModel.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="TiposLocal" EntityType="VXERPModel.Store.TiposLocal" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="TiposProveedor" EntityType="VXERPModel.Store.TiposProveedor" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="UsuarioRols" EntityType="VXERPModel.Store.UsuarioRols" store:Type="Tables" store:Schema="dbo" store:Name="UsuarioRols">
+            <DefiningQuery>SELECT 
+      [UsuarioRols].[Usuario_Id] AS [Usuario_Id], 
+      [UsuarioRols].[Rol_Id] AS [Rol_Id], 
+      [UsuarioRols].[GrupoEmpresarial_Id] AS [GrupoEmpresarial_Id], 
+      [UsuarioRols].[Compania_Id] AS [Compania_Id], 
+      [UsuarioRols].[Division_Id] AS [Division_Id], 
+      [UsuarioRols].[Sucursal_Id] AS [Sucursal_Id]
+      FROM [dbo].[UsuarioRols] AS [UsuarioRols]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Usuarios" EntityType="VXERPModel.Store.Usuarios" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Zonas" EntityType="VXERPModel.Store.Zonas" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_Actividades_Usuarios" Association="VXERPModel.Store.FK_Actividades_Usuarios">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Actividades" EntitySet="Actividades" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cantones_Ciudades" Association="VXERPModel.Store.FK_Cantones_Ciudades">
+            <End Role="Ciudades" EntitySet="Ciudades" />
+            <End Role="Cantones" EntitySet="Cantones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cantones_Usuarios" Association="VXERPModel.Store.FK_Cantones_Usuarios">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Cantones" EntitySet="Cantones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ciudades_Provincias" Association="VXERPModel.Store.FK_Ciudades_Provincias">
+            <End Role="Provincias" EntitySet="Provincias" />
+            <End Role="Ciudades" EntitySet="Ciudades" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ciudades_Usuarios" Association="VXERPModel.Store.FK_Ciudades_Usuarios">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Ciudades" EntitySet="Ciudades" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Companias_Ciudades" Association="VXERPModel.Store.FK_Companias_Ciudades">
+            <End Role="Ciudades" EntitySet="Ciudades" />
+            <End Role="Companias" EntitySet="Companias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Companias_GruposEmpresarial" Association="VXERPModel.Store.FK_Companias_GruposEmpresarial">
+            <End Role="GruposEmpresarial" EntitySet="GruposEmpresarial" />
+            <End Role="Companias" EntitySet="Companias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Companias_Usuarios" Association="VXERPModel.Store.FK_Companias_Usuarios">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Companias" EntitySet="Companias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Continentes_Usuarios" Association="VXERPModel.Store.FK_Continentes_Usuarios">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Continentes" EntitySet="Continentes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Divisiones_Companias" Association="VXERPModel.Store.FK_Divisiones_Companias">
+            <End Role="Companias" EntitySet="Companias" />
+            <End Role="Divisiones" EntitySet="Divisiones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Divisiones_GruposEmpresarial" Association="VXERPModel.Store.FK_Divisiones_GruposEmpresarial">
+            <End Role="GruposEmpresarial" EntitySet="GruposEmpresarial" />
+            <End Role="Divisiones" EntitySet="Divisiones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Divisiones_Usuarios" Association="VXERPModel.Store.FK_Divisiones_Usuarios">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Divisiones" EntitySet="Divisiones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GruposEmpresarial_Usuarios" Association="VXERPModel.Store.FK_GruposEmpresarial_Usuarios">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="GruposEmpresarial" EntitySet="GruposEmpresarial" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Modulos_Modulos" Association="VXERPModel.Store.FK_Modulos_Modulos">
+            <End Role="Modulos" EntitySet="Modulos" />
+            <End Role="Modulos1" EntitySet="Modulos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ocupaciones_Usuarios" Association="VXERPModel.Store.FK_Ocupaciones_Usuarios">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Ocupaciones" EntitySet="Ocupaciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Paises_Continentes" Association="VXERPModel.Store.FK_Paises_Continentes">
+            <End Role="Continentes" EntitySet="Continentes" />
+            <End Role="Paises" EntitySet="Paises" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Paises_Usuarios" Association="VXERPModel.Store.FK_Paises_Usuarios">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Paises" EntitySet="Paises" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Parroquias_Cantones" Association="VXERPModel.Store.FK_Parroquias_Cantones">
+            <End Role="Cantones" EntitySet="Cantones" />
+            <End Role="Parroquias" EntitySet="Parroquias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Parroquias_Usuarios" Association="VXERPModel.Store.FK_Parroquias_Usuarios">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Parroquias" EntitySet="Parroquias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Proveedores_Actividades" Association="VXERPModel.Store.FK_Proveedores_Actividades">
+            <End Role="Actividades" EntitySet="Actividades" />
+            <End Role="Proveedores" EntitySet="Proveedores" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Proveedores_Cantones" Association="VXERPModel.Store.FK_Proveedores_Cantones">
+            <End Role="Cantones" EntitySet="Cantones" />
+            <End Role="Proveedores" EntitySet="Proveedores" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Proveedores_Ciudades" Association="VXERPModel.Store.FK_Proveedores_Ciudades">
+            <End Role="Ciudades" EntitySet="Ciudades" />
+            <End Role="Proveedores" EntitySet="Proveedores" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Proveedores_Ocupaciones" Association="VXERPModel.Store.FK_Proveedores_Ocupaciones">
+            <End Role="Ocupaciones" EntitySet="Ocupaciones" />
+            <End Role="Proveedores" EntitySet="Proveedores" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Proveedores_Parroquias" Association="VXERPModel.Store.FK_Proveedores_Parroquias">
+            <End Role="Parroquias" EntitySet="Parroquias" />
+            <End Role="Proveedores" EntitySet="Proveedores" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Proveedores_Provincias" Association="VXERPModel.Store.FK_Proveedores_Provincias">
+            <End Role="Provincias" EntitySet="Provincias" />
+            <End Role="Proveedores" EntitySet="Proveedores" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Proveedores_TiposLocal" Association="VXERPModel.Store.FK_Proveedores_TiposLocal">
+            <End Role="TiposLocal" EntitySet="TiposLocal" />
+            <End Role="Proveedores" EntitySet="Proveedores" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Proveedores_TiposProveedor" Association="VXERPModel.Store.FK_Proveedores_TiposProveedor">
+            <End Role="TiposProveedor" EntitySet="TiposProveedor" />
+            <End Role="Proveedores" EntitySet="Proveedores" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Proveedores_Usuarios" Association="VXERPModel.Store.FK_Proveedores_Usuarios">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Proveedores" EntitySet="Proveedores" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Provincias_Paises" Association="VXERPModel.Store.FK_Provincias_Paises">
+            <End Role="Paises" EntitySet="Paises" />
+            <End Role="Provincias" EntitySet="Provincias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Provincias_Usuarios" Association="VXERPModel.Store.FK_Provincias_Usuarios">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Provincias" EntitySet="Provincias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReferenciasBancarias_Usuarios" Association="VXERPModel.Store.FK_ReferenciasBancarias_Usuarios">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="ReferenciasBancarias" EntitySet="ReferenciasBancarias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReferenciasComerciales_Usuarios" Association="VXERPModel.Store.FK_ReferenciasComerciales_Usuarios">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="ReferenciasComerciales" EntitySet="ReferenciasComerciales" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RolModulos_Modulos" Association="VXERPModel.Store.FK_RolModulos_Modulos">
+            <End Role="Modulos" EntitySet="Modulos" />
+            <End Role="RolModulos" EntitySet="RolModulos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RolModulos_Roles" Association="VXERPModel.Store.FK_RolModulos_Roles">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="RolModulos" EntitySet="RolModulos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sucursales_Ciudades" Association="VXERPModel.Store.FK_Sucursales_Ciudades">
+            <End Role="Ciudades" EntitySet="Ciudades" />
+            <End Role="Sucursales" EntitySet="Sucursales" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sucursales_Companias" Association="VXERPModel.Store.FK_Sucursales_Companias">
+            <End Role="Companias" EntitySet="Companias" />
+            <End Role="Sucursales" EntitySet="Sucursales" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sucursales_Divisiones" Association="VXERPModel.Store.FK_Sucursales_Divisiones">
+            <End Role="Divisiones" EntitySet="Divisiones" />
+            <End Role="Sucursales" EntitySet="Sucursales" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sucursales_GruposEmpresarial" Association="VXERPModel.Store.FK_Sucursales_GruposEmpresarial">
+            <End Role="GruposEmpresarial" EntitySet="GruposEmpresarial" />
+            <End Role="Sucursales" EntitySet="Sucursales" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sucursales_Usuarios" Association="VXERPModel.Store.FK_Sucursales_Usuarios">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Sucursales" EntitySet="Sucursales" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TiposLocal_Usuarios" Association="VXERPModel.Store.FK_TiposLocal_Usuarios">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="TiposLocal" EntitySet="TiposLocal" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TiposProveedor_TiposProveedor" Association="VXERPModel.Store.FK_TiposProveedor_TiposProveedor">
+            <End Role="TiposProveedor" EntitySet="TiposProveedor" />
+            <End Role="TiposProveedor1" EntitySet="TiposProveedor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TiposProveedor_Usuarios" Association="VXERPModel.Store.FK_TiposProveedor_Usuarios">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="TiposProveedor" EntitySet="TiposProveedor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsuarioRols_Divisiones" Association="VXERPModel.Store.FK_UsuarioRols_Divisiones">
+            <End Role="Divisiones" EntitySet="Divisiones" />
+            <End Role="UsuarioRols" EntitySet="UsuarioRols" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsuarioRols_Sucursales" Association="VXERPModel.Store.FK_UsuarioRols_Sucursales">
+            <End Role="Sucursales" EntitySet="Sucursales" />
+            <End Role="UsuarioRols" EntitySet="UsuarioRols" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsuariosRoles_Roles" Association="VXERPModel.Store.FK_UsuariosRoles_Roles">
+            <End Role="GruposEmpresarial" EntitySet="GruposEmpresarial" />
+            <End Role="UsuarioRols" EntitySet="UsuarioRols" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsuariosRoles_Usuarios" Association="VXERPModel.Store.FK_UsuariosRoles_Usuarios">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="UsuarioRols" EntitySet="UsuarioRols" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Zonas_Usuarios" Association="VXERPModel.Store.FK_Zonas_Usuarios">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Zonas" EntitySet="Zonas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Zonas_Zonas" Association="VXERPModel.Store.FK_Zonas_Zonas">
+            <End Role="Zonas" EntitySet="Zonas" />
+            <End Role="Zonas1" EntitySet="Zonas" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Actividades">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="nvarchar" Nullable="false" MaxLength="250" />
+          <Property Name="DescripcionCorta" Type="nvarchar" MaxLength="50" />
+          <Property Name="Estado" Type="bit" Nullable="false" />
+          <Property Name="FechaCreacion" Type="datetime" Nullable="false" />
+          <Property Name="FechaActualizacion" Type="datetime" Nullable="false" />
+          <Property Name="IdUsuario" Type="int" />
+        </EntityType>
+        <EntityType Name="Cantones">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="nvarchar" Nullable="false" MaxLength="250" />
+          <Property Name="DescripcionCorta" Type="nvarchar" MaxLength="50" />
+          <Property Name="IdCiudad" Type="int" Nullable="false" />
+          <Property Name="Estado" Type="bit" Nullable="false" />
+          <Property Name="FechaCreacion" Type="datetime" Nullable="false" />
+          <Property Name="FechaActualizacion" Type="datetime" Nullable="false" />
+          <Property Name="IdUsuario" Type="int" />
+        </EntityType>
+        <EntityType Name="Ciudades">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="nvarchar" Nullable="false" MaxLength="250" />
+          <Property Name="DescripcionCorta" Type="nvarchar" MaxLength="50" />
+          <Property Name="IdProvincia" Type="int" Nullable="false" />
+          <Property Name="Estado" Type="bit" Nullable="false" />
+          <Property Name="FechaCreacion" Type="datetime" Nullable="false" />
+          <Property Name="FechaActualizacion" Type="datetime" Nullable="false" />
+          <Property Name="IdUsuario" Type="int" />
+        </EntityType>
+        <EntityType Name="Companias">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IdGrupoEmpresarial" Type="int" />
+          <Property Name="Descripcion" Type="nvarchar" MaxLength="250" />
+          <Property Name="DescripcionCorta" Type="nvarchar" MaxLength="50" />
+          <Property Name="RUC" Type="nvarchar" MaxLength="15" />
+          <Property Name="Calle" Type="nvarchar" MaxLength="250" />
+          <Property Name="Numero" Type="nvarchar" MaxLength="150" />
+          <Property Name="Interseccion" Type="nvarchar" MaxLength="250" />
+          <Property Name="IdCiudad" Type="int" Nullable="false" />
+          <Property Name="TelefonoPBX" Type="nvarchar" MaxLength="100" />
+          <Property Name="Telefono2" Type="nvarchar" MaxLength="100" />
+          <Property Name="ResponsableLegal" Type="nvarchar" MaxLength="250" />
+          <Property Name="CedulaResponsable" Type="nvarchar" MaxLength="150" />
+          <Property Name="Estado" Type="bit" Nullable="false" />
+          <Property Name="FechaCreacion" Type="datetime" Nullable="false" />
+          <Property Name="FechaActualizacion" Type="datetime" Nullable="false" />
+          <Property Name="IdUsuario" Type="int" />
+        </EntityType>
+        <EntityType Name="Continentes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="nvarchar" Nullable="false" MaxLength="250" />
+          <Property Name="DescripcionCorta" Type="nvarchar" MaxLength="50" />
+          <Property Name="Estado" Type="bit" Nullable="false" />
+          <Property Name="FechaCreacion" Type="datetime" Nullable="false" />
+          <Property Name="FechaActualizacion" Type="datetime" Nullable="false" />
+          <Property Name="IdUsuario" Type="int" />
+        </EntityType>
+        <EntityType Name="Divisiones">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IdGrupoEmpresarial" Type="int" Nullable="false" />
+          <Property Name="IdCompania" Type="int" Nullable="false" />
+          <Property Name="Codigo" Type="varchar" MaxLength="50" />
+          <Property Name="Descripcion" Type="nvarchar" MaxLength="250" />
+          <Property Name="DescripcionCorta" Type="nvarchar" MaxLength="50" />
+          <Property Name="Responsable" Type="nvarchar" MaxLength="150" />
+          <Property Name="CedulaResponsable" Type="nvarchar" MaxLength="50" />
+          <Property Name="Estado" Type="bit" Nullable="false" />
+          <Property Name="FechaCreacion" Type="datetime" Nullable="false" />
+          <Property Name="FechaActualizacion" Type="datetime" Nullable="false" />
+          <Property Name="IdUsuario" Type="int" />
+        </EntityType>
+        <EntityType Name="GruposEmpresarial">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Codigo" Type="varchar" Nullable="false" MaxLength="5" />
+          <Property Name="Descripcion" Type="nvarchar" MaxLength="150" />
+          <Property Name="DescripcionCorta" Type="nvarchar" MaxLength="50" />
+          <Property Name="Responsable" Type="varchar" MaxLength="50" />
+          <Property Name="CedulaResponsable" Type="varchar" MaxLength="10" />
+          <Property Name="Estado" Type="bit" Nullable="false" />
+          <Property Name="FechaCreacion" Type="datetime" Nullable="false" />
+          <Property Name="FechaActualizacion" Type="datetime" />
+          <Property Name="IdUsuario" Type="int" />
+        </EntityType>
+        <EntityType Name="Modulos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="nvarchar" Nullable="false" MaxLength="250" />
+          <Property Name="parent_id" Type="int" />
+          <Property Name="URL" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="Ocupaciones">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Descripcion" Type="nvarchar" Nullable="false" MaxLength="250" />
+          <Property Name="DescripcionCorta" Type="nvarchar" MaxLength="50" />
+          <Property Name="Estado" Type="bit" Nullable="false" />
+          <Property Name="FechaCreacion" Type="datetime" Nullable="false" />
+          <Property Name="FechaActualizacion" Type="datetime" Nullable="false" />
+          <Property Name="IdUsuario" Type="int" />
+        </EntityType>
+        <EntityType Name="Paises">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="nvarchar" Nullable="false" MaxLength="250" />
+          <Property Name="DescripcionCorta" Type="nvarchar" MaxLength="50" />
+          <Property Name="IdContinente" Type="int" Nullable="false" />
+          <Property Name="Estado" Type="bit" Nullable="false" />
+          <Property Name="FechaCreacion" Type="datetime" Nullable="false" />
+          <Property Name="FechaActualizacion" Type="datetime" Nullable="false" />
+          <Property Name="IdUsuario" Type="int" />
+        </EntityType>
+        <EntityType Name="Parroquias">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="nvarchar" Nullable="false" MaxLength="250" />
+          <Property Name="DescripcionCorta" Type="nvarchar" MaxLength="50" />
+          <Property Name="IdCanton" Type="int" Nullable="false" />
+          <Property Name="Estado" Type="bit" Nullable="false" />
+          <Property Name="FechaCreacion" Type="datetime" Nullable="false" />
+          <Property Name="FechaActualizacion" Type="datetime" Nullable="false" />
+          <Property Name="IdUsuario" Type="int" />
+        </EntityType>
+        <EntityType Name="Proveedores">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="RazonSocial" Type="nvarchar" Nullable="false" MaxLength="250" />
+          <Property Name="NombreComercial" Type="nvarchar" Nullable="false" MaxLength="250" />
+          <Property Name="DescripcionCorta" Type="nvarchar" MaxLength="50" />
+          <Property Name="RUC" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="isContribuyenteEspecial" Type="bit" />
+          <Property Name="Calle" Type="nvarchar" Nullable="false" MaxLength="250" />
+          <Property Name="Numero" Type="nvarchar" Nullable="false" MaxLength="250" />
+          <Property Name="Interseccion" Type="nvarchar" MaxLength="250" />
+          <Property Name="IdTipoProveedor" Type="int" Nullable="false" />
+          <Property Name="IdProvincia" Type="int" Nullable="false" />
+          <Property Name="IdCiudad" Type="int" />
+          <Property Name="IdCanton" Type="int" />
+          <Property Name="IdParroquia" Type="int" />
+          <Property Name="IdTipoLocal" Type="int" Nullable="false" />
+          <Property Name="TelefonoPBX" Type="nvarchar" MaxLength="150" />
+          <Property Name="Telefono2" Type="nvarchar" MaxLength="150" />
+          <Property Name="Fax" Type="nvarchar" MaxLength="150" />
+          <Property Name="ContactoCompra" Type="nvarchar" MaxLength="250" />
+          <Property Name="CorreoContactoCompra" Type="nvarchar" MaxLength="150" />
+          <Property Name="CelularContacto" Type="nvarchar" MaxLength="150" />
+          <Property Name="ContactoCXP" Type="nvarchar" MaxLength="150" />
+          <Property Name="CorreoContactoCXP" Type="nvarchar" MaxLength="150" />
+          <Property Name="CelularContactoCXP" Type="nvarchar" MaxLength="150" />
+          <Property Name="IdActividad" Type="int" />
+          <Property Name="FechaInicioActividad" Type="datetime" />
+          <Property Name="RepresentanteLegal" Type="nvarchar" MaxLength="250" />
+          <Property Name="IdOcupacion" Type="int" />
+          <Property Name="TelefonoRepresentante" Type="nvarchar" MaxLength="250" />
+          <Property Name="CelularRepresentante" Type="nvarchar" MaxLength="250" />
+          <Property Name="CorreoRepresentante" Type="nvarchar" MaxLength="250" />
+          <Property Name="MontoCredito" Type="decimal" Nullable="false" Precision="8" Scale="2" />
+          <Property Name="PlazoCredito" Type="int" Nullable="false" />
+          <Property Name="Estado" Type="bit" Nullable="false" />
+          <Property Name="FechaCreacion" Type="datetime" Nullable="false" />
+          <Property Name="FechaActualizacion" Type="datetime" Nullable="false" />
+          <Property Name="IdUsuario" Type="int" />
+        </EntityType>
+        <EntityType Name="Provincias">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="nvarchar" Nullable="false" MaxLength="250" />
+          <Property Name="DescripcionCorta" Type="nvarchar" MaxLength="50" />
+          <Property Name="IdPais" Type="int" Nullable="false" />
+          <Property Name="Estado" Type="bit" Nullable="false" />
+          <Property Name="FechaCreacion" Type="datetime" Nullable="false" />
+          <Property Name="FechaActualizacion" Type="datetime" Nullable="false" />
+          <Property Name="IdUsuario" Type="int" />
+        </EntityType>
+        <EntityType Name="ReferenciasBancarias">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Referencia" Type="nvarchar" Nullable="false" MaxLength="250" />
+          <Property Name="TipoCuenta" Type="nvarchar" MaxLength="250" />
+          <Property Name="FechaApertura" Type="datetime" />
+          <Property Name="Estado" Type="bit" Nullable="false" />
+          <Property Name="FechaCreacion" Type="datetime" Nullable="false" />
+          <Property Name="FechaActualizacion" Type="datetime" Nullable="false" />
+          <Property Name="IdUsuario" Type="int" />
+        </EntityType>
+        <EntityType Name="ReferenciasComerciales">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Referencia" Type="nvarchar" Nullable="false" MaxLength="350" />
+          <Property Name="Telefono" Type="nvarchar" MaxLength="250" />
+          <Property Name="Anio" Type="int" Nullable="false" />
+          <Property Name="Estado" Type="bit" Nullable="false" />
+          <Property Name="FechaCreacion" Type="datetime" Nullable="false" />
+          <Property Name="FechaActualizacion" Type="datetime" Nullable="false" />
+          <Property Name="IdUsuario" Type="int" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="RoleName" Type="nvarchar" Nullable="false" MaxLength="250" />
+          <Property Name="Estado" Type="bit" Nullable="false" />
+          <Property Name="FechaCreacion" Type="datetime" Nullable="false" />
+          <Property Name="FechaActualizacion" Type="datetime" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'Viaxperta-erp.dbo.RolModulos' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="RolModulos">
+          <Key>
+            <PropertyRef Name="Rol_Id" />
+            <PropertyRef Name="Modulo_Id" />
+            <PropertyRef Name="Accion" />
+          </Key>
+          <Property Name="Rol_Id" Type="int" Nullable="false" />
+          <Property Name="Modulo_Id" Type="int" Nullable="false" />
+          <Property Name="Accion" Type="nvarchar" Nullable="false" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="Sucursales">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IdGrupoEmpresarial" Type="int" Nullable="false" />
+          <Property Name="IdCompania" Type="int" Nullable="false" />
+          <Property Name="IdDivision" Type="int" Nullable="false" />
+          <Property Name="Codigo" Type="varchar" MaxLength="50" />
+          <Property Name="Descripcion" Type="nvarchar" Nullable="false" MaxLength="250" />
+          <Property Name="DescripcionCorta" Type="nvarchar" MaxLength="50" />
+          <Property Name="Calle" Type="nvarchar" MaxLength="250" />
+          <Property Name="Numero" Type="nvarchar" MaxLength="150" />
+          <Property Name="Interseccion" Type="nvarchar" MaxLength="250" />
+          <Property Name="IdCiudad" Type="int" />
+          <Property Name="TelefonoPBX" Type="nvarchar" MaxLength="150" />
+          <Property Name="Telefono2" Type="nvarchar" MaxLength="150" />
+          <Property Name="Estado" Type="bit" Nullable="false" />
+          <Property Name="FechaCreacion" Type="datetime" Nullable="false" />
+          <Property Name="FechaActualizacion" Type="datetime" Nullable="false" />
+          <Property Name="IdUsuario" Type="int" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="128" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="TiposLocal">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="nvarchar" Nullable="false" MaxLength="250" />
+          <Property Name="DescripcionCorta" Type="nvarchar" MaxLength="50" />
+          <Property Name="Estado" Type="bit" Nullable="false" />
+          <Property Name="FechaCreacion" Type="datetime" Nullable="false" />
+          <Property Name="FechaActualizacion" Type="datetime" Nullable="false" />
+          <Property Name="IdUsuario" Type="int" />
+        </EntityType>
+        <EntityType Name="TiposProveedor">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="parent_id" Type="int" />
+          <Property Name="Descripcion" Type="nvarchar" Nullable="false" MaxLength="250" />
+          <Property Name="DescripcionCorta" Type="nvarchar" MaxLength="50" />
+          <Property Name="Estado" Type="bit" Nullable="false" />
+          <Property Name="FechaCreacion" Type="datetime" Nullable="false" />
+          <Property Name="FechaActualizacion" Type="datetime" Nullable="false" />
+          <Property Name="IdUsuario" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'Viaxperta-erp.dbo.UsuarioRols' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="UsuarioRols">
+          <Key>
+            <PropertyRef Name="Usuario_Id" />
+            <PropertyRef Name="Rol_Id" />
+          </Key>
+          <Property Name="Usuario_Id" Type="int" Nullable="false" />
+          <Property Name="Rol_Id" Type="int" Nullable="false" />
+          <Property Name="GrupoEmpresarial_Id" Type="int" />
+          <Property Name="Compania_Id" Type="int" />
+          <Property Name="Division_Id" Type="int" />
+          <Property Name="Sucursal_Id" Type="int" />
+        </EntityType>
+        <EntityType Name="Usuarios">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="nvarchar" Nullable="false" MaxLength="150" />
+          <Property Name="Password" Type="nvarchar" Nullable="false" MaxLength="250" />
+          <Property Name="NombreApellido" Type="nvarchar" MaxLength="250" />
+          <Property Name="Estado" Type="bit" Nullable="false" />
+          <Property Name="FechaCreacion" Type="datetime" Nullable="false" />
+          <Property Name="FechaActualizacion" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Zonas">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Descripcion" Type="nvarchar" Nullable="false" MaxLength="250" />
+          <Property Name="DescripcionCorta" Type="nvarchar" MaxLength="50" />
+          <Property Name="Estado" Type="bit" Nullable="false" />
+          <Property Name="FechaCreacion" Type="datetime" Nullable="false" />
+          <Property Name="FechaActualizacion" Type="datetime" Nullable="false" />
+          <Property Name="IdUsuario" Type="int" />
+        </EntityType>
+        <Association Name="FK_Actividades_Usuarios">
+          <End Role="Usuarios" Type="VXERPModel.Store.Usuarios" Multiplicity="0..1" />
+          <End Role="Actividades" Type="VXERPModel.Store.Actividades" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Actividades">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cantones_Ciudades">
+          <End Role="Ciudades" Type="VXERPModel.Store.Ciudades" Multiplicity="1" />
+          <End Role="Cantones" Type="VXERPModel.Store.Cantones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ciudades">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Cantones">
+              <PropertyRef Name="IdCiudad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cantones_Usuarios">
+          <End Role="Usuarios" Type="VXERPModel.Store.Usuarios" Multiplicity="0..1" />
+          <End Role="Cantones" Type="VXERPModel.Store.Cantones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Cantones">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ciudades_Provincias">
+          <End Role="Provincias" Type="VXERPModel.Store.Provincias" Multiplicity="1" />
+          <End Role="Ciudades" Type="VXERPModel.Store.Ciudades" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Provincias">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Ciudades">
+              <PropertyRef Name="IdProvincia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ciudades_Usuarios">
+          <End Role="Usuarios" Type="VXERPModel.Store.Usuarios" Multiplicity="0..1" />
+          <End Role="Ciudades" Type="VXERPModel.Store.Ciudades" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Ciudades">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Companias_Ciudades">
+          <End Role="Ciudades" Type="VXERPModel.Store.Ciudades" Multiplicity="1" />
+          <End Role="Companias" Type="VXERPModel.Store.Companias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ciudades">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Companias">
+              <PropertyRef Name="IdCiudad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Companias_GruposEmpresarial">
+          <End Role="GruposEmpresarial" Type="VXERPModel.Store.GruposEmpresarial" Multiplicity="0..1" />
+          <End Role="Companias" Type="VXERPModel.Store.Companias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GruposEmpresarial">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Companias">
+              <PropertyRef Name="IdGrupoEmpresarial" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Companias_Usuarios">
+          <End Role="Usuarios" Type="VXERPModel.Store.Usuarios" Multiplicity="0..1" />
+          <End Role="Companias" Type="VXERPModel.Store.Companias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Companias">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Continentes_Usuarios">
+          <End Role="Usuarios" Type="VXERPModel.Store.Usuarios" Multiplicity="0..1" />
+          <End Role="Continentes" Type="VXERPModel.Store.Continentes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Continentes">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Divisiones_Companias">
+          <End Role="Companias" Type="VXERPModel.Store.Companias" Multiplicity="1" />
+          <End Role="Divisiones" Type="VXERPModel.Store.Divisiones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Companias">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Divisiones">
+              <PropertyRef Name="IdCompania" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Divisiones_GruposEmpresarial">
+          <End Role="GruposEmpresarial" Type="VXERPModel.Store.GruposEmpresarial" Multiplicity="1" />
+          <End Role="Divisiones" Type="VXERPModel.Store.Divisiones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GruposEmpresarial">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Divisiones">
+              <PropertyRef Name="IdGrupoEmpresarial" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Divisiones_Usuarios">
+          <End Role="Usuarios" Type="VXERPModel.Store.Usuarios" Multiplicity="0..1" />
+          <End Role="Divisiones" Type="VXERPModel.Store.Divisiones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Divisiones">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GruposEmpresarial_Usuarios">
+          <End Role="Usuarios" Type="VXERPModel.Store.Usuarios" Multiplicity="0..1" />
+          <End Role="GruposEmpresarial" Type="VXERPModel.Store.GruposEmpresarial" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GruposEmpresarial">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Modulos_Modulos">
+          <End Role="Modulos" Type="VXERPModel.Store.Modulos" Multiplicity="0..1" />
+          <End Role="Modulos1" Type="VXERPModel.Store.Modulos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Modulos">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Modulos1">
+              <PropertyRef Name="parent_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ocupaciones_Usuarios">
+          <End Role="Usuarios" Type="VXERPModel.Store.Usuarios" Multiplicity="0..1" />
+          <End Role="Ocupaciones" Type="VXERPModel.Store.Ocupaciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Ocupaciones">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Paises_Continentes">
+          <End Role="Continentes" Type="VXERPModel.Store.Continentes" Multiplicity="1" />
+          <End Role="Paises" Type="VXERPModel.Store.Paises" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Continentes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Paises">
+              <PropertyRef Name="IdContinente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Paises_Usuarios">
+          <End Role="Usuarios" Type="VXERPModel.Store.Usuarios" Multiplicity="0..1" />
+          <End Role="Paises" Type="VXERPModel.Store.Paises" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Paises">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Parroquias_Cantones">
+          <End Role="Cantones" Type="VXERPModel.Store.Cantones" Multiplicity="1" />
+          <End Role="Parroquias" Type="VXERPModel.Store.Parroquias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cantones">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Parroquias">
+              <PropertyRef Name="IdCanton" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Parroquias_Usuarios">
+          <End Role="Usuarios" Type="VXERPModel.Store.Usuarios" Multiplicity="0..1" />
+          <End Role="Parroquias" Type="VXERPModel.Store.Parroquias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Parroquias">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Proveedores_Actividades">
+          <End Role="Actividades" Type="VXERPModel.Store.Actividades" Multiplicity="1" />
+          <End Role="Proveedores" Type="VXERPModel.Store.Proveedores" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Actividades">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Proveedores">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Proveedores_Cantones">
+          <End Role="Cantones" Type="VXERPModel.Store.Cantones" Multiplicity="1" />
+          <End Role="Proveedores" Type="VXERPModel.Store.Proveedores" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Cantones">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Proveedores">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Proveedores_Ciudades">
+          <End Role="Ciudades" Type="VXERPModel.Store.Ciudades" Multiplicity="0..1" />
+          <End Role="Proveedores" Type="VXERPModel.Store.Proveedores" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ciudades">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Proveedores">
+              <PropertyRef Name="IdCiudad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Proveedores_Ocupaciones">
+          <End Role="Ocupaciones" Type="VXERPModel.Store.Ocupaciones" Multiplicity="0..1" />
+          <End Role="Proveedores" Type="VXERPModel.Store.Proveedores" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ocupaciones">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Proveedores">
+              <PropertyRef Name="IdOcupacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Proveedores_Parroquias">
+          <End Role="Parroquias" Type="VXERPModel.Store.Parroquias" Multiplicity="0..1" />
+          <End Role="Proveedores" Type="VXERPModel.Store.Proveedores" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Parroquias">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Proveedores">
+              <PropertyRef Name="IdParroquia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Proveedores_Provincias">
+          <End Role="Provincias" Type="VXERPModel.Store.Provincias" Multiplicity="1" />
+          <End Role="Proveedores" Type="VXERPModel.Store.Proveedores" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Provincias">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Proveedores">
+              <PropertyRef Name="IdProvincia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Proveedores_TiposLocal">
+          <End Role="TiposLocal" Type="VXERPModel.Store.TiposLocal" Multiplicity="1" />
+          <End Role="Proveedores" Type="VXERPModel.Store.Proveedores" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TiposLocal">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Proveedores">
+              <PropertyRef Name="IdTipoLocal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Proveedores_TiposProveedor">
+          <End Role="TiposProveedor" Type="VXERPModel.Store.TiposProveedor" Multiplicity="1" />
+          <End Role="Proveedores" Type="VXERPModel.Store.Proveedores" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TiposProveedor">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Proveedores">
+              <PropertyRef Name="IdTipoProveedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Proveedores_Usuarios">
+          <End Role="Usuarios" Type="VXERPModel.Store.Usuarios" Multiplicity="0..1" />
+          <End Role="Proveedores" Type="VXERPModel.Store.Proveedores" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Proveedores">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Provincias_Paises">
+          <End Role="Paises" Type="VXERPModel.Store.Paises" Multiplicity="1" />
+          <End Role="Provincias" Type="VXERPModel.Store.Provincias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Paises">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Provincias">
+              <PropertyRef Name="IdPais" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Provincias_Usuarios">
+          <End Role="Usuarios" Type="VXERPModel.Store.Usuarios" Multiplicity="0..1" />
+          <End Role="Provincias" Type="VXERPModel.Store.Provincias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Provincias">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReferenciasBancarias_Usuarios">
+          <End Role="Usuarios" Type="VXERPModel.Store.Usuarios" Multiplicity="0..1" />
+          <End Role="ReferenciasBancarias" Type="VXERPModel.Store.ReferenciasBancarias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ReferenciasBancarias">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReferenciasComerciales_Usuarios">
+          <End Role="Usuarios" Type="VXERPModel.Store.Usuarios" Multiplicity="0..1" />
+          <End Role="ReferenciasComerciales" Type="VXERPModel.Store.ReferenciasComerciales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ReferenciasComerciales">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RolModulos_Modulos">
+          <End Role="Modulos" Type="VXERPModel.Store.Modulos" Multiplicity="1" />
+          <End Role="RolModulos" Type="VXERPModel.Store.RolModulos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Modulos">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RolModulos">
+              <PropertyRef Name="Modulo_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RolModulos_Roles">
+          <End Role="Roles" Type="VXERPModel.Store.Roles" Multiplicity="1" />
+          <End Role="RolModulos" Type="VXERPModel.Store.RolModulos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RolModulos">
+              <PropertyRef Name="Rol_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sucursales_Ciudades">
+          <End Role="Ciudades" Type="VXERPModel.Store.Ciudades" Multiplicity="0..1" />
+          <End Role="Sucursales" Type="VXERPModel.Store.Sucursales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ciudades">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Sucursales">
+              <PropertyRef Name="IdCiudad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sucursales_Companias">
+          <End Role="Companias" Type="VXERPModel.Store.Companias" Multiplicity="1" />
+          <End Role="Sucursales" Type="VXERPModel.Store.Sucursales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Companias">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Sucursales">
+              <PropertyRef Name="IdCompania" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sucursales_Divisiones">
+          <End Role="Divisiones" Type="VXERPModel.Store.Divisiones" Multiplicity="1" />
+          <End Role="Sucursales" Type="VXERPModel.Store.Sucursales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Divisiones">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Sucursales">
+              <PropertyRef Name="IdDivision" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sucursales_GruposEmpresarial">
+          <End Role="GruposEmpresarial" Type="VXERPModel.Store.GruposEmpresarial" Multiplicity="1" />
+          <End Role="Sucursales" Type="VXERPModel.Store.Sucursales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GruposEmpresarial">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Sucursales">
+              <PropertyRef Name="IdGrupoEmpresarial" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sucursales_Usuarios">
+          <End Role="Usuarios" Type="VXERPModel.Store.Usuarios" Multiplicity="0..1" />
+          <End Role="Sucursales" Type="VXERPModel.Store.Sucursales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Sucursales">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TiposLocal_Usuarios">
+          <End Role="Usuarios" Type="VXERPModel.Store.Usuarios" Multiplicity="0..1" />
+          <End Role="TiposLocal" Type="VXERPModel.Store.TiposLocal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TiposLocal">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TiposProveedor_TiposProveedor">
+          <End Role="TiposProveedor" Type="VXERPModel.Store.TiposProveedor" Multiplicity="0..1" />
+          <End Role="TiposProveedor1" Type="VXERPModel.Store.TiposProveedor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TiposProveedor">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TiposProveedor1">
+              <PropertyRef Name="parent_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TiposProveedor_Usuarios">
+          <End Role="Usuarios" Type="VXERPModel.Store.Usuarios" Multiplicity="0..1" />
+          <End Role="TiposProveedor" Type="VXERPModel.Store.TiposProveedor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TiposProveedor">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsuarioRols_Divisiones">
+          <End Role="Divisiones" Type="VXERPModel.Store.Divisiones" Multiplicity="0..1" />
+          <End Role="UsuarioRols" Type="VXERPModel.Store.UsuarioRols" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Divisiones">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UsuarioRols">
+              <PropertyRef Name="Division_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsuarioRols_Sucursales">
+          <End Role="Sucursales" Type="VXERPModel.Store.Sucursales" Multiplicity="0..1" />
+          <End Role="UsuarioRols" Type="VXERPModel.Store.UsuarioRols" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sucursales">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UsuarioRols">
+              <PropertyRef Name="Sucursal_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsuariosRoles_Roles">
+          <End Role="GruposEmpresarial" Type="VXERPModel.Store.GruposEmpresarial" Multiplicity="0..1" />
+          <End Role="UsuarioRols" Type="VXERPModel.Store.UsuarioRols" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GruposEmpresarial">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UsuarioRols">
+              <PropertyRef Name="GrupoEmpresarial_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsuariosRoles_Usuarios">
+          <End Role="Usuarios" Type="VXERPModel.Store.Usuarios" Multiplicity="1" />
+          <End Role="UsuarioRols" Type="VXERPModel.Store.UsuarioRols" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UsuarioRols">
+              <PropertyRef Name="Usuario_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Zonas_Usuarios">
+          <End Role="Usuarios" Type="VXERPModel.Store.Usuarios" Multiplicity="0..1" />
+          <End Role="Zonas" Type="VXERPModel.Store.Zonas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Zonas">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Zonas_Zonas">
+          <End Role="Zonas" Type="VXERPModel.Store.Zonas" Multiplicity="1" />
+          <End Role="Zonas1" Type="VXERPModel.Store.Zonas" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Zonas">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Zonas1">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="GetPaises" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="VXERPModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns="http://schemas.microsoft.com/ado/2008/09/edm" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
+        <EntityContainer Name="EntitiesConnectionString" p1:LazyLoadingEnabled="true">
+          <FunctionImport Name="GetPaises" ReturnType="Collection(VXERPModel.GetPaises_Result)" />
+          <EntitySet Name="Actividades" EntityType="VXERPModel.Actividades" />
+          <EntitySet Name="Cantones" EntityType="VXERPModel.Cantones" />
+          <EntitySet Name="Ciudades" EntityType="VXERPModel.Ciudades" />
+          <EntitySet Name="Companias" EntityType="VXERPModel.Companias" />
+          <EntitySet Name="Continentes" EntityType="VXERPModel.Continentes" />
+          <EntitySet Name="Divisiones" EntityType="VXERPModel.Divisiones" />
+          <EntitySet Name="GruposEmpresarial" EntityType="VXERPModel.GruposEmpresarial" />
+          <EntitySet Name="Ocupaciones" EntityType="VXERPModel.Ocupaciones" />
+          <EntitySet Name="Paises" EntityType="VXERPModel.Paises" />
+          <EntitySet Name="Parroquias" EntityType="VXERPModel.Parroquias" />
+          <EntitySet Name="Proveedores" EntityType="VXERPModel.Proveedores" />
+          <EntitySet Name="Provincias" EntityType="VXERPModel.Provincias" />
+          <EntitySet Name="ReferenciasBancarias" EntityType="VXERPModel.ReferenciasBancarias" />
+          <EntitySet Name="ReferenciasComerciales" EntityType="VXERPModel.ReferenciasComerciales" />
+          <EntitySet Name="Roles" EntityType="VXERPModel.Roles" />
+          <EntitySet Name="Sucursales" EntityType="VXERPModel.Sucursales" />
+          <EntitySet Name="sysdiagrams" EntityType="VXERPModel.sysdiagrams" />
+          <EntitySet Name="TiposLocal" EntityType="VXERPModel.TiposLocal" />
+          <EntitySet Name="TiposProveedor" EntityType="VXERPModel.TiposProveedor" />
+          <EntitySet Name="Usuarios" EntityType="VXERPModel.Usuarios" />
+          <EntitySet Name="Zonas" EntityType="VXERPModel.Zonas" />
+          <AssociationSet Name="FK_Actividades_Usuarios" Association="VXERPModel.FK_Actividades_Usuarios">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Actividades" EntitySet="Actividades" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Proveedores_Actividades" Association="VXERPModel.FK_Proveedores_Actividades">
+            <End Role="Actividades" EntitySet="Actividades" />
+            <End Role="Proveedores" EntitySet="Proveedores" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cantones_Ciudades" Association="VXERPModel.FK_Cantones_Ciudades">
+            <End Role="Ciudades" EntitySet="Ciudades" />
+            <End Role="Cantones" EntitySet="Cantones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cantones_Usuarios" Association="VXERPModel.FK_Cantones_Usuarios">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Cantones" EntitySet="Cantones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Parroquias_Cantones" Association="VXERPModel.FK_Parroquias_Cantones">
+            <End Role="Cantones" EntitySet="Cantones" />
+            <End Role="Parroquias" EntitySet="Parroquias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Proveedores_Cantones" Association="VXERPModel.FK_Proveedores_Cantones">
+            <End Role="Cantones" EntitySet="Cantones" />
+            <End Role="Proveedores" EntitySet="Proveedores" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ciudades_Provincias" Association="VXERPModel.FK_Ciudades_Provincias">
+            <End Role="Provincias" EntitySet="Provincias" />
+            <End Role="Ciudades" EntitySet="Ciudades" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ciudades_Usuarios" Association="VXERPModel.FK_Ciudades_Usuarios">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Ciudades" EntitySet="Ciudades" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Companias_Ciudades" Association="VXERPModel.FK_Companias_Ciudades">
+            <End Role="Ciudades" EntitySet="Ciudades" />
+            <End Role="Companias" EntitySet="Companias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Proveedores_Ciudades" Association="VXERPModel.FK_Proveedores_Ciudades">
+            <End Role="Ciudades" EntitySet="Ciudades" />
+            <End Role="Proveedores" EntitySet="Proveedores" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sucursales_Ciudades" Association="VXERPModel.FK_Sucursales_Ciudades">
+            <End Role="Ciudades" EntitySet="Ciudades" />
+            <End Role="Sucursales" EntitySet="Sucursales" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Companias_GruposEmpresarial" Association="VXERPModel.FK_Companias_GruposEmpresarial">
+            <End Role="GruposEmpresarial" EntitySet="GruposEmpresarial" />
+            <End Role="Companias" EntitySet="Companias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Companias_Usuarios" Association="VXERPModel.FK_Companias_Usuarios">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Companias" EntitySet="Companias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Divisiones_Companias" Association="VXERPModel.FK_Divisiones_Companias">
+            <End Role="Companias" EntitySet="Companias" />
+            <End Role="Divisiones" EntitySet="Divisiones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sucursales_Companias" Association="VXERPModel.FK_Sucursales_Companias">
+            <End Role="Companias" EntitySet="Companias" />
+            <End Role="Sucursales" EntitySet="Sucursales" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Continentes_Usuarios" Association="VXERPModel.FK_Continentes_Usuarios">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Continentes" EntitySet="Continentes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Paises_Continentes" Association="VXERPModel.FK_Paises_Continentes">
+            <End Role="Continentes" EntitySet="Continentes" />
+            <End Role="Paises" EntitySet="Paises" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Divisiones_Divisiones" Association="VXERPModel.FK_Divisiones_Divisiones">
+            <End Role="Divisiones" EntitySet="Divisiones" />
+            <End Role="Divisiones1" EntitySet="Divisiones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Divisiones_GruposEmpresarial" Association="VXERPModel.FK_Divisiones_GruposEmpresarial">
+            <End Role="GruposEmpresarial" EntitySet="GruposEmpresarial" />
+            <End Role="Divisiones" EntitySet="Divisiones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Divisiones_Usuarios" Association="VXERPModel.FK_Divisiones_Usuarios">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Divisiones" EntitySet="Divisiones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sucursales_Divisiones" Association="VXERPModel.FK_Sucursales_Divisiones">
+            <End Role="Divisiones" EntitySet="Divisiones" />
+            <End Role="Sucursales" EntitySet="Sucursales" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GruposEmpresarial_Usuarios" Association="VXERPModel.FK_GruposEmpresarial_Usuarios">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="GruposEmpresarial" EntitySet="GruposEmpresarial" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sucursales_GruposEmpresarial" Association="VXERPModel.FK_Sucursales_GruposEmpresarial">
+            <End Role="GruposEmpresarial" EntitySet="GruposEmpresarial" />
+            <End Role="Sucursales" EntitySet="Sucursales" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ocupaciones_Usuarios" Association="VXERPModel.FK_Ocupaciones_Usuarios">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Ocupaciones" EntitySet="Ocupaciones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Proveedores_Ocupaciones" Association="VXERPModel.FK_Proveedores_Ocupaciones">
+            <End Role="Ocupaciones" EntitySet="Ocupaciones" />
+            <End Role="Proveedores" EntitySet="Proveedores" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Paises_Usuarios" Association="VXERPModel.FK_Paises_Usuarios">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Paises" EntitySet="Paises" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Provincias_Paises" Association="VXERPModel.FK_Provincias_Paises">
+            <End Role="Paises" EntitySet="Paises" />
+            <End Role="Provincias" EntitySet="Provincias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Parroquias_Usuarios" Association="VXERPModel.FK_Parroquias_Usuarios">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Parroquias" EntitySet="Parroquias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Proveedores_Parroquias" Association="VXERPModel.FK_Proveedores_Parroquias">
+            <End Role="Parroquias" EntitySet="Parroquias" />
+            <End Role="Proveedores" EntitySet="Proveedores" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Proveedores_Provincias" Association="VXERPModel.FK_Proveedores_Provincias">
+            <End Role="Provincias" EntitySet="Provincias" />
+            <End Role="Proveedores" EntitySet="Proveedores" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Proveedores_TiposLocal" Association="VXERPModel.FK_Proveedores_TiposLocal">
+            <End Role="TiposLocal" EntitySet="TiposLocal" />
+            <End Role="Proveedores" EntitySet="Proveedores" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Proveedores_TiposProveedor" Association="VXERPModel.FK_Proveedores_TiposProveedor">
+            <End Role="TiposProveedor" EntitySet="TiposProveedor" />
+            <End Role="Proveedores" EntitySet="Proveedores" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Proveedores_Usuarios" Association="VXERPModel.FK_Proveedores_Usuarios">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Proveedores" EntitySet="Proveedores" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Provincias_Usuarios" Association="VXERPModel.FK_Provincias_Usuarios">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Provincias" EntitySet="Provincias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReferenciasBancarias_Usuarios" Association="VXERPModel.FK_ReferenciasBancarias_Usuarios">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="ReferenciasBancarias" EntitySet="ReferenciasBancarias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReferenciasComerciales_Usuarios" Association="VXERPModel.FK_ReferenciasComerciales_Usuarios">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="ReferenciasComerciales" EntitySet="ReferenciasComerciales" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sucursales_Usuarios" Association="VXERPModel.FK_Sucursales_Usuarios">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Sucursales" EntitySet="Sucursales" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TiposLocal_Usuarios" Association="VXERPModel.FK_TiposLocal_Usuarios">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="TiposLocal" EntitySet="TiposLocal" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TiposProveedor_TiposProveedor" Association="VXERPModel.FK_TiposProveedor_TiposProveedor">
+            <End Role="TiposProveedor" EntitySet="TiposProveedor" />
+            <End Role="TiposProveedor1" EntitySet="TiposProveedor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TiposProveedor_Usuarios" Association="VXERPModel.FK_TiposProveedor_Usuarios">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="TiposProveedor" EntitySet="TiposProveedor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Zonas_Usuarios" Association="VXERPModel.FK_Zonas_Usuarios">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Zonas" EntitySet="Zonas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Zonas_Zonas" Association="VXERPModel.FK_Zonas_Zonas">
+            <End Role="Zonas" EntitySet="Zonas" />
+            <End Role="Zonas1" EntitySet="Zonas" />
+          </AssociationSet>
+          <AssociationSet Name="UsuarioRols" Association="VXERPModel.UsuarioRols">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Usuarios" EntitySet="Usuarios" />
+          </AssociationSet>
+          <EntitySet Name="Modulos" EntityType="VXERPModel.Modulos" />
+          <EntitySet Name="RolModulos" EntityType="VXERPModel.RolModulos" />
+          <AssociationSet Name="FK_Modulos_Modulos" Association="VXERPModel.FK_Modulos_Modulos">
+            <End Role="Modulos" EntitySet="Modulos" />
+            <End Role="Modulos1" EntitySet="Modulos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RolModulos_Modulos" Association="VXERPModel.FK_RolModulos_Modulos">
+            <End Role="Modulos" EntitySet="Modulos" />
+            <End Role="RolModulos" EntitySet="RolModulos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RolModulos_Roles" Association="VXERPModel.FK_RolModulos_Roles">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="RolModulos" EntitySet="RolModulos" />
+          </AssociationSet>
+          </EntityContainer>
+        <ComplexType Name="GetPaises_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Descripcion" Nullable="false" MaxLength="250" />
+          <Property Type="String" Name="DescripcionCorta" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="IdContinente" Nullable="false" />
+          <Property Type="Boolean" Name="Estado" Nullable="false" />
+          <Property Type="DateTime" Name="FechaCreacion" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="FechaActualizacion" Nullable="false" Precision="23" />
+        </ComplexType>
+        <EntityType Name="Actividades">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Descripcion" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="DescripcionCorta" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="Estado" Nullable="false" />
+          <Property Type="DateTime" Name="FechaCreacion" Nullable="false" Precision="3" />
+          <Property Type="DateTime" Name="FechaActualizacion" Nullable="false" Precision="3" />
+          <Property Type="Int32" Name="IdUsuario" />
+          <NavigationProperty Name="Usuarios" Relationship="VXERPModel.FK_Actividades_Usuarios" FromRole="Actividades" ToRole="Usuarios" />
+          <NavigationProperty Name="Proveedores" Relationship="VXERPModel.FK_Proveedores_Actividades" FromRole="Actividades" ToRole="Proveedores" />
+        </EntityType>
+        <EntityType Name="Cantones">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Descripcion" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="DescripcionCorta" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="IdCiudad" Nullable="false" />
+          <Property Type="Boolean" Name="Estado" Nullable="false" />
+          <Property Type="DateTime" Name="FechaCreacion" Nullable="false" Precision="3" />
+          <Property Type="DateTime" Name="FechaActualizacion" Nullable="false" Precision="3" />
+          <Property Type="Int32" Name="IdUsuario" />
+          <NavigationProperty Name="Ciudades" Relationship="VXERPModel.FK_Cantones_Ciudades" FromRole="Cantones" ToRole="Ciudades" />
+          <NavigationProperty Name="Usuarios" Relationship="VXERPModel.FK_Cantones_Usuarios" FromRole="Cantones" ToRole="Usuarios" />
+          <NavigationProperty Name="Parroquias" Relationship="VXERPModel.FK_Parroquias_Cantones" FromRole="Cantones" ToRole="Parroquias" />
+          <NavigationProperty Name="Proveedores" Relationship="VXERPModel.FK_Proveedores_Cantones" FromRole="Cantones" ToRole="Proveedores" />
+        </EntityType>
+        <EntityType Name="Ciudades">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Descripcion" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="DescripcionCorta" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="IdProvincia" Nullable="false" />
+          <Property Type="Boolean" Name="Estado" Nullable="false" />
+          <Property Type="DateTime" Name="FechaCreacion" Nullable="false" Precision="3" />
+          <Property Type="DateTime" Name="FechaActualizacion" Nullable="false" Precision="3" />
+          <Property Type="Int32" Name="IdUsuario" />
+          <NavigationProperty Name="Cantones" Relationship="VXERPModel.FK_Cantones_Ciudades" FromRole="Ciudades" ToRole="Cantones" />
+          <NavigationProperty Name="Provincias" Relationship="VXERPModel.FK_Ciudades_Provincias" FromRole="Ciudades" ToRole="Provincias" />
+          <NavigationProperty Name="Usuarios" Relationship="VXERPModel.FK_Ciudades_Usuarios" FromRole="Ciudades" ToRole="Usuarios" />
+          <NavigationProperty Name="Companias" Relationship="VXERPModel.FK_Companias_Ciudades" FromRole="Ciudades" ToRole="Companias" />
+          <NavigationProperty Name="Proveedores" Relationship="VXERPModel.FK_Proveedores_Ciudades" FromRole="Ciudades" ToRole="Proveedores" />
+          <NavigationProperty Name="Sucursales" Relationship="VXERPModel.FK_Sucursales_Ciudades" FromRole="Ciudades" ToRole="Sucursales" />
+        </EntityType>
+        <EntityType Name="Companias">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="IdGrupoEmpresarial" />
+          <Property Type="String" Name="Descripcion" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="DescripcionCorta" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="RUC" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Calle" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Numero" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Interseccion" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="IdCiudad" Nullable="false" />
+          <Property Type="String" Name="TelefonoPBX" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Telefono2" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ResponsableLegal" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CedulaResponsable" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="Estado" Nullable="false" />
+          <Property Type="DateTime" Name="FechaCreacion" Nullable="false" Precision="3" />
+          <Property Type="DateTime" Name="FechaActualizacion" Nullable="false" Precision="3" />
+          <Property Type="Int32" Name="IdUsuario" />
+          <NavigationProperty Name="Ciudades" Relationship="VXERPModel.FK_Companias_Ciudades" FromRole="Companias" ToRole="Ciudades" />
+          <NavigationProperty Name="GruposEmpresarial" Relationship="VXERPModel.FK_Companias_GruposEmpresarial" FromRole="Companias" ToRole="GruposEmpresarial" />
+          <NavigationProperty Name="Usuarios" Relationship="VXERPModel.FK_Companias_Usuarios" FromRole="Companias" ToRole="Usuarios" />
+          <NavigationProperty Name="Divisiones" Relationship="VXERPModel.FK_Divisiones_Companias" FromRole="Companias" ToRole="Divisiones" />
+          <NavigationProperty Name="Sucursales" Relationship="VXERPModel.FK_Sucursales_Companias" FromRole="Companias" ToRole="Sucursales" />
+        </EntityType>
+        <EntityType Name="Continentes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Descripcion" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="DescripcionCorta" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="Estado" Nullable="false" />
+          <Property Type="DateTime" Name="FechaCreacion" Nullable="false" Precision="3" />
+          <Property Type="DateTime" Name="FechaActualizacion" Nullable="false" Precision="3" />
+          <Property Type="Int32" Name="IdUsuario" />
+          <NavigationProperty Name="Usuarios" Relationship="VXERPModel.FK_Continentes_Usuarios" FromRole="Continentes" ToRole="Usuarios" />
+          <NavigationProperty Name="Paises" Relationship="VXERPModel.FK_Paises_Continentes" FromRole="Continentes" ToRole="Paises" />
+        </EntityType>
+        <EntityType Name="Divisiones">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="IdGrupoEmpresarial" Nullable="false" />
+          <Property Type="Int32" Name="IdCompania" Nullable="false" />
+          <Property Type="String" Name="Codigo" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Descripcion" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="DescripcionCorta" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Responsable" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CedulaResponsable" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="Estado" Nullable="false" />
+          <Property Type="DateTime" Name="FechaCreacion" Nullable="false" Precision="3" />
+          <Property Type="DateTime" Name="FechaActualizacion" Nullable="false" Precision="3" />
+          <Property Type="Int32" Name="IdUsuario" />
+          <NavigationProperty Name="Companias" Relationship="VXERPModel.FK_Divisiones_Companias" FromRole="Divisiones" ToRole="Companias" />
+          <NavigationProperty Name="Divisiones1" Relationship="VXERPModel.FK_Divisiones_Divisiones" FromRole="Divisiones" ToRole="Divisiones1" />
+          <NavigationProperty Name="Divisiones2" Relationship="VXERPModel.FK_Divisiones_Divisiones" FromRole="Divisiones1" ToRole="Divisiones" />
+          <NavigationProperty Name="GruposEmpresarial" Relationship="VXERPModel.FK_Divisiones_GruposEmpresarial" FromRole="Divisiones" ToRole="GruposEmpresarial" />
+          <NavigationProperty Name="Usuarios" Relationship="VXERPModel.FK_Divisiones_Usuarios" FromRole="Divisiones" ToRole="Usuarios" />
+          <NavigationProperty Name="Sucursales" Relationship="VXERPModel.FK_Sucursales_Divisiones" FromRole="Divisiones" ToRole="Sucursales" />
+        </EntityType>
+        <EntityType Name="GruposEmpresarial">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Codigo" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Descripcion" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="DescripcionCorta" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Responsable" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="CedulaResponsable" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="Estado" Nullable="false" />
+          <Property Type="DateTime" Name="FechaCreacion" Nullable="false" Precision="3" />
+          <Property Type="DateTime" Name="FechaActualizacion" Precision="3" />
+          <Property Type="Int32" Name="IdUsuario" />
+          <NavigationProperty Name="Companias" Relationship="VXERPModel.FK_Companias_GruposEmpresarial" FromRole="GruposEmpresarial" ToRole="Companias" />
+          <NavigationProperty Name="Divisiones" Relationship="VXERPModel.FK_Divisiones_GruposEmpresarial" FromRole="GruposEmpresarial" ToRole="Divisiones" />
+          <NavigationProperty Name="Usuarios" Relationship="VXERPModel.FK_GruposEmpresarial_Usuarios" FromRole="GruposEmpresarial" ToRole="Usuarios" />
+          <NavigationProperty Name="Sucursales" Relationship="VXERPModel.FK_Sucursales_GruposEmpresarial" FromRole="GruposEmpresarial" ToRole="Sucursales" />
+        </EntityType>
+        <EntityType Name="Ocupaciones">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Descripcion" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="DescripcionCorta" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="Estado" Nullable="false" />
+          <Property Type="DateTime" Name="FechaCreacion" Nullable="false" Precision="3" />
+          <Property Type="DateTime" Name="FechaActualizacion" Nullable="false" Precision="3" />
+          <Property Type="Int32" Name="IdUsuario" />
+          <NavigationProperty Name="Usuarios" Relationship="VXERPModel.FK_Ocupaciones_Usuarios" FromRole="Ocupaciones" ToRole="Usuarios" />
+          <NavigationProperty Name="Proveedores" Relationship="VXERPModel.FK_Proveedores_Ocupaciones" FromRole="Ocupaciones" ToRole="Proveedores" />
+        </EntityType>
+        <EntityType Name="Paises">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Descripcion" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="DescripcionCorta" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="IdContinente" Nullable="false" />
+          <Property Type="Boolean" Name="Estado" Nullable="false" />
+          <Property Type="DateTime" Name="FechaCreacion" Nullable="false" Precision="3" />
+          <Property Type="DateTime" Name="FechaActualizacion" Nullable="false" Precision="3" />
+          <Property Type="Int32" Name="IdUsuario" />
+          <NavigationProperty Name="Continentes" Relationship="VXERPModel.FK_Paises_Continentes" FromRole="Paises" ToRole="Continentes" />
+          <NavigationProperty Name="Usuarios" Relationship="VXERPModel.FK_Paises_Usuarios" FromRole="Paises" ToRole="Usuarios" />
+          <NavigationProperty Name="Provincias" Relationship="VXERPModel.FK_Provincias_Paises" FromRole="Paises" ToRole="Provincias" />
+        </EntityType>
+        <EntityType Name="Parroquias">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Descripcion" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="DescripcionCorta" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="IdCanton" Nullable="false" />
+          <Property Type="Boolean" Name="Estado" Nullable="false" />
+          <Property Type="DateTime" Name="FechaCreacion" Nullable="false" Precision="3" />
+          <Property Type="DateTime" Name="FechaActualizacion" Nullable="false" Precision="3" />
+          <Property Type="Int32" Name="IdUsuario" />
+          <NavigationProperty Name="Cantones" Relationship="VXERPModel.FK_Parroquias_Cantones" FromRole="Parroquias" ToRole="Cantones" />
+          <NavigationProperty Name="Usuarios" Relationship="VXERPModel.FK_Parroquias_Usuarios" FromRole="Parroquias" ToRole="Usuarios" />
+          <NavigationProperty Name="Proveedores" Relationship="VXERPModel.FK_Proveedores_Parroquias" FromRole="Parroquias" ToRole="Proveedores" />
+        </EntityType>
+        <EntityType Name="Proveedores">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="RazonSocial" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="NombreComercial" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="DescripcionCorta" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="RUC" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="isContribuyenteEspecial" />
+          <Property Type="String" Name="Calle" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Numero" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Interseccion" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="IdTipoProveedor" Nullable="false" />
+          <Property Type="Int32" Name="IdProvincia" Nullable="false" />
+          <Property Type="Int32" Name="IdCiudad" />
+          <Property Type="Int32" Name="IdCanton" />
+          <Property Type="Int32" Name="IdParroquia" />
+          <Property Type="Int32" Name="IdTipoLocal" Nullable="false" />
+          <Property Type="String" Name="TelefonoPBX" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Telefono2" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Fax" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ContactoCompra" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CorreoContactoCompra" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CelularContacto" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ContactoCXP" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CorreoContactoCXP" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CelularContactoCXP" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="IdActividad" />
+          <Property Type="DateTime" Name="FechaInicioActividad" Precision="3" />
+          <Property Type="String" Name="RepresentanteLegal" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="IdOcupacion" />
+          <Property Type="String" Name="TelefonoRepresentante" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CelularRepresentante" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CorreoRepresentante" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="MontoCredito" Nullable="false" Precision="8" Scale="2" />
+          <Property Type="Int32" Name="PlazoCredito" Nullable="false" />
+          <Property Type="Boolean" Name="Estado" Nullable="false" />
+          <Property Type="DateTime" Name="FechaCreacion" Nullable="false" Precision="3" />
+          <Property Type="DateTime" Name="FechaActualizacion" Nullable="false" Precision="3" />
+          <Property Type="Int32" Name="IdUsuario" />
+          <NavigationProperty Name="Actividades" Relationship="VXERPModel.FK_Proveedores_Actividades" FromRole="Proveedores" ToRole="Actividades" />
+          <NavigationProperty Name="Cantones" Relationship="VXERPModel.FK_Proveedores_Cantones" FromRole="Proveedores" ToRole="Cantones" />
+          <NavigationProperty Name="Ciudades" Relationship="VXERPModel.FK_Proveedores_Ciudades" FromRole="Proveedores" ToRole="Ciudades" />
+          <NavigationProperty Name="Ocupaciones" Relationship="VXERPModel.FK_Proveedores_Ocupaciones" FromRole="Proveedores" ToRole="Ocupaciones" />
+          <NavigationProperty Name="Parroquias" Relationship="VXERPModel.FK_Proveedores_Parroquias" FromRole="Proveedores" ToRole="Parroquias" />
+          <NavigationProperty Name="Provincias" Relationship="VXERPModel.FK_Proveedores_Provincias" FromRole="Proveedores" ToRole="Provincias" />
+          <NavigationProperty Name="TiposLocal" Relationship="VXERPModel.FK_Proveedores_TiposLocal" FromRole="Proveedores" ToRole="TiposLocal" />
+          <NavigationProperty Name="TiposProveedor" Relationship="VXERPModel.FK_Proveedores_TiposProveedor" FromRole="Proveedores" ToRole="TiposProveedor" />
+          <NavigationProperty Name="Usuarios" Relationship="VXERPModel.FK_Proveedores_Usuarios" FromRole="Proveedores" ToRole="Usuarios" />
+        </EntityType>
+        <EntityType Name="Provincias">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Descripcion" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="DescripcionCorta" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="IdPais" Nullable="false" />
+          <Property Type="Boolean" Name="Estado" Nullable="false" />
+          <Property Type="DateTime" Name="FechaCreacion" Nullable="false" Precision="3" />
+          <Property Type="DateTime" Name="FechaActualizacion" Nullable="false" Precision="3" />
+          <Property Type="Int32" Name="IdUsuario" />
+          <NavigationProperty Name="Ciudades" Relationship="VXERPModel.FK_Ciudades_Provincias" FromRole="Provincias" ToRole="Ciudades" />
+          <NavigationProperty Name="Paises" Relationship="VXERPModel.FK_Provincias_Paises" FromRole="Provincias" ToRole="Paises" />
+          <NavigationProperty Name="Proveedores" Relationship="VXERPModel.FK_Proveedores_Provincias" FromRole="Provincias" ToRole="Proveedores" />
+          <NavigationProperty Name="Usuarios" Relationship="VXERPModel.FK_Provincias_Usuarios" FromRole="Provincias" ToRole="Usuarios" />
+        </EntityType>
+        <EntityType Name="ReferenciasBancarias">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Referencia" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="TipoCuenta" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="FechaApertura" Precision="3" />
+          <Property Type="Boolean" Name="Estado" Nullable="false" />
+          <Property Type="DateTime" Name="FechaCreacion" Nullable="false" Precision="3" />
+          <Property Type="DateTime" Name="FechaActualizacion" Nullable="false" Precision="3" />
+          <Property Type="Int32" Name="IdUsuario" />
+          <NavigationProperty Name="Usuarios" Relationship="VXERPModel.FK_ReferenciasBancarias_Usuarios" FromRole="ReferenciasBancarias" ToRole="Usuarios" />
+        </EntityType>
+        <EntityType Name="ReferenciasComerciales">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Referencia" Nullable="false" MaxLength="350" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Telefono" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="Anio" Nullable="false" />
+          <Property Type="Boolean" Name="Estado" Nullable="false" />
+          <Property Type="DateTime" Name="FechaCreacion" Nullable="false" Precision="3" />
+          <Property Type="DateTime" Name="FechaActualizacion" Nullable="false" Precision="3" />
+          <Property Type="Int32" Name="IdUsuario" />
+          <NavigationProperty Name="Usuarios" Relationship="VXERPModel.FK_ReferenciasComerciales_Usuarios" FromRole="ReferenciasComerciales" ToRole="Usuarios" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="RoleName" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="Estado" Nullable="false" />
+          <Property Type="DateTime" Name="FechaCreacion" Nullable="false" Precision="3" />
+          <Property Type="DateTime" Name="FechaActualizacion" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Usuarios" Relationship="VXERPModel.UsuarioRols" FromRole="Roles" ToRole="Usuarios" />
+          <NavigationProperty Name="RolModulos" Relationship="VXERPModel.FK_RolModulos_Roles" FromRole="Roles" ToRole="RolModulos" />
+        </EntityType>
+        <EntityType Name="Sucursales">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="IdGrupoEmpresarial" Nullable="false" />
+          <Property Type="Int32" Name="IdCompania" Nullable="false" />
+          <Property Type="Int32" Name="IdDivision" Nullable="false" />
+          <Property Type="String" Name="Codigo" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Descripcion" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="DescripcionCorta" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Calle" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Numero" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Interseccion" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="IdCiudad" />
+          <Property Type="String" Name="TelefonoPBX" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Telefono2" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="Estado" Nullable="false" />
+          <Property Type="DateTime" Name="FechaCreacion" Nullable="false" Precision="3" />
+          <Property Type="DateTime" Name="FechaActualizacion" Nullable="false" Precision="3" />
+          <Property Type="Int32" Name="IdUsuario" />
+          <NavigationProperty Name="Ciudades" Relationship="VXERPModel.FK_Sucursales_Ciudades" FromRole="Sucursales" ToRole="Ciudades" />
+          <NavigationProperty Name="Companias" Relationship="VXERPModel.FK_Sucursales_Companias" FromRole="Sucursales" ToRole="Companias" />
+          <NavigationProperty Name="Divisiones" Relationship="VXERPModel.FK_Sucursales_Divisiones" FromRole="Sucursales" ToRole="Divisiones" />
+          <NavigationProperty Name="GruposEmpresarial" Relationship="VXERPModel.FK_Sucursales_GruposEmpresarial" FromRole="Sucursales" ToRole="GruposEmpresarial" />
+          <NavigationProperty Name="Usuarios" Relationship="VXERPModel.FK_Sucursales_Usuarios" FromRole="Sucursales" ToRole="Usuarios" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Type="String" Name="name" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="principal_id" Nullable="false" />
+          <Property Type="Int32" Name="diagram_id" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="version" />
+          <Property Type="Binary" Name="definition" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="TiposLocal">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Descripcion" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="DescripcionCorta" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="Estado" Nullable="false" />
+          <Property Type="DateTime" Name="FechaCreacion" Nullable="false" Precision="3" />
+          <Property Type="DateTime" Name="FechaActualizacion" Nullable="false" Precision="3" />
+          <Property Type="Int32" Name="IdUsuario" />
+          <NavigationProperty Name="Proveedores" Relationship="VXERPModel.FK_Proveedores_TiposLocal" FromRole="TiposLocal" ToRole="Proveedores" />
+          <NavigationProperty Name="Usuarios" Relationship="VXERPModel.FK_TiposLocal_Usuarios" FromRole="TiposLocal" ToRole="Usuarios" />
+        </EntityType>
+        <EntityType Name="TiposProveedor">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="parent_id" />
+          <Property Type="String" Name="Descripcion" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="DescripcionCorta" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="Estado" Nullable="false" />
+          <Property Type="DateTime" Name="FechaCreacion" Nullable="false" Precision="3" />
+          <Property Type="DateTime" Name="FechaActualizacion" Nullable="false" Precision="3" />
+          <Property Type="Int32" Name="IdUsuario" />
+          <NavigationProperty Name="Proveedores" Relationship="VXERPModel.FK_Proveedores_TiposProveedor" FromRole="TiposProveedor" ToRole="Proveedores" />
+          <NavigationProperty Name="TiposProveedor1" Relationship="VXERPModel.FK_TiposProveedor_TiposProveedor" FromRole="TiposProveedor" ToRole="TiposProveedor1" />
+          <NavigationProperty Name="TiposProveedor2" Relationship="VXERPModel.FK_TiposProveedor_TiposProveedor" FromRole="TiposProveedor1" ToRole="TiposProveedor" />
+          <NavigationProperty Name="Usuarios" Relationship="VXERPModel.FK_TiposProveedor_Usuarios" FromRole="TiposProveedor" ToRole="Usuarios" />
+        </EntityType>
+        <EntityType Name="Usuarios">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="UserName" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Password" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="NombreApellido" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="Estado" Nullable="false" />
+          <Property Type="DateTime" Name="FechaCreacion" Nullable="false" Precision="3" />
+          <Property Type="DateTime" Name="FechaActualizacion" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Actividades" Relationship="VXERPModel.FK_Actividades_Usuarios" FromRole="Usuarios" ToRole="Actividades" />
+          <NavigationProperty Name="Cantones" Relationship="VXERPModel.FK_Cantones_Usuarios" FromRole="Usuarios" ToRole="Cantones" />
+          <NavigationProperty Name="Ciudades" Relationship="VXERPModel.FK_Ciudades_Usuarios" FromRole="Usuarios" ToRole="Ciudades" />
+          <NavigationProperty Name="Companias" Relationship="VXERPModel.FK_Companias_Usuarios" FromRole="Usuarios" ToRole="Companias" />
+          <NavigationProperty Name="Continentes" Relationship="VXERPModel.FK_Continentes_Usuarios" FromRole="Usuarios" ToRole="Continentes" />
+          <NavigationProperty Name="Divisiones" Relationship="VXERPModel.FK_Divisiones_Usuarios" FromRole="Usuarios" ToRole="Divisiones" />
+          <NavigationProperty Name="GruposEmpresarial" Relationship="VXERPModel.FK_GruposEmpresarial_Usuarios" FromRole="Usuarios" ToRole="GruposEmpresarial" />
+          <NavigationProperty Name="Ocupaciones" Relationship="VXERPModel.FK_Ocupaciones_Usuarios" FromRole="Usuarios" ToRole="Ocupaciones" />
+          <NavigationProperty Name="Paises" Relationship="VXERPModel.FK_Paises_Usuarios" FromRole="Usuarios" ToRole="Paises" />
+          <NavigationProperty Name="Parroquias" Relationship="VXERPModel.FK_Parroquias_Usuarios" FromRole="Usuarios" ToRole="Parroquias" />
+          <NavigationProperty Name="Proveedores" Relationship="VXERPModel.FK_Proveedores_Usuarios" FromRole="Usuarios" ToRole="Proveedores" />
+          <NavigationProperty Name="Provincias" Relationship="VXERPModel.FK_Provincias_Usuarios" FromRole="Usuarios" ToRole="Provincias" />
+          <NavigationProperty Name="ReferenciasBancarias" Relationship="VXERPModel.FK_ReferenciasBancarias_Usuarios" FromRole="Usuarios" ToRole="ReferenciasBancarias" />
+          <NavigationProperty Name="ReferenciasComerciales" Relationship="VXERPModel.FK_ReferenciasComerciales_Usuarios" FromRole="Usuarios" ToRole="ReferenciasComerciales" />
+          <NavigationProperty Name="Sucursales" Relationship="VXERPModel.FK_Sucursales_Usuarios" FromRole="Usuarios" ToRole="Sucursales" />
+          <NavigationProperty Name="TiposLocal" Relationship="VXERPModel.FK_TiposLocal_Usuarios" FromRole="Usuarios" ToRole="TiposLocal" />
+          <NavigationProperty Name="TiposProveedor" Relationship="VXERPModel.FK_TiposProveedor_Usuarios" FromRole="Usuarios" ToRole="TiposProveedor" />
+          <NavigationProperty Name="Zonas" Relationship="VXERPModel.FK_Zonas_Usuarios" FromRole="Usuarios" ToRole="Zonas" />
+          <NavigationProperty Name="Roles" Relationship="VXERPModel.UsuarioRols" FromRole="Usuarios" ToRole="Roles" />
+        </EntityType>
+        <EntityType Name="Zonas">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Descripcion" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="DescripcionCorta" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="Estado" Nullable="false" />
+          <Property Type="DateTime" Name="FechaCreacion" Nullable="false" Precision="3" />
+          <Property Type="DateTime" Name="FechaActualizacion" Nullable="false" Precision="3" />
+          <Property Type="Int32" Name="IdUsuario" />
+          <NavigationProperty Name="Usuarios" Relationship="VXERPModel.FK_Zonas_Usuarios" FromRole="Zonas" ToRole="Usuarios" />
+          <NavigationProperty Name="Zonas1" Relationship="VXERPModel.FK_Zonas_Zonas" FromRole="Zonas" ToRole="Zonas1" />
+          <NavigationProperty Name="Zonas2" Relationship="VXERPModel.FK_Zonas_Zonas" FromRole="Zonas1" ToRole="Zonas" />
+        </EntityType>
+        <Association Name="FK_Actividades_Usuarios">
+          <End Type="VXERPModel.Usuarios" Role="Usuarios" Multiplicity="0..1" />
+          <End Type="VXERPModel.Actividades" Role="Actividades" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Actividades">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Proveedores_Actividades">
+          <End Type="VXERPModel.Actividades" Role="Actividades" Multiplicity="1" />
+          <End Type="VXERPModel.Proveedores" Role="Proveedores" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Actividades">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Proveedores">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cantones_Ciudades">
+          <End Type="VXERPModel.Ciudades" Role="Ciudades" Multiplicity="1" />
+          <End Type="VXERPModel.Cantones" Role="Cantones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ciudades">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Cantones">
+              <PropertyRef Name="IdCiudad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cantones_Usuarios">
+          <End Type="VXERPModel.Usuarios" Role="Usuarios" Multiplicity="0..1" />
+          <End Type="VXERPModel.Cantones" Role="Cantones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Cantones">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Parroquias_Cantones">
+          <End Type="VXERPModel.Cantones" Role="Cantones" Multiplicity="1" />
+          <End Type="VXERPModel.Parroquias" Role="Parroquias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cantones">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Parroquias">
+              <PropertyRef Name="IdCanton" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Proveedores_Cantones">
+          <End Type="VXERPModel.Cantones" Role="Cantones" Multiplicity="1" />
+          <End Type="VXERPModel.Proveedores" Role="Proveedores" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Cantones">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Proveedores">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ciudades_Provincias">
+          <End Type="VXERPModel.Provincias" Role="Provincias" Multiplicity="1" />
+          <End Type="VXERPModel.Ciudades" Role="Ciudades" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Provincias">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Ciudades">
+              <PropertyRef Name="IdProvincia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ciudades_Usuarios">
+          <End Type="VXERPModel.Usuarios" Role="Usuarios" Multiplicity="0..1" />
+          <End Type="VXERPModel.Ciudades" Role="Ciudades" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Ciudades">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Companias_Ciudades">
+          <End Type="VXERPModel.Ciudades" Role="Ciudades" Multiplicity="1" />
+          <End Type="VXERPModel.Companias" Role="Companias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ciudades">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Companias">
+              <PropertyRef Name="IdCiudad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Proveedores_Ciudades">
+          <End Type="VXERPModel.Ciudades" Role="Ciudades" Multiplicity="0..1" />
+          <End Type="VXERPModel.Proveedores" Role="Proveedores" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ciudades">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Proveedores">
+              <PropertyRef Name="IdCiudad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sucursales_Ciudades">
+          <End Type="VXERPModel.Ciudades" Role="Ciudades" Multiplicity="0..1" />
+          <End Type="VXERPModel.Sucursales" Role="Sucursales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ciudades">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Sucursales">
+              <PropertyRef Name="IdCiudad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Companias_GruposEmpresarial">
+          <End Type="VXERPModel.GruposEmpresarial" Role="GruposEmpresarial" Multiplicity="0..1" />
+          <End Type="VXERPModel.Companias" Role="Companias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GruposEmpresarial">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Companias">
+              <PropertyRef Name="IdGrupoEmpresarial" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Companias_Usuarios">
+          <End Type="VXERPModel.Usuarios" Role="Usuarios" Multiplicity="0..1" />
+          <End Type="VXERPModel.Companias" Role="Companias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Companias">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Divisiones_Companias">
+          <End Type="VXERPModel.Companias" Role="Companias" Multiplicity="1" />
+          <End Type="VXERPModel.Divisiones" Role="Divisiones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Companias">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Divisiones">
+              <PropertyRef Name="IdCompania" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sucursales_Companias">
+          <End Type="VXERPModel.Companias" Role="Companias" Multiplicity="1" />
+          <End Type="VXERPModel.Sucursales" Role="Sucursales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Companias">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Sucursales">
+              <PropertyRef Name="IdCompania" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Continentes_Usuarios">
+          <End Type="VXERPModel.Usuarios" Role="Usuarios" Multiplicity="0..1" />
+          <End Type="VXERPModel.Continentes" Role="Continentes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Continentes">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Paises_Continentes">
+          <End Type="VXERPModel.Continentes" Role="Continentes" Multiplicity="1" />
+          <End Type="VXERPModel.Paises" Role="Paises" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Continentes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Paises">
+              <PropertyRef Name="IdContinente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Divisiones_Divisiones">
+          <End Type="VXERPModel.Divisiones" Role="Divisiones" Multiplicity="1" />
+          <End Type="VXERPModel.Divisiones" Role="Divisiones1" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Divisiones">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Divisiones1">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Divisiones_GruposEmpresarial">
+          <End Type="VXERPModel.GruposEmpresarial" Role="GruposEmpresarial" Multiplicity="1" />
+          <End Type="VXERPModel.Divisiones" Role="Divisiones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GruposEmpresarial">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Divisiones">
+              <PropertyRef Name="IdGrupoEmpresarial" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Divisiones_Usuarios">
+          <End Type="VXERPModel.Usuarios" Role="Usuarios" Multiplicity="0..1" />
+          <End Type="VXERPModel.Divisiones" Role="Divisiones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Divisiones">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sucursales_Divisiones">
+          <End Type="VXERPModel.Divisiones" Role="Divisiones" Multiplicity="1" />
+          <End Type="VXERPModel.Sucursales" Role="Sucursales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Divisiones">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Sucursales">
+              <PropertyRef Name="IdDivision" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GruposEmpresarial_Usuarios">
+          <End Type="VXERPModel.Usuarios" Role="Usuarios" Multiplicity="0..1" />
+          <End Type="VXERPModel.GruposEmpresarial" Role="GruposEmpresarial" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GruposEmpresarial">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sucursales_GruposEmpresarial">
+          <End Type="VXERPModel.GruposEmpresarial" Role="GruposEmpresarial" Multiplicity="1" />
+          <End Type="VXERPModel.Sucursales" Role="Sucursales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GruposEmpresarial">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Sucursales">
+              <PropertyRef Name="IdGrupoEmpresarial" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ocupaciones_Usuarios">
+          <End Type="VXERPModel.Usuarios" Role="Usuarios" Multiplicity="0..1" />
+          <End Type="VXERPModel.Ocupaciones" Role="Ocupaciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Ocupaciones">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Proveedores_Ocupaciones">
+          <End Type="VXERPModel.Ocupaciones" Role="Ocupaciones" Multiplicity="0..1" />
+          <End Type="VXERPModel.Proveedores" Role="Proveedores" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ocupaciones">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Proveedores">
+              <PropertyRef Name="IdOcupacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Paises_Usuarios">
+          <End Type="VXERPModel.Usuarios" Role="Usuarios" Multiplicity="0..1" />
+          <End Type="VXERPModel.Paises" Role="Paises" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Paises">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Provincias_Paises">
+          <End Type="VXERPModel.Paises" Role="Paises" Multiplicity="1" />
+          <End Type="VXERPModel.Provincias" Role="Provincias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Paises">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Provincias">
+              <PropertyRef Name="IdPais" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Parroquias_Usuarios">
+          <End Type="VXERPModel.Usuarios" Role="Usuarios" Multiplicity="0..1" />
+          <End Type="VXERPModel.Parroquias" Role="Parroquias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Parroquias">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Proveedores_Parroquias">
+          <End Type="VXERPModel.Parroquias" Role="Parroquias" Multiplicity="0..1" />
+          <End Type="VXERPModel.Proveedores" Role="Proveedores" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Parroquias">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Proveedores">
+              <PropertyRef Name="IdParroquia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Proveedores_Provincias">
+          <End Type="VXERPModel.Provincias" Role="Provincias" Multiplicity="1" />
+          <End Type="VXERPModel.Proveedores" Role="Proveedores" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Provincias">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Proveedores">
+              <PropertyRef Name="IdProvincia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Proveedores_TiposLocal">
+          <End Type="VXERPModel.TiposLocal" Role="TiposLocal" Multiplicity="1" />
+          <End Type="VXERPModel.Proveedores" Role="Proveedores" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TiposLocal">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Proveedores">
+              <PropertyRef Name="IdTipoLocal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Proveedores_TiposProveedor">
+          <End Type="VXERPModel.TiposProveedor" Role="TiposProveedor" Multiplicity="1" />
+          <End Type="VXERPModel.Proveedores" Role="Proveedores" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TiposProveedor">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Proveedores">
+              <PropertyRef Name="IdTipoProveedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Proveedores_Usuarios">
+          <End Type="VXERPModel.Usuarios" Role="Usuarios" Multiplicity="0..1" />
+          <End Type="VXERPModel.Proveedores" Role="Proveedores" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Proveedores">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Provincias_Usuarios">
+          <End Type="VXERPModel.Usuarios" Role="Usuarios" Multiplicity="0..1" />
+          <End Type="VXERPModel.Provincias" Role="Provincias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Provincias">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReferenciasBancarias_Usuarios">
+          <End Type="VXERPModel.Usuarios" Role="Usuarios" Multiplicity="0..1" />
+          <End Type="VXERPModel.ReferenciasBancarias" Role="ReferenciasBancarias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ReferenciasBancarias">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReferenciasComerciales_Usuarios">
+          <End Type="VXERPModel.Usuarios" Role="Usuarios" Multiplicity="0..1" />
+          <End Type="VXERPModel.ReferenciasComerciales" Role="ReferenciasComerciales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ReferenciasComerciales">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sucursales_Usuarios">
+          <End Type="VXERPModel.Usuarios" Role="Usuarios" Multiplicity="0..1" />
+          <End Type="VXERPModel.Sucursales" Role="Sucursales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Sucursales">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TiposLocal_Usuarios">
+          <End Type="VXERPModel.Usuarios" Role="Usuarios" Multiplicity="0..1" />
+          <End Type="VXERPModel.TiposLocal" Role="TiposLocal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TiposLocal">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TiposProveedor_TiposProveedor">
+          <End Type="VXERPModel.TiposProveedor" Role="TiposProveedor" Multiplicity="0..1" />
+          <End Type="VXERPModel.TiposProveedor" Role="TiposProveedor1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TiposProveedor">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TiposProveedor1">
+              <PropertyRef Name="parent_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TiposProveedor_Usuarios">
+          <End Type="VXERPModel.Usuarios" Role="Usuarios" Multiplicity="0..1" />
+          <End Type="VXERPModel.TiposProveedor" Role="TiposProveedor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TiposProveedor">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Zonas_Usuarios">
+          <End Type="VXERPModel.Usuarios" Role="Usuarios" Multiplicity="0..1" />
+          <End Type="VXERPModel.Zonas" Role="Zonas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Zonas">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Zonas_Zonas">
+          <End Type="VXERPModel.Zonas" Role="Zonas" Multiplicity="1" />
+          <End Type="VXERPModel.Zonas" Role="Zonas1" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Zonas">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Zonas1">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="UsuarioRols">
+          <End Type="VXERPModel.Roles" Role="Roles" Multiplicity="*" />
+          <End Type="VXERPModel.Usuarios" Role="Usuarios" Multiplicity="*" />
+        </Association>
+        <EntityType Name="Modulos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Nombre" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="parent_id" />
+          <Property Type="String" Name="URL" MaxLength="250" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Modulos1" Relationship="VXERPModel.FK_Modulos_Modulos" FromRole="Modulos" ToRole="Modulos1" />
+          <NavigationProperty Name="Modulos2" Relationship="VXERPModel.FK_Modulos_Modulos" FromRole="Modulos1" ToRole="Modulos" />
+          <NavigationProperty Name="RolModulos" Relationship="VXERPModel.FK_RolModulos_Modulos" FromRole="Modulos" ToRole="RolModulos" />
+        </EntityType>
+        <EntityType Name="RolModulos">
+          <Key>
+            <PropertyRef Name="Rol_Id" />
+            <PropertyRef Name="Modulo_Id" />
+            <PropertyRef Name="Accion" />
+          </Key>
+          <Property Type="Int32" Name="Rol_Id" Nullable="false" />
+          <Property Type="Int32" Name="Modulo_Id" Nullable="false" />
+          <Property Type="String" Name="Accion" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Modulos" Relationship="VXERPModel.FK_RolModulos_Modulos" FromRole="RolModulos" ToRole="Modulos" />
+          <NavigationProperty Name="Roles" Relationship="VXERPModel.FK_RolModulos_Roles" FromRole="RolModulos" ToRole="Roles" />
+        </EntityType>
+        <Association Name="FK_Modulos_Modulos">
+          <End Type="VXERPModel.Modulos" Role="Modulos" Multiplicity="0..1" />
+          <End Type="VXERPModel.Modulos" Role="Modulos1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Modulos">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Modulos1">
+              <PropertyRef Name="parent_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RolModulos_Modulos">
+          <End Type="VXERPModel.Modulos" Role="Modulos" Multiplicity="1" />
+          <End Type="VXERPModel.RolModulos" Role="RolModulos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Modulos">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RolModulos">
+              <PropertyRef Name="Modulo_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RolModulos_Roles">
+          <End Type="VXERPModel.Roles" Role="Roles" Multiplicity="1" />
+          <End Type="VXERPModel.RolModulos" Role="RolModulos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="RolModulos">
+              <PropertyRef Name="Rol_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="VXERPModelStoreContainer" CdmEntityContainer="EntitiesConnectionString">
+    <FunctionImportMapping FunctionImportName="GetPaises" FunctionName="VXERPModel.Store.GetPaises">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="VXERPModel.GetPaises_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="DescripcionCorta" ColumnName="DescripcionCorta" />
+                <ScalarProperty Name="IdContinente" ColumnName="IdContinente" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+                <ScalarProperty Name="FechaActualizacion" ColumnName="FechaActualizacion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="Actividades">
+            <EntityTypeMapping TypeName="VXERPModel.Actividades">
+              <MappingFragment StoreEntitySet="Actividades">
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="FechaActualizacion" ColumnName="FechaActualizacion" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="DescripcionCorta" ColumnName="DescripcionCorta" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cantones">
+            <EntityTypeMapping TypeName="VXERPModel.Cantones">
+              <MappingFragment StoreEntitySet="Cantones">
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="FechaActualizacion" ColumnName="FechaActualizacion" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="IdCiudad" ColumnName="IdCiudad" />
+                <ScalarProperty Name="DescripcionCorta" ColumnName="DescripcionCorta" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ciudades">
+            <EntityTypeMapping TypeName="VXERPModel.Ciudades">
+              <MappingFragment StoreEntitySet="Ciudades">
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="FechaActualizacion" ColumnName="FechaActualizacion" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="IdProvincia" ColumnName="IdProvincia" />
+                <ScalarProperty Name="DescripcionCorta" ColumnName="DescripcionCorta" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Companias">
+            <EntityTypeMapping TypeName="VXERPModel.Companias">
+              <MappingFragment StoreEntitySet="Companias">
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="FechaActualizacion" ColumnName="FechaActualizacion" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="CedulaResponsable" ColumnName="CedulaResponsable" />
+                <ScalarProperty Name="ResponsableLegal" ColumnName="ResponsableLegal" />
+                <ScalarProperty Name="Telefono2" ColumnName="Telefono2" />
+                <ScalarProperty Name="TelefonoPBX" ColumnName="TelefonoPBX" />
+                <ScalarProperty Name="IdCiudad" ColumnName="IdCiudad" />
+                <ScalarProperty Name="Interseccion" ColumnName="Interseccion" />
+                <ScalarProperty Name="Numero" ColumnName="Numero" />
+                <ScalarProperty Name="Calle" ColumnName="Calle" />
+                <ScalarProperty Name="RUC" ColumnName="RUC" />
+                <ScalarProperty Name="DescripcionCorta" ColumnName="DescripcionCorta" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="IdGrupoEmpresarial" ColumnName="IdGrupoEmpresarial" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Continentes">
+            <EntityTypeMapping TypeName="VXERPModel.Continentes">
+              <MappingFragment StoreEntitySet="Continentes">
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="FechaActualizacion" ColumnName="FechaActualizacion" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="DescripcionCorta" ColumnName="DescripcionCorta" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Divisiones">
+            <EntityTypeMapping TypeName="VXERPModel.Divisiones">
+              <MappingFragment StoreEntitySet="Divisiones">
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="FechaActualizacion" ColumnName="FechaActualizacion" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="CedulaResponsable" ColumnName="CedulaResponsable" />
+                <ScalarProperty Name="Responsable" ColumnName="Responsable" />
+                <ScalarProperty Name="DescripcionCorta" ColumnName="DescripcionCorta" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="IdCompania" ColumnName="IdCompania" />
+                <ScalarProperty Name="IdGrupoEmpresarial" ColumnName="IdGrupoEmpresarial" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GruposEmpresarial">
+            <EntityTypeMapping TypeName="VXERPModel.GruposEmpresarial">
+              <MappingFragment StoreEntitySet="GruposEmpresarial">
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="FechaActualizacion" ColumnName="FechaActualizacion" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="CedulaResponsable" ColumnName="CedulaResponsable" />
+                <ScalarProperty Name="Responsable" ColumnName="Responsable" />
+                <ScalarProperty Name="DescripcionCorta" ColumnName="DescripcionCorta" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ocupaciones">
+            <EntityTypeMapping TypeName="VXERPModel.Ocupaciones">
+              <MappingFragment StoreEntitySet="Ocupaciones">
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="FechaActualizacion" ColumnName="FechaActualizacion" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="DescripcionCorta" ColumnName="DescripcionCorta" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Paises">
+            <EntityTypeMapping TypeName="VXERPModel.Paises">
+              <MappingFragment StoreEntitySet="Paises">
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="FechaActualizacion" ColumnName="FechaActualizacion" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="IdContinente" ColumnName="IdContinente" />
+                <ScalarProperty Name="DescripcionCorta" ColumnName="DescripcionCorta" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Parroquias">
+            <EntityTypeMapping TypeName="VXERPModel.Parroquias">
+              <MappingFragment StoreEntitySet="Parroquias">
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="FechaActualizacion" ColumnName="FechaActualizacion" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="IdCanton" ColumnName="IdCanton" />
+                <ScalarProperty Name="DescripcionCorta" ColumnName="DescripcionCorta" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Proveedores">
+            <EntityTypeMapping TypeName="VXERPModel.Proveedores">
+              <MappingFragment StoreEntitySet="Proveedores">
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="FechaActualizacion" ColumnName="FechaActualizacion" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="PlazoCredito" ColumnName="PlazoCredito" />
+                <ScalarProperty Name="MontoCredito" ColumnName="MontoCredito" />
+                <ScalarProperty Name="CorreoRepresentante" ColumnName="CorreoRepresentante" />
+                <ScalarProperty Name="CelularRepresentante" ColumnName="CelularRepresentante" />
+                <ScalarProperty Name="TelefonoRepresentante" ColumnName="TelefonoRepresentante" />
+                <ScalarProperty Name="IdOcupacion" ColumnName="IdOcupacion" />
+                <ScalarProperty Name="RepresentanteLegal" ColumnName="RepresentanteLegal" />
+                <ScalarProperty Name="FechaInicioActividad" ColumnName="FechaInicioActividad" />
+                <ScalarProperty Name="IdActividad" ColumnName="IdActividad" />
+                <ScalarProperty Name="CelularContactoCXP" ColumnName="CelularContactoCXP" />
+                <ScalarProperty Name="CorreoContactoCXP" ColumnName="CorreoContactoCXP" />
+                <ScalarProperty Name="ContactoCXP" ColumnName="ContactoCXP" />
+                <ScalarProperty Name="CelularContacto" ColumnName="CelularContacto" />
+                <ScalarProperty Name="CorreoContactoCompra" ColumnName="CorreoContactoCompra" />
+                <ScalarProperty Name="ContactoCompra" ColumnName="ContactoCompra" />
+                <ScalarProperty Name="Fax" ColumnName="Fax" />
+                <ScalarProperty Name="Telefono2" ColumnName="Telefono2" />
+                <ScalarProperty Name="TelefonoPBX" ColumnName="TelefonoPBX" />
+                <ScalarProperty Name="IdTipoLocal" ColumnName="IdTipoLocal" />
+                <ScalarProperty Name="IdParroquia" ColumnName="IdParroquia" />
+                <ScalarProperty Name="IdCanton" ColumnName="IdCanton" />
+                <ScalarProperty Name="IdCiudad" ColumnName="IdCiudad" />
+                <ScalarProperty Name="IdProvincia" ColumnName="IdProvincia" />
+                <ScalarProperty Name="IdTipoProveedor" ColumnName="IdTipoProveedor" />
+                <ScalarProperty Name="Interseccion" ColumnName="Interseccion" />
+                <ScalarProperty Name="Numero" ColumnName="Numero" />
+                <ScalarProperty Name="Calle" ColumnName="Calle" />
+                <ScalarProperty Name="isContribuyenteEspecial" ColumnName="isContribuyenteEspecial" />
+                <ScalarProperty Name="RUC" ColumnName="RUC" />
+                <ScalarProperty Name="DescripcionCorta" ColumnName="DescripcionCorta" />
+                <ScalarProperty Name="NombreComercial" ColumnName="NombreComercial" />
+                <ScalarProperty Name="RazonSocial" ColumnName="RazonSocial" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Provincias">
+            <EntityTypeMapping TypeName="VXERPModel.Provincias">
+              <MappingFragment StoreEntitySet="Provincias">
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="FechaActualizacion" ColumnName="FechaActualizacion" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="IdPais" ColumnName="IdPais" />
+                <ScalarProperty Name="DescripcionCorta" ColumnName="DescripcionCorta" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ReferenciasBancarias">
+            <EntityTypeMapping TypeName="VXERPModel.ReferenciasBancarias">
+              <MappingFragment StoreEntitySet="ReferenciasBancarias">
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="FechaActualizacion" ColumnName="FechaActualizacion" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="FechaApertura" ColumnName="FechaApertura" />
+                <ScalarProperty Name="TipoCuenta" ColumnName="TipoCuenta" />
+                <ScalarProperty Name="Referencia" ColumnName="Referencia" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ReferenciasComerciales">
+            <EntityTypeMapping TypeName="VXERPModel.ReferenciasComerciales">
+              <MappingFragment StoreEntitySet="ReferenciasComerciales">
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="FechaActualizacion" ColumnName="FechaActualizacion" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Anio" ColumnName="Anio" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Referencia" ColumnName="Referencia" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="VXERPModel.Roles">
+              <MappingFragment StoreEntitySet="Roles">
+                <ScalarProperty Name="FechaActualizacion" ColumnName="FechaActualizacion" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sucursales">
+            <EntityTypeMapping TypeName="VXERPModel.Sucursales">
+              <MappingFragment StoreEntitySet="Sucursales">
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="FechaActualizacion" ColumnName="FechaActualizacion" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Telefono2" ColumnName="Telefono2" />
+                <ScalarProperty Name="TelefonoPBX" ColumnName="TelefonoPBX" />
+                <ScalarProperty Name="IdCiudad" ColumnName="IdCiudad" />
+                <ScalarProperty Name="Interseccion" ColumnName="Interseccion" />
+                <ScalarProperty Name="Numero" ColumnName="Numero" />
+                <ScalarProperty Name="Calle" ColumnName="Calle" />
+                <ScalarProperty Name="DescripcionCorta" ColumnName="DescripcionCorta" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="IdDivision" ColumnName="IdDivision" />
+                <ScalarProperty Name="IdCompania" ColumnName="IdCompania" />
+                <ScalarProperty Name="IdGrupoEmpresarial" ColumnName="IdGrupoEmpresarial" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="VXERPModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TiposLocal">
+            <EntityTypeMapping TypeName="VXERPModel.TiposLocal">
+              <MappingFragment StoreEntitySet="TiposLocal">
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="FechaActualizacion" ColumnName="FechaActualizacion" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="DescripcionCorta" ColumnName="DescripcionCorta" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TiposProveedor">
+            <EntityTypeMapping TypeName="VXERPModel.TiposProveedor">
+              <MappingFragment StoreEntitySet="TiposProveedor">
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="FechaActualizacion" ColumnName="FechaActualizacion" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="DescripcionCorta" ColumnName="DescripcionCorta" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="parent_id" ColumnName="parent_id" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuarios">
+            <EntityTypeMapping TypeName="VXERPModel.Usuarios">
+              <MappingFragment StoreEntitySet="Usuarios">
+                <ScalarProperty Name="FechaActualizacion" ColumnName="FechaActualizacion" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="NombreApellido" ColumnName="NombreApellido" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Zonas">
+            <EntityTypeMapping TypeName="VXERPModel.Zonas">
+              <MappingFragment StoreEntitySet="Zonas">
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="FechaActualizacion" ColumnName="FechaActualizacion" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="DescripcionCorta" ColumnName="DescripcionCorta" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="UsuarioRols" TypeName="VXERPModel.UsuarioRols" StoreEntitySet="UsuarioRols">
+            <EndProperty Name="Usuarios">
+              <ScalarProperty Name="Id" ColumnName="Usuario_Id" />
+            </EndProperty>
+            <EndProperty Name="Roles">
+              <ScalarProperty Name="Id" ColumnName="Rol_Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <EntitySetMapping Name="Modulos">
+            <EntityTypeMapping TypeName="VXERPModel.Modulos">
+              <MappingFragment StoreEntitySet="Modulos">
+                <ScalarProperty Name="URL" ColumnName="URL" />
+                <ScalarProperty Name="parent_id" ColumnName="parent_id" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RolModulos">
+            <EntityTypeMapping TypeName="VXERPModel.RolModulos">
+              <MappingFragment StoreEntitySet="RolModulos">
+                <ScalarProperty Name="Accion" ColumnName="Accion" />
+                <ScalarProperty Name="Modulo_Id" ColumnName="Modulo_Id" />
+                <ScalarProperty Name="Rol_Id" ColumnName="Rol_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams />
+  </Designer>
+</edmx:Edmx>

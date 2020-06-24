@@ -1,0 +1,123 @@
+@Html.DevExpress().Chart(
+    settings =>
+    {
+        settings.Name = "webChart";
+        settings.CallbackRouteValues = new { Controller = "Cubo", Action = "ChartsIntegrationChartPartial" };
+        settings.EnableClientSideAPI = true;
+        
+        settings.Legend.MaxHorizontalPercentage = 30;
+        settings.BorderOptions.Visibility = DefaultBoolean.True;
+        settings.Width = System.Web.UI.WebControls.Unit.Pixel(1000);
+        settings.Height = System.Web.UI.WebControls.Unit.Pixel(320);
+        settings.ClientSideEvents.BeginCallback = "OnBeginChartCallback";
+
+        settings.SeriesDataMember = "Series";
+        //settings.SeriesTemplate.ChangeView(options.ChartType);
+        settings.SeriesTemplate.ChangeView(DevExpress.XtraCharts.ViewType.Bar);
+        settings.SeriesTemplate.ArgumentDataMember = "Arguments";
+        settings.SeriesTemplate.ValueDataMembers[0] = "Values";
+
+        if (settings.SeriesTemplate.Label != null)
+        {
+            settings.SeriesTemplate.Label.LineVisibility = DefaultBoolean.True;
+            settings.SeriesTemplate.LabelsVisibility = DefaultBoolean.True;
+        }
+    }).Bind(Model).GetHtml()
+
+@*<div class="long-title"><h3>Sales Statistics</h3></div>
+@(Html.DevExtreme().PivotGrid()
+    .AllowSortingBySummary(true)
+    .AllowSorting(true)
+    .AllowFiltering(true)
+    .AllowExpandAll(true)
+    .Height(570)
+    .ShowBorders(true)
+    .Export(e => e.Enabled(true).FileName("Adventure Works"))
+    .FieldChooser(fc => fc.AllowSearch(true))
+    .DataSource(d => d
+        .Fields(fields =>
+        {
+            fields.Add()
+                .AreaIndex(0)
+                .Caption("Cliente")
+                .DataField("[Clientes].[Cliente].[Cliente]")
+                .SortBy(PivotGridSortBy.None)
+                .Area(PivotGridArea.Filter);
+            fields.Add()
+                .AreaIndex(1)
+                .Caption("Cliente")
+                .DataField("[Provincia].[Provincia].[Provincia]")
+                .SortBy(PivotGridSortBy.None)
+                .Area(PivotGridArea.Filter);
+            fields.Add()
+                .AreaIndex(2)
+                .Caption("Producto")
+                .DataField("[Producto].[Producto].[Producto]")
+                .SortBy(PivotGridSortBy.None)
+                .Area(PivotGridArea.Filter);
+            fields.Add()
+                .AreaIndex(3)
+                .Caption("Unid Fac")
+                .DataField("[Unidad de Facturacion].[Unid Fac].[Unid Fac]")
+                .SortBy(PivotGridSortBy.None)
+                .Area(PivotGridArea.Filter);
+            fields.Add()
+                .AreaIndex(4)
+                .Caption("Categoría")
+                .DataField("[Categorías de Cliente].[Categoría].[Categoría]")
+                .SortBy(PivotGridSortBy.None)
+                .Area(PivotGridArea.Filter);
+            fields.Add()
+                .AreaIndex(5)
+                .Caption("Pais")
+                .DataField("[País].[Pais].[Pais]")
+                .SortBy(PivotGridSortBy.None)
+                .Area(PivotGridArea.Filter);
+            fields.Add()
+                .AreaIndex(6)
+                .Caption("Proceso")
+                .DataField("[Proceso].[Proceso].[Proceso]")
+                .SortBy(PivotGridSortBy.None)
+                .Area(PivotGridArea.Filter);
+            fields.Add()
+                .AreaIndex(7)
+                .Caption("Rubro")
+                .DataField("[Rubro].[Rubro].[Rubro]")
+                .SortBy(PivotGridSortBy.None)
+                .Area(PivotGridArea.Filter);
+            fields.Add()
+                .AreaIndex(0)
+                .Caption("Año")
+                .DataField("[Fecha].[Jerarquía].[Año]")
+                .SortBy(PivotGridSortBy.None)
+                .Area(PivotGridArea.Row);
+            fields.Add()
+                .AreaIndex(1)
+                .Caption("Unid Fac")
+                .DataField("[Unidad de Facturacion].[Unid Fac].[Unid Fac]")
+                .SortBy(PivotGridSortBy.None)
+                .Area(PivotGridArea.Filter);
+        })
+        .Store(s => s.Xmla()
+            .Url("//10.0.0.10/CUBOS/")
+            .Catalog("VentasNuevo2")
+            .Cube("Solutiion")
+        )
+    )
+)*@
+@*@(Html.DevExtreme().Chart()
+.ID("pivotgrid-chart")
+        .CommonSeriesSettings(s => s.Type(SeriesType.Bar))
+        .Tooltip(t => t.Enabled(true).CustomizeTooltip("customize_tooltip").Format(Format.Currency))
+        .Size(s => s.Height(200))
+        .AdaptiveLayout(l => l.Width(450))
+)*@
+
+<script>
+    function customize_tooltip(args) {
+        return {
+            html: args.seriesName + " | Total<div class='currency'>" + args.valueText + "</div>"
+        };
+    }
+</script>
+

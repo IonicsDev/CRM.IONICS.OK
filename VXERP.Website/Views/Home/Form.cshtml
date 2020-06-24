@@ -1,0 +1,99 @@
+﻿@model CRM.Business.Entities.Usuario
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+        
+    @Html.HiddenFor(model => model.Id)
+    @Html.HiddenFor(model => model.Estado)
+    @Html.HiddenFor(model => model.FechaCreacion)
+    @Html.HiddenFor(model => model.FechaActualizacion)
+    @Html.HiddenFor(model => model.DescripcionEstado)
+    @Html.HiddenFor(model => model.idUsuario)
+                         
+    <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered table-hover">
+        <tr>
+            <td>@Html.LabelFor(model => model.NombreApellido, new { @class = "control-label" })</td>
+            <td>@Html.TextBoxFor(model => model.NombreApellido, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.NombreApellido)
+            </td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(model => model.UserName, new { @class = "control-label" })</td>
+            <td>@Html.TextBoxFor(model => model.UserName, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.UserName)
+            </td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(model => model.Password, new { @class = "control-label" })</td>
+            <td>@Html.EditorFor(model => model.Password, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Password)
+            </td>
+        </tr>
+    </table>
+    
+    <br />
+    
+    Html.Partial("_ListArchivos", Model.ArchivosModulo);
+    
+    @Html.ActionLink("Adjuntar Archivo", "AddArchivoModulo", "Usuario", new { @id = "AddArchivoModulo", @class = "modal-link btn btn-success pull-right col-lg-3" })
+    
+    <br />
+    <br />
+    <br />
+    <br />
+    
+    <div class="form-group relative">
+        <button id="SubmitBtn" type="submit" class="btn btn-primary pull-right col-lg-5">Guardar</button>
+    </div>
+    
+    <div id="modal-container" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-content"></div>
+    </div>
+}
+
+<script type="text/javascript">
+
+    $(function () {
+        $('body').on('click', '.modal-link', function (e) {
+            e.preventDefault();
+            //Optional: turn the chache off
+            $.ajaxSetup({ cache: false });
+            $(this).attr('data-target', '#modal-container');
+            $(this).attr('data-toggle', 'modal');
+        });
+
+        $('#modal-container').on('hidden.CRM.modal', function () {
+            $(this).removeData('CRM.modal');
+        });
+
+        $('#CancelModal').on('click', function () {
+            return false;
+        });
+    });
+
+</script>
+
+<script type="text/javascript">
+
+    /* select especialidades*/
+    $(document).ready(function () {
+
+        //Double List
+        $("#espec_list").wl_Multiselect({
+            onSelect: function (value) {
+                //$('#profesional').append("<input type='hidden' name='especialidad' value='" + value + "' />");
+                $('#espec_list ').each(function () {
+                    $(this).val() == "" && $(this).remove();
+                });
+            },
+            onUnselect: function (value) {
+                $("#espec_list option[value=" + value + "]").attr("selected", false);
+                //  $('input[value="'+value+'"]').remove();
+            }
+        });
+
+    });
+    //$.fn.wl_Multiselect.methods.select();
+</script>

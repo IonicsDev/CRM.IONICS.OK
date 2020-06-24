@@ -1,0 +1,394 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="urn:schemas-microsoft-com:asm.v1" />
+  <xs:element name="configuration">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="configSections">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="section">
+                <xs:complexType>
+                  <xs:attribute name="name" type="xs:string" use="required" />
+                  <xs:attribute name="type" type="xs:string" use="required" />
+                  <xs:attribute name="requirePermission" type="xs:boolean" use="required" />
+                </xs:complexType>
+              </xs:element>
+              <xs:element maxOccurs="unbounded" name="sectionGroup">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element maxOccurs="unbounded" name="section">
+                      <xs:complexType>
+                        <xs:attribute name="name" type="xs:string" use="required" />
+                        <xs:attribute name="type" type="xs:string" use="required" />
+                        <xs:attribute name="requirePermission" type="xs:boolean" use="required" />
+                        <xs:attribute name="allowLocation" type="xs:boolean" use="optional" />
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                  <xs:attribute name="name" type="xs:string" use="required" />
+                  <xs:attribute name="type" type="xs:string" use="optional" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="connectionStrings">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element maxOccurs="unbounded" name="add">
+                <xs:complexType>
+                  <xs:attribute name="name" type="xs:string" use="required" />
+                  <xs:attribute name="connectionString" type="xs:string" use="required" />
+                  <xs:attribute name="providerName" type="xs:string" use="optional" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="appSettings">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element maxOccurs="unbounded" name="add">
+                <xs:complexType>
+                  <xs:attribute name="key" type="xs:string" use="required" />
+                  <xs:attribute name="value" type="xs:string" use="required" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="system.web">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="sessionState">
+                <xs:complexType>
+                  <xs:attribute name="mode" type="xs:string" use="required" />
+                  <xs:attribute name="timeout" type="xs:unsignedByte" use="required" />
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="compilation">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="assemblies">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element maxOccurs="unbounded" name="add">
+                            <xs:complexType>
+                              <xs:attribute name="assembly" type="xs:string" use="required" />
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                  <xs:attribute name="debug" type="xs:boolean" use="required" />
+                  <xs:attribute name="targetFramework" type="xs:decimal" use="required" />
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="authentication">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="forms">
+                      <xs:complexType>
+                        <xs:attribute name="loginUrl" type="xs:string" use="required" />
+                        <xs:attribute name="timeout" type="xs:unsignedShort" use="required" />
+                        <xs:attribute name="slidingExpiration" type="xs:boolean" use="required" />
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                  <xs:attribute name="mode" type="xs:string" use="required" />
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="pages">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="namespaces">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element maxOccurs="unbounded" name="add">
+                            <xs:complexType>
+                              <xs:attribute name="namespace" type="xs:string" use="required" />
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                  <xs:attribute name="validateRequest" type="xs:boolean" use="required" />
+                  <xs:attribute name="clientIDMode" type="xs:string" use="required" />
+                  <xs:attribute name="controlRenderingCompatibilityVersion" type="xs:decimal" use="required" />
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="httpHandlers">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element maxOccurs="unbounded" name="add">
+                      <xs:complexType>
+                        <xs:attribute name="type" type="xs:string" use="required" />
+                        <xs:attribute name="verb" type="xs:string" use="required" />
+                        <xs:attribute name="path" type="xs:string" use="required" />
+                        <xs:attribute name="validate" type="xs:boolean" use="required" />
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="httpModules">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="add">
+                      <xs:complexType>
+                        <xs:attribute name="type" type="xs:string" use="required" />
+                        <xs:attribute name="name" type="xs:string" use="required" />
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="globalization">
+                <xs:complexType>
+                  <xs:attribute name="culture" type="xs:string" use="required" />
+                  <xs:attribute name="uiCulture" type="xs:string" use="required" />
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="httpRuntime">
+                <xs:complexType>
+                  <xs:attribute name="maxRequestLength" type="xs:unsignedShort" use="required" />
+                  <xs:attribute name="requestValidationMode" type="xs:decimal" use="required" />
+                  <xs:attribute name="executionTimeout" type="xs:unsignedByte" use="required" />
+                  <xs:attribute name="targetFramework" type="xs:decimal" use="required" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="system.webServer">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="modules">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="add">
+                      <xs:complexType>
+                        <xs:attribute name="type" type="xs:string" use="required" />
+                        <xs:attribute name="name" type="xs:string" use="required" />
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="handlers">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element maxOccurs="unbounded" name="add">
+                      <xs:complexType>
+                        <xs:attribute name="type" type="xs:string" use="required" />
+                        <xs:attribute name="verb" type="xs:string" use="required" />
+                        <xs:attribute name="path" type="xs:string" use="required" />
+                        <xs:attribute name="name" type="xs:string" use="required" />
+                        <xs:attribute name="preCondition" type="xs:string" use="required" />
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="security">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="requestFiltering">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="requestLimits">
+                            <xs:complexType>
+                              <xs:attribute name="maxAllowedContentLength" type="xs:unsignedInt" use="required" />
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="validation">
+                <xs:complexType>
+                  <xs:attribute name="validateIntegratedModeConfiguration" type="xs:boolean" use="required" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="runtime">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element xmlns:q1="urn:schemas-microsoft-com:asm.v1" ref="q1:assemblyBinding" />
+              <xs:element name="legacyHMACWarning">
+                <xs:complexType>
+                  <xs:attribute name="enabled" type="xs:unsignedByte" use="required" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="entityFramework">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="defaultConnectionFactory">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="parameters">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="parameter">
+                            <xs:complexType>
+                              <xs:attribute name="value" type="xs:string" use="required" />
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                  <xs:attribute name="type" type="xs:string" use="required" />
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="providers">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="provider">
+                      <xs:complexType>
+                        <xs:attribute name="invariantName" type="xs:string" use="required" />
+                        <xs:attribute name="type" type="xs:string" use="required" />
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="dotNetOpenAuth">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="openid">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="relyingParty">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="security">
+                            <xs:complexType>
+                              <xs:simpleContent>
+                                <xs:extension base="xs:string">
+                                  <xs:attribute name="requireSsl" type="xs:boolean" use="required" />
+                                </xs:extension>
+                              </xs:simpleContent>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element name="behaviors">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="add">
+                                  <xs:complexType>
+                                    <xs:attribute name="type" type="xs:string" use="required" />
+                                  </xs:complexType>
+                                </xs:element>
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="messaging">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="untrustedWebRequest">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="whitelistHosts" type="xs:string" />
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="reporting">
+                <xs:complexType>
+                  <xs:attribute name="enabled" type="xs:boolean" use="required" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="uri">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="idn">
+                <xs:complexType>
+                  <xs:attribute name="enabled" type="xs:string" use="required" />
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="iriParsing">
+                <xs:complexType>
+                  <xs:attribute name="enabled" type="xs:boolean" use="required" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="system.net">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="defaultProxy">
+                <xs:complexType>
+                  <xs:attribute name="enabled" type="xs:boolean" use="required" />
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="settings" type="xs:string" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="devExpress">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="resources" type="xs:string" />
+              <xs:element name="themes">
+                <xs:complexType>
+                  <xs:attribute name="enableThemesAssembly" type="xs:boolean" use="required" />
+                  <xs:attribute name="styleSheetTheme" type="xs:string" use="required" />
+                  <xs:attribute name="theme" type="xs:string" use="required" />
+                  <xs:attribute name="customThemeAssemblies" type="xs:string" use="required" />
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="compression">
+                <xs:complexType>
+                  <xs:attribute name="enableHtmlCompression" type="xs:boolean" use="required" />
+                  <xs:attribute name="enableCallbackCompression" type="xs:boolean" use="required" />
+                  <xs:attribute name="enableResourceCompression" type="xs:boolean" use="required" />
+                  <xs:attribute name="enableResourceMerging" type="xs:boolean" use="required" />
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="settings">
+                <xs:complexType>
+                  <xs:attribute name="doctypeMode" type="xs:string" use="required" />
+                  <xs:attribute name="rightToLeft" type="xs:boolean" use="required" />
+                  <xs:attribute name="embedRequiredClientLibraries" type="xs:boolean" use="required" />
+                  <xs:attribute name="ieCompatibilityVersion" type="xs:string" use="required" />
+                  <xs:attribute name="checkReferencesToExternalScripts" type="xs:boolean" use="required" />
+                  <xs:attribute name="accessibilityCompliant" type="xs:boolean" use="required" />
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="errors">
+                <xs:complexType>
+                  <xs:attribute name="callbackErrorRedirectUrl" type="xs:string" use="required" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

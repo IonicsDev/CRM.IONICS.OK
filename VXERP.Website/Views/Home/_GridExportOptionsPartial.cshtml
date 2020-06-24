@@ -1,0 +1,35 @@
+﻿@Html.DevExpress().FormLayout(settings =>
+{
+    settings.Name = "btnExportar";
+    settings.ColCount = 2;
+
+    settings.Items.Add(m => m, item =>
+    {
+        item.FieldName = "ExportRowType";
+        item.Caption = "Exportar";
+
+        item.NestedExtensionType = FormLayoutNestedExtensionItemType.ComboBox;
+        var cpSettings = (ComboBoxSettings)item.NestedExtensionSettings;
+        cpSettings.Properties.DataSource = Enum.GetValues(typeof(GridViewExportedRowType));
+        cpSettings.SelectedIndex = 0;
+        item.RowSpan = 1;
+    });
+
+    settings.Items.Add(CreateExportButtonLayoutItem(CRM.Website.Controllers.GridViewExportFormat.Xls)).RowSpan = 2;
+}).GetHtml()
+
+@functions{
+    MVCxFormLayoutItem CreateExportButtonLayoutItem(CRM.Website.Controllers.GridViewExportFormat format)
+    {
+        MVCxFormLayoutItem item = new MVCxFormLayoutItem();
+        item.FieldName = format.ToString();
+        item.ShowCaption = DefaultBoolean.False;
+        item.NestedExtensionType = FormLayoutNestedExtensionItemType.Button;
+        
+        ButtonSettings settings = (ButtonSettings)item.NestedExtensionSettings;
+        settings.Text = "Exportar";
+        //Para evitar que haga el post
+        settings.UseSubmitBehavior = false;
+        return item;
+    }
+    }

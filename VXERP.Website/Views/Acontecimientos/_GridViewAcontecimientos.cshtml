@@ -1,0 +1,265 @@
+﻿@using DevExpress.Data.Filtering    
+@Html.DevExpress().GridView(settings =>
+{
+    settings.Name = "grid_" + ViewBag.NameController;
+    settings.CallbackRouteValues = new { Controller = (string)ViewBag.NameController, Action = "GridViewAllPartial" };
+    settings.Settings.ShowFilterBar = GridViewStatusBarMode.Visible;
+    settings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
+    settings.Height = System.Web.UI.WebControls.Unit.Percentage(100);
+    settings.ClientSideEvents.Init = "OnInit";
+    settings.ClientSideEvents.EndCallback = "OnEndCallback";
+    settings.SettingsSearchPanel.Visible = true;
+    settings.SettingsBehavior.AllowFixedGroups = true;
+    settings.SettingsBehavior.AllowDragDrop = true;
+    settings.SettingsBehavior.AllowSort = true;
+
+    settings.ControlStyle.Paddings.Padding = System.Web.UI.WebControls.Unit.Pixel(0);
+    settings.ControlStyle.Border.BorderWidth = System.Web.UI.WebControls.Unit.Pixel(0);
+    settings.ControlStyle.BorderBottom.BorderWidth = System.Web.UI.WebControls.Unit.Pixel(1);
+    settings.SettingsCookies.StoreFiltering = true;
+    settings.SettingsCookies.StoreGroupingAndSorting = true;
+    settings.SettingsCookies.StorePaging = true;
+    settings.SettingsCookies.Enabled = true;
+    settings.SettingsBehavior.EnableCustomizationWindow = true;
+
+    settings.SettingsExport.EnableClientSideExportAPI = true;
+    settings.SettingsExport.ExcelExportMode = DevExpress.Export.ExportType.WYSIWYG;
+
+    settings.Settings.ShowFilterRow = true;
+    settings.Settings.ShowFilterRowMenu = true;
+    settings.CommandColumn.Visible = true;
+    settings.CommandColumn.ShowClearFilterButton = true;
+
+    settings.Toolbars.Add(t =>
+    {
+        t.EnableAdaptivity = true;
+        t.Items.Add(GridViewToolbarCommand.ExportToPdf);
+        t.Items.Add(GridViewToolbarCommand.ExportToXls);
+        t.Items.Add(GridViewToolbarCommand.ExportToXlsx);
+        t.Items.Add(GridViewToolbarCommand.ExportToDocx);
+        t.Items.Add(GridViewToolbarCommand.ExportToRtf);
+        t.Items.Add(GridViewToolbarCommand.ExportToCsv);
+    });
+
+    settings.CustomJSProperties = (s, e) =>
+    {
+        MVCxGridView gridView = (MVCxGridView)s;
+        e.Properties["cpClientLayout" + (string)ViewBag.NameController] = gridView.SaveClientLayout();
+
+        ASPxGridView gridJS = (ASPxGridView)s;
+        e.Properties["cpGridSettings"] = gridJS.Settings;
+        //e.Properties["cpGridColumns"] = gridJS.Columns;
+        List<string> columnsNames = new List<string>();
+        foreach (GridViewDataColumn item in gridJS.DataColumns)
+        {
+            columnsNames.Add(item.FieldName);
+        }
+        e.Properties["cpGridColumns"] = columnsNames;
+    };
+
+    //settings.CommandColumn.Visible = true;
+    settings.Settings.UseFixedTableLayout = true;
+
+
+    settings.CommandColumn.ShowClearFilterButton = true;
+    //CheckBox en cada fila y checkbox general
+    settings.CommandColumn.ShowSelectCheckbox = true;
+    settings.CommandColumn.SelectAllCheckboxMode = GridViewSelectAllCheckBoxMode.Page;
+    settings.CommandColumn.HeaderStyle.BackColor = System.Drawing.Color.Orange;
+
+    settings.SettingsBehavior.AllowSelectByRowClick = true;
+    settings.ClientSideEvents.RowClick = "OnRowClick";
+    settings.SettingsResizing.ColumnResizeMode = ColumnResizeMode.Control;
+
+    settings.Settings.HorizontalScrollBarMode = ScrollBarMode.Auto;
+    settings.Settings.VerticalScrollBarMode = ScrollBarMode.Auto;
+    settings.Settings.VerticalScrollableHeight = 500;
+
+
+    settings.Settings.ShowGroupPanel = true;
+
+    settings.SettingsPager.Position = System.Web.UI.WebControls.PagerPosition.TopAndBottom;
+    settings.SettingsPager.FirstPageButton.Visible = true;
+    settings.SettingsPager.LastPageButton.Visible = true;
+    settings.SettingsPager.PageSizeItemSettings.Visible = true;
+    settings.SettingsPager.PageSizeItemSettings.Items = new string[] { "10", "20", "50" };
+    settings.KeyFieldName = "Registro";
+
+
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "ID";
+        column.Width = 15;
+        column.Caption = "#Id";
+        column.HeaderStyle.BackColor = System.Drawing.Color.LightGray;
+        column.HeaderStyle.Font.Bold = true;
+
+    });
+
+    //settings.Columns.Add(column =>
+    //{
+    //    column.FieldName = "Fecha";
+    //    column.ColumnType = MVCxGridViewColumnType.DateEdit;
+    //    //column.SetFilterTemplateContent(content =>
+    //    //{
+    //    //    Html.DevExpress().DropDownEdit(set =>
+    //    //    {
+    //    //        set.Name = "dde";
+    //    //        set.SetDropDownWindowTemplateContent(c =>
+    //    //        {
+    //    //            Html.DevExpress().Label(s =>
+    //    //            {
+    //    //                s.Name = "L1";
+    //    //                s.Text = "Desde:";
+    //    //            }).Render();
+    //    //            Html.DevExpress().DateEdit(s =>
+    //    //            {
+    //    //                s.Name = "dFrom";
+    //    //                s.Date = new DateTime(2018, 1, 1);
+    //    //            }).Render();
+    //    //            Html.DevExpress().Label(s =>
+    //    //            {
+    //    //                s.Name = "L2";
+    //    //                s.Text = "Hasta:";
+    //    //            }).Render();
+    //    //            Html.DevExpress().DateEdit(s =>
+    //    //            {
+    //    //                s.Name = "dTo";
+    //    //                s.Date = new DateTime(2018, 1, 1);
+    //    //            }).Render();
+    //    //            Html.DevExpress().Button(s =>
+    //    //            {
+    //    //                s.Name = "btn";
+    //    //                s.UseSubmitBehavior = false;
+    //    //                s.ClientSideEvents.Click = "function (s, e) { ApplyFilter( dFrom, dTo ); }";
+    //    //                s.Text = "Aplicar";
+    //    //            }).Render();
+    //    //        });
+    //    //    }).Render();
+    //    //});
+    //});
+
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "Estado";
+        column.Width = 15;
+        column.Caption = "Estado";
+        column.HeaderStyle.BackColor = System.Drawing.Color.LightGray;
+        column.HeaderStyle.Font.Bold = true;
+        column.CellStyle.HorizontalAlign = System.Web.UI.WebControls.HorizontalAlign.Center;
+
+
+        string[] Estados = { "Activo", "Inactivo" };
+
+        column.EditorProperties().ComboBox(cb =>
+        {
+            cb.DataSource = Estados;
+            cb.ValueType = typeof(string);
+            cb.DropDownStyle = DropDownStyle.DropDown;
+        });
+    });
+
+    CRM.Website.DevExpressHelpers.GridHelper.AddColumnsSettingViewData(settings.Columns, Model.GetDynamicCollectionList(Model.GetViewModel()));
+
+    settings.Columns.Add(column =>
+    {
+        column.Caption = "Acciones";
+        column.HeaderStyle.BackColor = System.Drawing.Color.Orange;
+        column.HeaderStyle.Font.Bold = true;
+
+        column.SetDataItemTemplateContent(c =>
+        {
+            if (((CRM.Website.Models.CustomPrincipal)User).IsInRole("EDIT", ViewBag.NameController))
+            {
+                ViewContext.Writer.Write(Html.ActionLink(" ", "Imprimir", (string)ViewBag.NameController, new { Id = DataBinder.Eval(c.DataItem, "Registro") },
+                          new { @class = " i-print-2 Impresora modal-link", title = "Imprimir" }) + "&nbsp;|&nbsp;" +
+                    Html.ActionLink(" ", "View", (string)ViewBag.NameController, new { Id = DataBinder.Eval(c.DataItem, "Registro") }, new { @class = "i-eye", title = "Ver" }) + "&nbsp;|&nbsp;" +
+                    Html.ActionLink(" ", "Edit", (string)ViewBag.NameController, new { Id = DataBinder.Eval(c.DataItem, "Registro") }, new { @class = "i-pencil-5", title = "Editar" }) + "&nbsp;|&nbsp;" +
+                    Html.ActionLink(" ", "Delete", (string)ViewBag.NameControlle, new { Id = DataBinder.Eval(c.DataItem, "Registro") }, new { Class = "confirm i-close-4", title = "Baja" })
+                );
+            }
+            else
+            {
+                ViewContext.Writer.Write(Html.ActionLink(" ", "View", (string)ViewBag.NameController, new { Id = DataBinder.Eval(c.DataItem, "Registro") }, new { @class = " i-eye ", title = "Ver" }));
+            }
+        });
+
+        column.Settings.AllowDragDrop = DefaultBoolean.True;
+        column.Settings.AllowSort = DefaultBoolean.True;
+
+    });
+
+    //settings.ClientSideEvents.EndCallback = "EndCallback";
+    //settings.ProcessColumnAutoFilter = (s, e) =>
+    //{
+    //    if (e.Value == "|") return;
+
+    //    if (e.Column.FieldName != "Fecha")
+    //        return;
+    //    if (e.Kind == GridViewAutoFilterEventKind.CreateCriteria)
+    //    {
+    //        String[] dates = e.Value.Split('|');
+    //        Session["DateFilterText"] = dates[0] + " - " + dates[1];
+    //        DateTime dateFrom = Convert.ToDateTime(dates[0]), dateTo = Convert.ToDateTime(dates[1]);
+    //        e.Criteria = (new OperandProperty("Fecha") >= dateFrom) & (new OperandProperty("Fecha") <= dateTo);
+    //    }
+    //};
+
+    //Fila de filtros
+    settings.Settings.ShowFilterRow = true;
+    //Icono del menu del filtrado
+    settings.Settings.ShowFilterRowMenu = false;
+
+
+    //Setear por defecto la condicion de filtrado
+    //de todas las columnas a Contains
+    settings.DataBound = (sender, e) =>
+    {
+        MVCxGridView gv = sender as MVCxGridView;
+        gv.Visible = (gv.VisibleRowCount > 0);
+
+        foreach (GridViewColumn column in gv.Columns)
+        {
+            var dataColumn = column as GridViewDataColumn;
+            if (dataColumn != null)
+                dataColumn.Settings.AutoFilterCondition = AutoFilterCondition.Contains;
+        }
+    };
+
+
+    settings.PreRender = (s, e) =>
+    {
+        MVCxGridView grid = s as MVCxGridView;
+
+        if (grid != null)
+            grid.ExpandAll();
+    };
+
+    settings.SettingsExport.RenderBrick = (sender, e) =>
+    {
+        if (e.RowType == GridViewRowType.Data && e.VisibleIndex % 2 == 0)
+            e.BrickStyle.BackColor = System.Drawing.Color.FromArgb(0xEE, 0xEE, 0xEE);
+    };
+
+    //settings.ClientLayout = (s, e) =>
+    //{
+    //    switch (e.LayoutMode)
+    //    {
+    //        case ClientLayoutMode.Loading:
+    //            //Load Last ClientLayout Via First Load
+    //            if (Session["LayoutAcontecimientos"] != null)
+    //            {
+    //                e.LayoutData = Session["LayoutAcontecimientos"].ToString();
+    //            }
+    //            break;
+    //        case ClientLayoutMode.Saving:
+    //            //Save Last ClientLayout Automatically
+    //            Session["LayoutAcontecimientos"] = e.LayoutData;
+    //            break;
+    //    }
+    //};
+
+    settings.SettingsDetail.ExportMode = GridViewDetailExportMode.Expanded;
+
+}).Bind(Model.Datos).GetHtml()
+

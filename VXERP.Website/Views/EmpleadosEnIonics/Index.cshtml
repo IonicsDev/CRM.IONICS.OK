@@ -1,0 +1,62 @@
+﻿@model  CRM.Business.Views.vEmpleadosEnIonics
+
+<script type="text/javascript">
+    function OnInit(s, e) {
+        AdjustSize();
+        ASPxClientUtils.AttachEventToElement(window, "resize", function (evt) {
+            AdjustSize();
+        });
+    }
+
+    function OnEndCallback(s, e) {
+        AdjustSize();
+    }
+    function AdjustSize() {
+        var height = document.documentElement.clientHeight;
+        grid.SetHeight(height - 250);
+    }
+
+   
+
+</script>
+
+<div class="wrapper">
+
+    <div class="container-fluid">
+        <div id="heading" class="page-header">
+            <h1><i class="icon20 i-cogs"></i>Personas en Ionics</h1>
+        </div>
+
+        <div class="row">
+
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <div class="icon"><i class="icon20 i-table"></i></div>
+                        <h4>Listado de Personas en Ionics</h4>
+                        <a href="#" class="minimize"></a>
+
+                    </div>
+                    <!-- End .panel-heading -->
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-12 form-inline">
+
+                            </div>
+                            <link href="~/Css/custom.css" rel="stylesheet" />
+                            <script src="~/Scripts/clientGridFunctions.js"></script>
+
+
+                            @Html.Partial("_GridForViews", Model)
+
+
+                            @*}*@
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
