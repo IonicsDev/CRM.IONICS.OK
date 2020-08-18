@@ -614,7 +614,7 @@ namespace CRM.Website.Controllers
                     Session["IsAdmin"] = false;
 
                 Pedido pedido = pedidoRepository.Get(id.Value).First();
-
+                pedido.PedidoEstado = pedidoEstadoRepository.GetFiltered(pe=> pe.PedidoID == id).First();
                 DataTable dtCli = vClientes.GetByID(pedido.Cg_Cli);
                 pedido.Nombre_Cliente = dtCli.Rows[0]["Descripcion"].ToString();
                 

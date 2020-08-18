@@ -289,8 +289,13 @@
                             <div class="form-group relative">
                                 @if (((bool)Session["IsAdmin"]) == true)
                                 {
-                                    @*<a href="@Url.Action("Delete", "PedidoProceso")/@Model.Item1.Id" class="btn col-lg-offset-7 col-lg-2">Eliminar Pedido</a>*@
-                                    <a data-href="@Url.Action("Delete", "PedidoProceso")/@Model.Item1.Id" data-toggle="modal" data-target="#confirm-delete" class="btn col-lg-offset-7 col-lg-2">Eliminar Pedido @Model.Item1.Id</a>
+                                    if (Model.Item1.PedidoEstado.EstadoInt == 0)
+                                    {
+                                        @*<a href="@Url.Action("Delete", "PedidoProceso")/@Model.Item1.Id" class="btn col-lg-offset-7 col-lg-2">Eliminar Pedido</a>*@
+                                        <a data-href="@Url.Action("Delete", "PedidoProceso")/@Model.Item1.Id" data-toggle="modal" 
+                                           data-target="#confirm-delete" class="btn col-lg-offset-7 col-lg-2">Eliminar Pedido @Model.Item1.Id</a>
+
+                                    }
                                 }
                                 <button id="btnGuardar" class="btn btn-primary pull-right col-lg-3">Guardar Pedido @Model.Item1.Id</button>
                             </div>

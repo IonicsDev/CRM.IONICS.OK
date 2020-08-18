@@ -14,6 +14,7 @@ namespace CRM.Business.Entities
         public Pedido()
         {
             this.PedidoDetalles = new List<PedidoDetalle>();
+            this.PedidoEstado = new PedidoEstado();
             this.Fe_Ped = null;
             this.Conf_Fecha = null;
             this.Fe_Retiro = null;
@@ -57,6 +58,10 @@ namespace CRM.Business.Entities
         [NotMappedAttribute]
         [InvisibleAttribute]
         public virtual ICollection<PedidoDetalle> PedidoDetalles { get; set; }
+
+        [NotMappedAttribute]
+        [InvisibleAttribute]
+        public virtual PedidoEstado PedidoEstado { get; set; }
 
     }
 }
